@@ -1,0 +1,104 @@
+{
+  "classes": {
+    "counts_valid": {
+      "plastico": 1508,
+      "vidrio": 1224
+    },
+    "counts_raw": {
+      "plastico": 1508,
+      "vidrio": 1232
+    },
+    "ratio_desbalance": 1.232,
+    "porcentaje": {
+      "plastico": 55.2,
+      "vidrio": 44.8
+    }
+  },
+  "resolutions": {
+    "unique_resolutions": 4,
+    "most_common": [
+      [
+        [
+          512,
+          683
+        ],
+        1747
+      ],
+      [
+        [
+          512,
+          384
+        ],
+        595
+      ],
+      [
+        [
+          384,
+          512
+        ],
+        389
+      ],
+      [
+        [
+          4032,
+          3024
+        ],
+        1
+      ]
+    ],
+    "width_min": 384,
+    "width_max": 4032,
+    "width_mean": 495.1,
+    "height_min": 384,
+    "height_max": 3024,
+    "height_mean": 594.4,
+    "filesize_kb_mean": 142.8,
+    "filesize_kb_min": 5.5,
+    "filesize_kb_max": 3524.2
+  },
+  "duplicates": {
+    "exact_duplicate_groups": 70,
+    "exact_duplicate_extra_files": 70,
+    "near_duplicate_groups_phash": 71,
+    "near_duplicate_extra_files_phash": 71,
+    "example_exact_groups": [
+      [
+        "dataset\\plastico\\PET1,615.jpg",
+        "dataset\\plastico\\PET278.jpg"
+      ],
+      [
+        "dataset\\plastico\\PET1,616.jpg",
+        "dataset\\plastico\\PET280.jpg"
+      ],
+      [
+        "dataset\\plastico\\PET1,617.jpg",
+        "dataset\\plastico\\PET281.jpg"
+      ]
+    ]
+  },
+  "quality": {
+    "plastico": {
+      "n": 1508,
+      "blur_var_mean": 3050.9,
+      "blur_var_min": 10.5,
+      "pct_borrosas_lt100": 3.38,
+      "brightness_mean": 134.0,
+      "pct_oscuras_lt60": 0.0,
+      "pct_sobreexpuestas_gt200": 0.0
+    },
+    "vidrio": {
+      "n": 1224,
+      "blur_var_mean": 4138.6,
+      "blur_var_min": 2.7,
+      "pct_borrosas_lt100": 14.46,
+      "brightness_mean": 147.4,
+      "pct_oscuras_lt60": 0.0,
+      "pct_sobreexpuestas_gt200": 0.57
+    }
+  },
+  "totals": {
+    "n_total_raw": 2740,
+    "n_corrupt": 8,
+    "n_valid": 2732
+  }
+}

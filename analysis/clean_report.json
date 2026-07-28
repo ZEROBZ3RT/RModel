@@ -1,0 +1,134 @@
+{
+  "heic_converted": [
+    "dataset\\vidrio\\Glass1,081.jpg",
+    "dataset\\vidrio\\Glass1,082.jpg",
+    "dataset\\vidrio\\Glass1,083.jpg",
+    "dataset\\vidrio\\Glass1,084.jpg",
+    "dataset\\vidrio\\Glass1,085.jpg",
+    "dataset\\vidrio\\Glass1,086.jpg",
+    "dataset\\vidrio\\Glass1,087.jpg",
+    "dataset\\vidrio\\Glass1,088.jpg"
+  ],
+  "duplicates_removed": [
+    "dataset\\plastico\\PET278.jpg",
+    "dataset\\plastico\\PET280.jpg",
+    "dataset\\plastico\\PET281.jpg",
+    "dataset\\plastico\\PET282.jpg",
+    "dataset\\plastico\\PET283.jpg",
+    "dataset\\plastico\\PET284.jpg",
+    "dataset\\plastico\\PET285.jpg",
+    "dataset\\plastico\\PET289.jpg",
+    "dataset\\plastico\\PET290.jpg",
+    "dataset\\plastico\\PET292.jpg",
+    "dataset\\plastico\\PET293.jpg",
+    "dataset\\plastico\\PET295.jpg",
+    "dataset\\plastico\\PET296.jpg",
+    "dataset\\plastico\\PET299.jpg",
+    "dataset\\plastico\\PET300.jpg",
+    "dataset\\plastico\\PET304.jpg",
+    "dataset\\plastico\\PET305.jpg",
+    "dataset\\plastico\\PET306.jpg",
+    "dataset\\plastico\\PET307.jpg",
+    "dataset\\plastico\\PET308.jpg",
+    "dataset\\plastico\\PET309.jpg",
+    "dataset\\plastico\\PET310.jpg",
+    "dataset\\plastico\\PET311.jpg",
+    "dataset\\plastico\\PET312.jpg",
+    "dataset\\plastico\\PET313.jpg",
+    "dataset\\plastico\\PET314.jpg",
+    "dataset\\plastico\\PET315.jpg",
+    "dataset\\plastico\\PET317.jpg",
+    "dataset\\plastico\\PET318.jpg",
+    "dataset\\plastico\\PET319.jpg",
+    "dataset\\plastico\\PET320.jpg",
+    "dataset\\plastico\\PET321.jpg",
+    "dataset\\plastico\\PET322.jpg",
+    "dataset\\plastico\\PET323.jpg",
+    "dataset\\plastico\\PET324.jpg",
+    "dataset\\plastico\\PET326.jpg",
+    "dataset\\plastico\\PET327.jpg",
+    "dataset\\plastico\\PET329.jpg",
+    "dataset\\plastico\\PET330.jpg",
+    "dataset\\plastico\\PET332.jpg",
+    "dataset\\plastico\\PET334.jpg",
+    "dataset\\plastico\\PET335.jpg",
+    "dataset\\plastico\\PET336.jpg",
+    "dataset\\plastico\\PET338.jpg",
+    "dataset\\plastico\\PET339.jpg",
+    "dataset\\plastico\\PET341.jpg",
+    "dataset\\plastico\\PET343.jpg",
+    "dataset\\plastico\\PET344.jpg",
+    "dataset\\plastico\\PET345.jpg",
+    "dataset\\plastico\\PET346.jpg",
+    "dataset\\plastico\\PET347.jpg",
+    "dataset\\plastico\\PET348.jpg",
+    "dataset\\plastico\\PET349.jpg",
+    "dataset\\plastico\\PET350.jpg",
+    "dataset\\plastico\\PET351.jpg",
+    "dataset\\plastico\\PET352.jpg",
+    "dataset\\plastico\\PET353.jpg",
+    "dataset\\plastico\\PET354.jpg",
+    "dataset\\plastico\\PET355.jpg",
+    "dataset\\plastico\\PET356.jpg",
+    "dataset\\plastico\\PET357.jpg",
+    "dataset\\plastico\\PET360.jpg",
+    "dataset\\plastico\\PET362.jpg",
+    "dataset\\plastico\\PET364.jpg",
+    "dataset\\plastico\\PET637.jpg",
+    "dataset\\plastico\\PET639.jpg",
+    "dataset\\plastico\\PET641.jpg",
+    "dataset\\plastico\\PET643.jpg",
+    "dataset\\plastico\\PET646.jpg",
+    "dataset\\plastico\\PET648.jpg"
+  ],
+  "final_counts": {
+    "plastico": 1438,
+    "vidrio": 1232
+  },
+  "split_counts": {
+    "plastico": {
+      "train": 1006,
+      "val": 215,
+      "test": 217
+    },
+    "vidrio": {
+      "train": 862,
+      "val": 184,
+      "test": 186
+    }
+  },
+  "heic_failed": [
+    [
+      "C:\\Users\\luanb\\Desktop\\RModel\\dataset\\vidrio\\Glass1,081.HEIC",
+      "[Errno 2] No such file or directory: 'C:\\\\Users\\\\luanb\\\\Desktop\\\\RModel\\\\dataset\\\\vidrio\\\\Glass1,081.HEIC'"
+    ],
+    [
+      "C:\\Users\\luanb\\Desktop\\RModel\\dataset\\vidrio\\Glass1,082.HEIC",
+      "[Errno 2] No such file or directory: 'C:\\\\Users\\\\luanb\\\\Desktop\\\\RModel\\\\dataset\\\\vidrio\\\\Glass1,082.HEIC'"
+    ],
+    [
+      "C:\\Users\\luanb\\Desktop\\RModel\\dataset\\vidrio\\Glass1,083.HEIC",
+      "[Errno 2] No such file or directory: 'C:\\\\Users\\\\luanb\\\\Desktop\\\\RModel\\\\dataset\\\\vidrio\\\\Glass1,083.HEIC'"
+    ],
+    [
+      "C:\\Users\\luanb\\Desktop\\RModel\\dataset\\vidrio\\Glass1,084.HEIC",
+      "[Errno 2] No such file or directory: 'C:\\\\Users\\\\luanb\\\\Desktop\\\\RModel\\\\dataset\\\\vidrio\\\\Glass1,084.HEIC'"
+    ],
+    [
+      "C:\\Users\\luanb\\Desktop\\RModel\\dataset\\vidrio\\Glass1,085.HEIC",
+      "[Errno 2] No such file or directory: 'C:\\\\Users\\\\luanb\\\\Desktop\\\\RModel\\\\dataset\\\\vidrio\\\\Glass1,085.HEIC'"
+    ],
+    [
+      "C:\\Users\\luanb\\Desktop\\RModel\\dataset\\vidrio\\Glass1,086.HEIC",
+      "[Errno 2] No such file or directory: 'C:\\\\Users\\\\luanb\\\\Desktop\\\\RModel\\\\dataset\\\\vidrio\\\\Glass1,086.HEIC'"
+    ],
+    [
+      "C:\\Users\\luanb\\Desktop\\RModel\\dataset\\vidrio\\Glass1,087.HEIC",
+      "[Errno 2] No such file or directory: 'C:\\\\Users\\\\luanb\\\\Desktop\\\\RModel\\\\dataset\\\\vidrio\\\\Glass1,087.HEIC'"
+    ],
+    [
+      "C:\\Users\\luanb\\Desktop\\RModel\\dataset\\vidrio\\Glass1,088.HEIC",
+      "[Errno 2] No such file or directory: 'C:\\\\Users\\\\luanb\\\\Desktop\\\\RModel\\\\dataset\\\\vidrio\\\\Glass1,088.HEIC'"
+    ]
+  ]
+}
