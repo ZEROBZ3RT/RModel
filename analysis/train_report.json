@@ -1,0 +1,239 @@
+{
+  "clases": [
+    "plastico",
+    "vidrio"
+  ],
+  "conteos": {
+    "train": {
+      "plastico": 1006,
+      "vidrio": 862
+    },
+    "val": {
+      "plastico": 215,
+      "vidrio": 184
+    },
+    "test": {
+      "plastico": 217,
+      "vidrio": 186
+    }
+  },
+  "entrenamiento": {
+    "epocas_fase1": 12,
+    "epocas_fase2": 10,
+    "tiempo_fase1_s": 455.9,
+    "tiempo_fase2_s": 398.1,
+    "tiempo_total_s": 854.0,
+    "accuracy_train_final": 0.9764,
+    "accuracy_val_final": 0.9649,
+    "loss_train_final": 0.0795,
+    "loss_val_final": 0.1042
+  },
+  "evaluacion_test": {
+    "accuracy": 0.9702,
+    "precision_plastico": 0.9476,
+    "recall_plastico": 1.0,
+    "f1_plastico": 0.9731,
+    "precision_vidrio": 1.0,
+    "recall_vidrio": 0.9355,
+    "f1_vidrio": 0.9667,
+    "precision_weighted": 0.9718,
+    "recall_weighted": 0.9702,
+    "f1_weighted": 0.9701,
+    "matriz_confusion": [
+      [
+        217,
+        0
+      ],
+      [
+        12,
+        174
+      ]
+    ],
+    "n_test": 403,
+    "tiempo_inferencia_ms": 139.7
+  },
+  "errores": {
+    "plastico": {
+      "total": 217,
+      "errores": 0
+    },
+    "vidrio": {
+      "total": 186,
+      "errores": 12
+    }
+  },
+  "modelo": {
+    "tamano_keras_mb": 20.88,
+    "tamano_tflite_mb": 2.41
+  },
+  "pruebas_muestra": [
+    {
+      "archivo": "Glass915.JPG",
+      "clase_real": "vidrio",
+      "prediccion": "vidrio",
+      "confianza": 99.7,
+      "correcta": true
+    },
+    {
+      "archivo": "PET965.jpg",
+      "clase_real": "plastico",
+      "prediccion": "plastico",
+      "confianza": 99.4,
+      "correcta": true
+    },
+    {
+      "archivo": "Glass900.JPG",
+      "clase_real": "vidrio",
+      "prediccion": "vidrio",
+      "confianza": 99.6,
+      "correcta": true
+    },
+    {
+      "archivo": "Glass419.jpg",
+      "clase_real": "vidrio",
+      "prediccion": "vidrio",
+      "confianza": 97.5,
+      "correcta": true
+    },
+    {
+      "archivo": "Glass10.jpg",
+      "clase_real": "vidrio",
+      "prediccion": "vidrio",
+      "confianza": 99.7,
+      "correcta": true
+    },
+    {
+      "archivo": "PET757.jpg",
+      "clase_real": "plastico",
+      "prediccion": "plastico",
+      "confianza": 99.9,
+      "correcta": true
+    },
+    {
+      "archivo": "PET1,468.jpg",
+      "clase_real": "plastico",
+      "prediccion": "plastico",
+      "confianza": 97.9,
+      "correcta": true
+    },
+    {
+      "archivo": "Glass479.jpg",
+      "clase_real": "vidrio",
+      "prediccion": "vidrio",
+      "confianza": 95.3,
+      "correcta": true
+    },
+    {
+      "archivo": "Glass589.jpg",
+      "clase_real": "vidrio",
+      "prediccion": "vidrio",
+      "confianza": 99.8,
+      "correcta": true
+    },
+    {
+      "archivo": "Glass1,197.JPG",
+      "clase_real": "vidrio",
+      "prediccion": "vidrio",
+      "confianza": 92.3,
+      "correcta": true
+    },
+    {
+      "archivo": "PET1,217.jpg",
+      "clase_real": "plastico",
+      "prediccion": "plastico",
+      "confianza": 91.4,
+      "correcta": true
+    },
+    {
+      "archivo": "PET828.jpg",
+      "clase_real": "plastico",
+      "prediccion": "plastico",
+      "confianza": 100.0,
+      "correcta": true
+    },
+    {
+      "archivo": "PET1,198.jpg",
+      "clase_real": "plastico",
+      "prediccion": "plastico",
+      "confianza": 99.9,
+      "correcta": true
+    },
+    {
+      "archivo": "Glass309.jpg",
+      "clase_real": "vidrio",
+      "prediccion": "vidrio",
+      "confianza": 93.7,
+      "correcta": true
+    },
+    {
+      "archivo": "PET947.jpg",
+      "clase_real": "plastico",
+      "prediccion": "plastico",
+      "confianza": 98.2,
+      "correcta": true
+    },
+    {
+      "archivo": "Glass381.jpg",
+      "clase_real": "vidrio",
+      "prediccion": "vidrio",
+      "confianza": 99.5,
+      "correcta": true
+    },
+    {
+      "archivo": "PET766.jpg",
+      "clase_real": "plastico",
+      "prediccion": "plastico",
+      "confianza": 99.2,
+      "correcta": true
+    },
+    {
+      "archivo": "Glass810.JPG",
+      "clase_real": "vidrio",
+      "prediccion": "vidrio",
+      "confianza": 100.0,
+      "correcta": true
+    },
+    {
+      "archivo": "PET636.jpg",
+      "clase_real": "plastico",
+      "prediccion": "plastico",
+      "confianza": 99.9,
+      "correcta": true
+    },
+    {
+      "archivo": "PET970.jpg",
+      "clase_real": "plastico",
+      "prediccion": "plastico",
+      "confianza": 96.8,
+      "correcta": true
+    },
+    {
+      "archivo": "PET1,323.jpg",
+      "clase_real": "plastico",
+      "prediccion": "plastico",
+      "confianza": 96.5,
+      "correcta": true
+    },
+    {
+      "archivo": "PET1,493.jpg",
+      "clase_real": "plastico",
+      "prediccion": "plastico",
+      "confianza": 98.7,
+      "correcta": true
+    },
+    {
+      "archivo": "Glass258.jpg",
+      "clase_real": "vidrio",
+      "prediccion": "vidrio",
+      "confianza": 97.9,
+      "correcta": true
+    },
+    {
+      "archivo": "Glass620.jpg",
+      "clase_real": "vidrio",
+      "prediccion": "vidrio",
+      "confianza": 96.9,
+      "correcta": true
+    }
+  ]
+}

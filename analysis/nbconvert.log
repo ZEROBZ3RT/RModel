@@ -9,3 +9,14 @@ I0000 00:00:1785250079.225779    3296 port.cc:153] oneDNN custom operations are 
 I0000 00:00:1785250088.732290    3296 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
 To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
 W0000 00:00:1785250149.982946   26692 prefetch_autotuner.cc:55] Prefetch autotuner tried to allocate 19267712 bytes after encountering the first element of size 19267712 bytes.This already causes the autotune ram budget to be exceeded. To stay within the ram budget, either increase the ram budget or reduce element size
+W0000 00:00:1785250991.459415    3296 tf_tfl_flatbuffer_helpers.cc:364] Ignored output_format.
+W0000 00:00:1785250991.460577    3296 tf_tfl_flatbuffer_helpers.cc:367] Ignored drop_control_dependency.
+I0000 00:00:1785250991.469723    3296 reader.cc:83] Reading SavedModel from: C:\Users\luanb\AppData\Local\Temp\tmpkcsqd69s
+I0000 00:00:1785250991.499652    3296 reader.cc:52] Reading meta graph with tags { serve }
+I0000 00:00:1785250991.499746    3296 reader.cc:147] Reading SavedModel debug info (if present) from: C:\Users\luanb\AppData\Local\Temp\tmpkcsqd69s
+I0000 00:00:1785250991.799326    3296 mlir_graph_optimization_pass.cc:437] MLIR V1 optimization pass is not enabled
+I0000 00:00:1785250991.843663    3296 loader.cc:236] Restoring SavedModel bundle.
+I0000 00:00:1785250993.751961    3296 loader.cc:220] Running initialization op on SavedModel bundle at path: C:\Users\luanb\AppData\Local\Temp\tmpkcsqd69s
+I0000 00:00:1785250994.186273    3296 loader.cc:471] SavedModel load for tags { serve }; Status: success: OK. Took 2717599 microseconds.
+I0000 00:00:1785250994.625962    3296 dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+[NbConvertApp] Writing 2601915 bytes to Implementacion_Evaluacion_Modelo_EcoSortAI.ipynb
