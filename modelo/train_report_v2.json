@@ -1,0 +1,62 @@
+{
+  "clases": [
+    "plastico",
+    "vidrio"
+  ],
+  "conteos": {
+    "train": {
+      "plastico": 1006,
+      "vidrio": 862
+    },
+    "val": {
+      "plastico": 215,
+      "vidrio": 184
+    },
+    "test": {
+      "plastico": 217,
+      "vidrio": 186
+    }
+  },
+  "cambios_v2": [
+    "ColorJitter (hue +/-0.08, saturacion 0.5-1.5x) agregado a data_augmentation",
+    "Fine-tuning en las ultimas 50 capas de MobileNetV2 (antes 30)",
+    "Dropout 0.3 (antes 0.2)",
+    "Fase 2: hasta 14 epocas (antes 10), patience=5 (antes 4)"
+  ],
+  "entrenamiento": {
+    "epocas_fase1": 12,
+    "epocas_fase2": 14,
+    "tiempo_fase1_s": 360.1,
+    "tiempo_fase2_s": 562.5,
+    "tiempo_total_s": 922.6,
+    "accuracy_train_final": 0.9839,
+    "accuracy_val_final": 0.9825
+  },
+  "evaluacion_test": {
+    "accuracy": 0.9851,
+    "precision_plastico": 0.9907,
+    "recall_plastico": 0.9816,
+    "f1_plastico": 0.9861,
+    "precision_vidrio": 0.9787,
+    "recall_vidrio": 0.9892,
+    "f1_vidrio": 0.984,
+    "precision_weighted": 0.9852,
+    "recall_weighted": 0.9851,
+    "f1_weighted": 0.9851,
+    "matriz_confusion": [
+      [
+        213,
+        4
+      ],
+      [
+        2,
+        184
+      ]
+    ],
+    "n_test": 403
+  },
+  "modelo": {
+    "tamano_keras_mb": 23.4,
+    "tamano_tflite_mb": 2.41
+  }
+}

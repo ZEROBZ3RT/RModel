@@ -1,0 +1,209 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1786026777.736670   15260 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1786026787.022712   15260 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+Fotos reales usadas en entrenamiento: ['plastico_001.jpeg', 'plastico_002.jpeg', 'plastico_004.jpeg', 'plastico_005.jpeg', 'plastico_006.jpeg', 'plastico_007.jpeg', 'plastico_009.jpeg', 'plastico_010.jpeg', 'plastico_011.jpeg', 'plastico_012.jpeg']
+Fotos reales dejadas fuera (chequeo honesto): ['plastico_003.jpeg', 'plastico_008.jpeg', 'plastico_013.jpeg']
+Copias reales agregadas a train/plastico: 80
+Found 1948 files belonging to 2 classes.
+I0000 00:00:1786026798.582750   15260 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Found 399 files belonging to 2 classes.
+Found 403 files belonging to 2 classes.
+WARNING:tensorflow:TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+C:\Users\luanb\Desktop\RModel\.venv313\Lib\site-packages\keras\src\trainers\epoch_iterator.py:74: UserWarning: `shuffle=True` was passed, but will be ignored since the data `x` was provided as a tf.data.Dataset. The Dataset is expected to already be shuffled (via `.shuffle(buffer_size)`).
+  self.data_adapter = data_adapters.get_data_adapter(
+class_names: ['plastico', 'vidrio']
+{
+  "train": {
+    "plastico": 1086,
+    "vidrio": 862
+  },
+  "val": {
+    "plastico": 215,
+    "vidrio": 184
+  },
+  "test": {
+    "plastico": 217,
+    "vidrio": 186
+  }
+}
+class_weight: {0: 0.8968692449355433, 1: 1.1299303944315546}
+Epoch 1/12
+61/61 - 34s - 559ms/step - accuracy: 0.5734 - loss: 0.7148 - val_accuracy: 0.6216 - val_loss: 0.6617 - learning_rate: 1.0000e-04
+Epoch 2/12
+61/61 - 28s - 461ms/step - accuracy: 0.6766 - loss: 0.6135 - val_accuracy: 0.6867 - val_loss: 0.5795 - learning_rate: 1.0000e-04
+Epoch 3/12
+61/61 - 28s - 456ms/step - accuracy: 0.7079 - loss: 0.5581 - val_accuracy: 0.7494 - val_loss: 0.5206 - learning_rate: 1.0000e-04
+Epoch 4/12
+61/61 - 27s - 442ms/step - accuracy: 0.7669 - loss: 0.4937 - val_accuracy: 0.7845 - val_loss: 0.4743 - learning_rate: 1.0000e-04
+Epoch 5/12
+61/61 - 29s - 471ms/step - accuracy: 0.7952 - loss: 0.4669 - val_accuracy: 0.8170 - val_loss: 0.4367 - learning_rate: 1.0000e-04
+Epoch 6/12
+61/61 - 27s - 447ms/step - accuracy: 0.8101 - loss: 0.4333 - val_accuracy: 0.8421 - val_loss: 0.4073 - learning_rate: 1.0000e-04
+Epoch 7/12
+61/61 - 28s - 457ms/step - accuracy: 0.8357 - loss: 0.3988 - val_accuracy: 0.8546 - val_loss: 0.3818 - learning_rate: 1.0000e-04
+Epoch 8/12
+61/61 - 27s - 451ms/step - accuracy: 0.8342 - loss: 0.3924 - val_accuracy: 0.8697 - val_loss: 0.3608 - learning_rate: 1.0000e-04
+Epoch 9/12
+61/61 - 28s - 462ms/step - accuracy: 0.8455 - loss: 0.3737 - val_accuracy: 0.8797 - val_loss: 0.3427 - learning_rate: 1.0000e-04
+Epoch 10/12
+61/61 - 28s - 459ms/step - accuracy: 0.8645 - loss: 0.3431 - val_accuracy: 0.8847 - val_loss: 0.3276 - learning_rate: 1.0000e-04
+Epoch 11/12
+61/61 - 27s - 451ms/step - accuracy: 0.8717 - loss: 0.3356 - val_accuracy: 0.8897 - val_loss: 0.3147 - learning_rate: 1.0000e-04
+Epoch 12/12
+61/61 - 28s - 466ms/step - accuracy: 0.8696 - loss: 0.3319 - val_accuracy: 0.8972 - val_loss: 0.3022 - learning_rate: 1.0000e-04
+Tiempo fase 1: 340.6 s
+Epoch 1/10
+61/61 - 40s - 652ms/step - accuracy: 0.8347 - loss: 0.3687 - val_accuracy: 0.9223 - val_loss: 0.2435 - learning_rate: 1.0000e-05
+Epoch 2/10
+61/61 - 32s - 531ms/step - accuracy: 0.9030 - loss: 0.2590 - val_accuracy: 0.9248 - val_loss: 0.2076 - learning_rate: 1.0000e-05
+Epoch 3/10
+61/61 - 32s - 525ms/step - accuracy: 0.9245 - loss: 0.2069 - val_accuracy: 0.9424 - val_loss: 0.1788 - learning_rate: 1.0000e-05
+Epoch 4/10
+61/61 - 33s - 536ms/step - accuracy: 0.9476 - loss: 0.1627 - val_accuracy: 0.9348 - val_loss: 0.1660 - learning_rate: 1.0000e-05
+Epoch 5/10
+61/61 - 32s - 526ms/step - accuracy: 0.9625 - loss: 0.1381 - val_accuracy: 0.9499 - val_loss: 0.1501 - learning_rate: 1.0000e-05
+Epoch 6/10
+61/61 - 34s - 558ms/step - accuracy: 0.9641 - loss: 0.1192 - val_accuracy: 0.9499 - val_loss: 0.1416 - learning_rate: 1.0000e-05
+Epoch 7/10
+61/61 - 34s - 565ms/step - accuracy: 0.9661 - loss: 0.1107 - val_accuracy: 0.9524 - val_loss: 0.1331 - learning_rate: 1.0000e-05
+Epoch 8/10
+61/61 - 35s - 569ms/step - accuracy: 0.9754 - loss: 0.0909 - val_accuracy: 0.9574 - val_loss: 0.1193 - learning_rate: 1.0000e-05
+Epoch 9/10
+61/61 - 34s - 556ms/step - accuracy: 0.9743 - loss: 0.0879 - val_accuracy: 0.9574 - val_loss: 0.1105 - learning_rate: 1.0000e-05
+Epoch 10/10
+61/61 - 33s - 546ms/step - accuracy: 0.9779 - loss: 0.0757 - val_accuracy: 0.9624 - val_loss: 0.1004 - learning_rate: 1.0000e-05
+Tiempo fase 2: 339.6 s
+Tiempo total v3: 680.2 s (11.3 min)
+=== RESULTADOS V3 (test set oficial, 403 img.) ===
+accuracy_test = 0.9677
+cm [[215, 2], [11, 175]]
+weighted 0.9685765711714415 0.967741935483871 0.9676697199783594
+--- Fotos reales VISTAS en entrenamiento (no es prueba justa) ---
+  plastico_001.jpeg: pred=vidrio conf=76.3% MAL
+  plastico_002.jpeg: pred=vidrio conf=74.8% MAL
+  plastico_004.jpeg: pred=vidrio conf=70.0% MAL
+  plastico_005.jpeg: pred=vidrio conf=74.6% MAL
+  plastico_006.jpeg: pred=vidrio conf=76.4% MAL
+  plastico_007.jpeg: pred=vidrio conf=73.9% MAL
+  plastico_009.jpeg: pred=vidrio conf=75.7% MAL
+  plastico_010.jpeg: pred=vidrio conf=75.4% MAL
+  plastico_011.jpeg: pred=vidrio conf=69.8% MAL
+  plastico_012.jpeg: pred=vidrio conf=73.6% MAL
+--- Fotos reales NUNCA vistas (chequeo honesto) ---
+  plastico_003.jpeg: pred=vidrio conf=75.9% MAL
+  plastico_008.jpeg: pred=vidrio conf=71.7% MAL
+  plastico_013.jpeg: pred=vidrio conf=76.6% MAL
+{
+  "cambios_v3": [
+    "10 fotos reales de plastico integradas al train set, oversampleadas x8 (80 copias)",
+    "3 fotos reales dejadas fuera del entrenamiento como chequeo honesto",
+    "Hiperparametros IDENTICOS al modelo original (30 capas fine-tuning, sin color jitter extra)",
+    "0 fotos reales de vidrio disponibles todavia -- limitacion conocida"
+  ],
+  "entrenamiento": {
+    "epocas_fase1": 12,
+    "epocas_fase2": 10,
+    "tiempo_total_s": 680.2
+  },
+  "evaluacion_test_oficial": {
+    "accuracy": 0.9677,
+    "precision_weighted": 0.9686,
+    "recall_weighted": 0.9677,
+    "f1_weighted": 0.9677,
+    "matriz_confusion": [
+      [
+        215,
+        2
+      ],
+      [
+        11,
+        175
+      ]
+    ]
+  },
+  "fotos_reales_vistas_en_train": [
+    {
+      "archivo": "plastico_001.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 76.3,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_002.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 74.8,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_004.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 70.0,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_005.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 74.6,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_006.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 76.4,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_007.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 73.9,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_009.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 75.7,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_010.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 75.4,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_011.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 69.8,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_012.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 73.6,
+      "correcto": false
+    }
+  ],
+  "fotos_reales_held_out": [
+    {
+      "archivo": "plastico_003.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 75.9,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_008.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 71.7,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_013.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 76.6,
+      "correcto": false
+    }
+  ]
+}
+OK - modelo v3 guardado en C:\Users\luanb\Desktop\RModel\analysis\model\ecosort_mobilenetv2_v3_real.keras

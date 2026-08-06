@@ -1,0 +1,111 @@
+{
+  "cambios_v3": [
+    "10 fotos reales de plastico integradas al train set, oversampleadas x8 (80 copias)",
+    "3 fotos reales dejadas fuera del entrenamiento como chequeo honesto",
+    "Hiperparametros IDENTICOS al modelo original (30 capas fine-tuning, sin color jitter extra)",
+    "0 fotos reales de vidrio disponibles todavia -- limitacion conocida"
+  ],
+  "entrenamiento": {
+    "epocas_fase1": 12,
+    "epocas_fase2": 10,
+    "tiempo_total_s": 680.2
+  },
+  "evaluacion_test_oficial": {
+    "accuracy": 0.9677,
+    "precision_weighted": 0.9686,
+    "recall_weighted": 0.9677,
+    "f1_weighted": 0.9677,
+    "matriz_confusion": [
+      [
+        215,
+        2
+      ],
+      [
+        11,
+        175
+      ]
+    ]
+  },
+  "fotos_reales_vistas_en_train": [
+    {
+      "archivo": "plastico_001.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 76.3,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_002.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 74.8,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_004.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 70.0,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_005.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 74.6,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_006.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 76.4,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_007.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 73.9,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_009.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 75.7,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_010.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 75.4,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_011.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 69.8,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_012.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 73.6,
+      "correcto": false
+    }
+  ],
+  "fotos_reales_held_out": [
+    {
+      "archivo": "plastico_003.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 75.9,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_008.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 71.7,
+      "correcto": false
+    },
+    {
+      "archivo": "plastico_013.jpeg",
+      "prediccion": "vidrio",
+      "confianza": 76.6,
+      "correcto": false
+    }
+  ]
+}
