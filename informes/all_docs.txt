@@ -1,0 +1,504 @@
+=== Informe_Analisis_Dataset_RePoints.docx (91 paragraphs, 3 tables) ===
+[] PONTIFICIA UNIVERSIDAD CATÓLICA DEL ECUADOR
+[] SEDE MANABÍ
+[] Análisis del Dataset — Proyecto Integrador
+[] RePoints
+[] Sistema Inteligente para la Identificación de Residuos de Plástico y Vidrio mediante Raspberry Pi e Inteligencia Artificial
+[] Materias integradas: Sistemas Expertos · Tecnologías de Plataforma · Análisis y Circuitos · Manejo y Desarrollo de Proyectos
+[] Quinto Semestre — Ingeniería en Software
+[] Julio, 2026
+[Heading 1] 1. Descripción general del problema
+[] El proyecto RePoints busca automatizar la identificación de residuos de plástico y vidrio mediante una cámara USB conectada a una Raspberry Pi 5. Un modelo de inteligencia artificial procesa la imagen del residuo, predice su clase (plástico, vidrio o desconocido) y un módulo de sistema experto valida ese resultado aplicando reglas sobre el porcentaje de confianza antes de almacenarlo y mostrarlo en un dashboard web.
+[] Para poder entrenar el clasificador de imágenes se requiere un dataset etiquetado de residuos de plástico y vidrio. Este informe documenta el origen, la calidad, la limpieza y la preparación del dataset elegido, siguiendo la rúbrica de análisis de dataset del proyecto integrador.
+[] Un requisito particular del proyecto es que el modelo debe distinguir correctamente botellas de plástico transparente (PET) de botellas de vidrio, ya que ambos materiales pueden lucir visualmente similares (transparencia, brillo, forma cilíndrica) frente a una cámara. Por esto se buscó explícitamente un dataset que incluyera botellas plásticas transparentes junto a envases de vidrio.
+[Heading 1] 2. Origen del dataset
+[] Nombre: Drinking Waste Classification
+[] Fuente: Kaggle (kaggle.com/datasets/arkadiyhacks/drinking-waste-classification)
+[] Autor: Arkadiy Serezhkin
+[] Licencia: CC0: Public Domain (uso libre, incluido uso académico/comercial)
+[] Contexto de recolección: Proyecto de fin de carrera (Individual Project) en University College London (UCL). Las fotografías fueron tomadas manualmente con una cámara de teléfono de 12 MP como parte de un sistema de detección de residuos en tiempo real basado en YOLO.
+[] Procedencia mixta: El propio autor indica que la clase PET incorpora parte del dataset TrashNet (Gary Thung y Mindy Yang, UCL/Stanford), lo cual explica los duplicados detectados en la sección 5.
+[] El dataset original contiene 4 clases de residuos de bebidas: latas de aluminio (AluCan), botellas de vidrio (Glass), botellas PET de plástico transparente (PET) y botellas de leche HDPE (HDPEM), con un total de 14 500 archivos (1.63 GB), incluyendo además una copia anotada en formato YOLO no utilizada en este proyecto.
+[] Pertinencia: para RePoints solo interesa distinguir plástico vs. vidrio, por lo que se seleccionaron únicamente las carpetas Glass y PET, descartando AluCan (metal) y HDPEM (plástico opaco, fuera del alcance). La clase PET es además la más relevante para el caso de botellas transparentes que el sistema experto debe resolver con las reglas de confianza.
+[Heading 1] 3. Características del dataset
+[Heading 2] 3.1 Número total de registros
+[Heading 2] 3.2 Tipo de datos
+[List Paragraph] Datos no estructurados: imágenes en formato JPG (mayoría) y HEIC (8 archivos provenientes de iPhone).
+[List Paragraph] Cada imagen constituye un registro; la etiqueta de clase es implícita en la carpeta/prefijo del nombre de archivo (no existe un CSV de metadatos adicional).
+[List Paragraph] No hay anotaciones de bounding box en la versión "rawimgs" utilizada (sí existen en la carpeta YOLO_imgs del dataset original, descartada por no ser necesaria para clasificación simple).
+[Heading 2] 3.3 Variables disponibles
+[List Paragraph] Imagen RGB del objeto (variable de entrada principal).
+[List Paragraph] Clase (plástico / vidrio) — variable objetivo, derivada del nombre de carpeta.
+[List Paragraph] Metadatos técnicos derivados para este análisis: resolución (ancho x alto), tamaño de archivo en KB, formato.
+[] Resoluciones encontradas: predominan 512×683 px (1747 imágenes) y variantes 512×384 / 384×512; existe 1 imagen atípica a resolución nativa de cámara (4032×3024 px). El tamaño de archivo promedio es de 142.8 KB (mínimo 5.5 KB, máximo ~3.6 MB).
+[Heading 1] 4. Análisis exploratorio de datos (EDA)
+[Heading 2] 4.1 Distribución de clases
+[] Figura 1. Distribución de clases del subset original (antes de limpieza): 1508 plástico vs. 1232 vidrio.
+[] La proporción entre clases es 1508:1232, equivalente a una razón de desbalance de 1.23:1. Es un desbalance leve — no crítico — pero se cuantifica y se trata en la sección 6.
+[Heading 2] 4.2 Muestras representativas
+[] Figura 2. Muestras representativas de la clase plástico (PET).
+[] Figura 3. Muestras representativas de la clase vidrio (Glass).
+[] Se observa que ambas clases fueron fotografiadas en condiciones muy controladas y repetitivas: el plástico siempre sobre un mismo mantel a cuadros y el vidrio siempre sobre el mismo piso de madera, con toma cenital (cámara apuntando hacia abajo) en casi todos los casos. Esto se retoma como riesgo en la sección 8.
+[Heading 2] 4.3 Calidad visual
+[] Figura 4. Distribución de nitidez (varianza del Laplaciano) por clase. Valores bajos indican imágenes borrosas.
+[] La clase vidrio presenta una proporción notablemente mayor de imágenes borrosas (14.46% frente a 3.38% en plástico), principalmente por movimiento de cámara y tomas fuera de foco. La figura 5 muestra los casos más extremos detectados automáticamente por clase.
+[] Figura 5a. Las 6 imágenes más borrosas detectadas en la clase plástico (sombra de movimiento, encuadre muy cerrado).
+[] Figura 5b. Las 6 imágenes más borrosas detectadas en la clase vidrio (fuera de foco, primeros planos extremos, dominancia de color).
+[List Paragraph] Imágenes borrosas: confirmadas cuantitativamente (ver tabla e imágenes anteriores).
+[List Paragraph] Objetos parcialmente visibles: varias imágenes de "peor calidad" muestran solo la boca/tapa de la botella, sin el objeto completo.
+[List Paragraph] Fondos complejos: el mantel a cuadros (plástico) y el patrón de madera (vidrio) son texturizados y se repiten en todo el dataset — no complejos en el sentido de "ruido visual", pero sí muy poco variados.
+[List Paragraph] Iluminación: no se detectaron imágenes oscuras (0% con brillo medio < 60) ni prácticamente sobreexpuestas (≤0.57%); la iluminación interior es consistente en todo el dataset — lo cual es bueno para la clase actual, pero no representativo de la iluminación real de exteriores donde operará el sistema.
+[Heading 1] 5. Limpieza y preprocesamiento
+[Heading 2] 5.1 Eliminación de duplicados
+[] Se calculó el hash MD5 exacto y el hash perceptual (pHash) de cada imagen. Se encontraron 70 grupos de duplicados exactos (140 archivos involucrados, 70 redundantes), y 71 grupos casi-idénticos por pHash. La totalidad de los duplicados se concentra dentro de la clase plástico (PET) — 0 casos cruzan clases — lo cual es consistente con que el autor combinó su propia captura con imágenes reutilizadas de TrashNet para esa clase. Se conservó 1 imagen por grupo y se eliminaron las 70 copias redundantes.
+[Heading 2] 5.2 Eliminación de imágenes corruptas / formato no soportado
+[] 8 imágenes de la clase vidrio estaban en formato HEIC (formato nativo de fotos de iPhone), no legible por el decodificador estándar (Pillow) usado en el pipeline de entrenamiento — se reportaron inicialmente como "corruptas" al fallar la verificación. En lugar de descartarlas, se instaló soporte HEIF (pillow-heif) y se convirtieron las 8 imágenes a JPG, conservando así el 100% de los datos disponibles. No se encontraron imágenes verdaderamente corruptas (0 bytes, cabecera dañada, etc.) en el subset.
+[Heading 2] 5.3 Corrección de etiquetas erróneas
+[] Al no existir duplicados que crucen entre clases (plastico vs. vidrio) y al provenir cada carpeta de una fuente etiquetada manualmente por el autor original, no se identificaron errores evidentes de etiquetado. Como control adicional, se revisaron visualmente las muestras representativas (figuras 2 y 3) y los casos de menor calidad (figura 5), sin encontrar imágenes mal clasificadas.
+[Heading 2] 5.4 Redimensionamiento y normalización
+[] Las imágenes originales tienen resoluciones heterogéneas (512×683, 512×384, 384×512 y un outlier de 4032×3024). Para el entrenamiento se aplicará, dentro del pipeline de carga de datos (tf.data / ImageDataGenerator), redimensionamiento a 224×224 px — tamaño estándar de entrada de MobileNetV2, la arquitectura prevista para ejecutar el modelo en la Raspberry Pi 5 vía TensorFlow Lite — y normalización de los valores de píxel al rango [0,1] (o al rango específico que exige el preprocesamiento de MobileNetV2). Se optó por aplicar este paso en tiempo de carga (on-the-fly) en vez de generar una copia redimensionada en disco, para no duplicar el almacenamiento y poder ajustar el tamaño de entrada si la arquitectura final cambia.
+[Heading 1] 6. Balance del dataset
+[] Antes de la limpieza: 1508 plástico vs. 1232 vidrio (razón 1.23:1). Después de eliminar los 70 duplicados de la clase plástico: 1438 plástico vs. 1232 vidrio (razón 1.17:1).
+[] Figura 6. Distribución de clases del dataset limpio final (2670 imágenes).
+[] Una razón de desbalance de 1.17:1 se considera leve (por debajo del umbral típico de preocupación de 1.5:1–2:1) y no exige técnicas agresivas de balanceo como SMOTE o undersampling severo. Aun así, para robustecer el entrenamiento se recomienda:
+[List Paragraph] Usar class_weight balanceado en Keras/TensorFlow al compilar el modelo, para que los errores en la clase minoritaria (vidrio) pesen ligeramente más durante el entrenamiento.
+[List Paragraph] Aplicar data augmentation (rotación, flip horizontal, variación de brillo) de forma algo más intensiva sobre la clase vidrio, para acercar el número efectivo de ejemplos vistos por época.
+[Heading 1] 7. División para entrenamiento
+[] La división se realizó de forma estratificada por clase (70/15/15), manteniendo en cada subconjunto la misma proporción plástico:vidrio que el dataset completo, y usando una semilla fija (random_state=42) para que el split sea reproducible.
+[] Justificación: 70% para entrenamiento es suficiente dado el tamaño del dataset (1868 imágenes) para hacer transfer learning sobre una red preentrenada (MobileNetV2) sin sobreajustar de inmediato; 15% de validación permite monitorear el sobreajuste y ajustar hiperparámetros durante el entrenamiento; el 15% de prueba queda completamente aislado hasta la evaluación final, para obtener una medida honesta del desempeño antes de desplegar el modelo en la Raspberry Pi.
+[Heading 1] 8. Riesgos y limitaciones del dataset
+[List Paragraph] Cero imágenes tomadas en el contexto real del proyecto (universidad, cámara USB frontal sobre la Raspberry Pi 5): todas las fotos provienen de un entorno doméstico ajeno al de despliegue final.
+[List Paragraph] Variabilidad de fondo muy limitada: el vidrio se fotografió siempre sobre el mismo piso de madera y el plástico siempre sobre el mismo mantel a cuadros — alto riesgo de que el modelo memorice el fondo en lugar del objeto (shortcut learning).
+[List Paragraph] Ángulo de captura uniforme: casi todas las fotos son tomas cenitales (de arriba hacia abajo); la cámara USB del proyecto probablemente capturará el objeto de frente o en ángulo, lo que representa un cambio de dominio (domain shift).
+[List Paragraph] Iluminación homogénea de interior: no hay variabilidad de luz natural/exterior ni de sombras duras, que sí podrían aparecer en el punto de uso real.
+[List Paragraph] Objetos parcialmente ocultos o encuadres muy cerrados en un subconjunto de imágenes (ver figura 5), lo que reduce la información visual disponible en esos casos.
+[List Paragraph] Redundancia original en la clase PET por mezcla con TrashNet (ya mitigada con la eliminación de 70 duplicados, pero reduce la diversidad real neta de esa clase).
+[List Paragraph] Formato HEIC no estándar en 8 imágenes (ya solucionado, pero indica que el pipeline de producción deberá aceptar o normalizar múltiples formatos de imagen).
+[List Paragraph] Riesgo de sobreajuste (overfitting): dado el fondo y ángulo repetitivos, el modelo puede lograr alta precisión en el conjunto de prueba (que comparte el mismo sesgo) pero comportarse mal frente a las fotos reales de la Raspberry Pi.
+[List Paragraph] Ambigüedad plástico transparente vs. vidrio transparente: aunque se priorizó un dataset con botellas PET transparentes, no hay garantía de que cubra todos los casos límite (p. ej. vidrio muy claro/transparente vs. plástico transparente bajo la misma iluminación) que el sistema experto deberá resolver con el umbral de confianza.
+[Heading 1] 9. Estrategia para mejorar el dataset
+[List Paragraph] Captura propia en la universidad: tomar fotografías reales con la misma Raspberry Pi 5 y cámara USB que se usará en producción, variando fondo (piso, mesa, césped/cancha), ángulo y hora del día, e incorporarlas como conjunto de fine-tuning o como parte del conjunto de prueba "del mundo real".
+[List Paragraph] Data augmentation en el pipeline de entrenamiter: rotación aleatoria (±20°), flip horizontal, cambios de brillo/contraste (±20%), zoom aleatorio y ligero recorte, para simular la variabilidad de fondo/iluminación que el dataset original no cubre.
+[List Paragraph] Diversificar fondos deliberadamente en la captura propia (evitar repetir el mismo mantel/piso en todas las fotos), para romper la asociación fondo-clase que existe en el dataset base.
+[List Paragraph] Incluir explícitamente más ejemplos de botellas de plástico transparente vacías y de vidrio transparente/claro fotografiadas bajo condiciones similares, para reducir el riesgo de confusión que debe resolver el sistema experto.
+[List Paragraph] Complementar con un segundo dataset público (por ejemplo TrashNet o Garbage Classification, filtrando solo las clases glass/plastic) únicamente como fuente adicional de variabilidad visual, no como reemplazo del dataset principal.
+[List Paragraph] Mantener el umbral de confianza del sistema experto (≥85% aceptar, 60–84% solicitar recaptura, <60% desconocido) como mecanismo de seguridad mientras el dataset y el modelo maduran con datos reales.
+[Heading 1] 10. Conclusiones
+[] ¿El dataset es suficiente para entrenar el modelo? Sí, en cantidad: 2670 imágenes limpias (1868 de entrenamiento) son un punto de partida razonable para un MVP basado en transfer learning con MobileNetV2, especialmente combinado con data augmentation. No es suficiente, en cambio, en variabilidad de contexto: fondo, ángulo e iluminación están muy poco representados en comparación con el entorno real de despliegue.
+[] ¿Qué problemas presenta? Un desbalance leve (1.17:1, manejable), 70 duplicados dentro de la clase plástico (ya eliminados), 8 imágenes en formato HEIC no estándar (ya convertidas), y sobre todo un fondo y ángulo de captura extremadamente repetitivos que no reflejan el punto de uso final del sistema (Raspberry Pi + cámara USB en la universidad).
+[] ¿Qué acciones se realizarán para mitigarlos? Se aplicó ya la limpieza (deduplicación y conversión de formato) y la división estratificada 70/15/15 documentadas en este informe. Antes de considerar el modelo listo para producción, se planea complementar el dataset con capturas propias en el entorno real del proyecto y aplicar data augmentation agresiva orientada a variar fondo, ángulo e iluminación, validando el desempeño final sobre ese conjunto de prueba "del mundo real" y no únicamente sobre el test set derivado del dataset de Kaggle.
+[Heading 1] Referencias
+[] Serezhkin, A. (2020). Drinking Waste Classification [Dataset]. Kaggle. https://www.kaggle.com/datasets/arkadiyhacks/drinking-waste-classification
+[] Thung, G. & Yang, M. TrashNet [Dataset]. GitHub. https://github.com/garythung/trashnet
+--TABLE 0--
+Clase | Archivos originales | Descripción
+plastico (PET) | 1508 | Botellas de plástico transparente (PET), fotografiadas individualmente
+vidrio (Glass) | 1232 | Botellas de vidrio (mayormente ámbar/verde), fotografiadas individualmente
+Total subset usado | 2740 | Suma de las 2 clases relevantes para RePoints
+--TABLE 1--
+Clase | Nitidez media | % imágenes borrosas (var<100) | Brillo medio | % sobreexpuestas
+plastico | 3050.9 | 3.38% | 134.0 | 0.00%
+vidrio | 4138.6 | 14.46% | 147.4 | 0.57%
+--TABLE 2--
+Conjunto | Porcentaje | Plástico | Vidrio | Total
+Entrenamiento | 70% | 1006 | 862 | 1868
+Validación | 15% | 215 | 184 | 399
+Prueba | 15% | 217 | 186 | 403
+Total | 100% | 1438 | 1232 | 2670
+
+=== Informe_Diseno_Solucion_IA_RePoints.docx (59 paragraphs, 5 tables) ===
+[] PONTIFICIA UNIVERSIDAD CATÓLICA DEL ECUADOR
+[] SEDE MANABÍ
+[] Diseño de la Solución de IA — Proyecto Integrador
+[] RePoints
+[] Sistema Inteligente para la Identificación de Residuos de Plástico y Vidrio mediante Raspberry Pi e Inteligencia Artificial
+[] Materia: Sistemas Expertos — Desarrollo y Evaluación de SE
+[] Quinto Semestre — Ingeniería en Software
+[] Julio, 2026
+[Heading 1] 1. Definición del problema y objetivos
+[Heading 2] 1.1 Problema
+[] Actualmente la separación de residuos de plástico y vidrio dentro del campus universitario se realiza de forma manual, dependiendo del criterio de cada persona. Esto provoca contaminación cruzada entre materiales reciclables y reduce la eficiencia de los procesos de reciclaje posteriores. RePoints propone automatizar esta clasificación mediante visión por computador embebida en una Raspberry Pi 5, apoyada por un módulo de sistema experto que valida la predicción del modelo antes de aceptarla como definitiva.
+[Heading 2] 1.2 Objetivo general
+[] Diseñar una solución de inteligencia artificial capaz de clasificar en tiempo real residuos de plástico y vidrio a partir de una imagen capturada por cámara, integrando un modelo de visión por computador con un módulo de reglas (sistema experto) que valide la confianza de cada predicción antes de tomar una decisión final.
+[Heading 2] 1.3 Objetivos específicos
+[List Paragraph] Seleccionar y justificar una arquitectura de red neuronal adecuada para clasificación binaria de imágenes bajo restricciones de hardware embebido (Raspberry Pi 5, sin GPU dedicada).
+[List Paragraph] Definir un flujo de entrenamiento reproducible (partición de datos, hiperparámetros, función de pérdida y optimizador) a partir del dataset limpio y dividido documentado en el informe de análisis del dataset.
+[List Paragraph] Establecer una estrategia de validación basada en métricas estándar de clasificación que permita detectar sobreajuste y sesgo entre clases.
+[List Paragraph] Identificar los riesgos técnicos propios del entorno real de despliegue (iluminación variable, fondos no controlados, materiales transparentes) y definir estrategias de mitigación.
+[Heading 2] 1.4 Alcance
+[] Tipo de clasificación: Binaria (plástico vs. vidrio), con manejo adicional de una categoría operativa "desconocido" cuando la confianza del modelo es insuficiente.
+[] Entradas: Imagen RGB de un residuo, capturada por una cámara USB conectada a la Raspberry Pi 5, en el momento en que el objeto se coloca frente al sensor.
+[] Salidas: Etiqueta de clase (plástico / vidrio / desconocido), probabilidad de confianza asociada, y registro del resultado en un dashboard web para su trazabilidad.
+[] Fuera de alcance: Clasificación de otros materiales (metal, papel, orgánico) y control físico de actuadores de separación, que corresponden a otras materias del proyecto integrado y no a este diseño.
+[Heading 1] 2. Arquitectura del sistema
+[] La figura 1 presenta el flujo completo de la solución, desde la captura física de la imagen hasta la decisión final validada y su registro.
+[] Figura 1. Arquitectura de la solución RePoints: pipeline de captura, preprocesamiento, inferencia, validación por sistema experto y salida.
+[Heading 2] 2.1 Descripción de componentes
+[List Paragraph] Cámara USB (hardware): sensor de captura conectado físicamente a la Raspberry Pi 5; adquiere la imagen del residuo cuando se activa la rutina de captura.
+[List Paragraph] Captura de imagen (Raspberry Pi 5): proceso en la propia placa que lee el frame de la cámara y lo entrega al pipeline de software para su procesamiento.
+[List Paragraph] Preprocesamiento: redimensiona la imagen a 224×224 px (entrada esperada por MobileNetV2) y normaliza los valores de píxel al rango que exige el preprocesamiento de la red preentrenada.
+[List Paragraph] Modelo de IA (MobileNetV2, exportado a TensorFlow Lite): recibe el tensor preprocesado y produce una probabilidad por clase (plástico / vidrio).
+[List Paragraph] Clasificación: combina la clase de mayor probabilidad con su nivel de confianza asociado, insumo directo para el sistema experto.
+[List Paragraph] Sistema experto (reglas de confianza): valida la predicción aplicando umbrales — confianza ≥85% acepta la clase directamente; 60-84% solicita una recaptura de la imagen; <60% marca el resultado como "desconocido" en vez de forzar una clasificación poco confiable.
+[List Paragraph] Decisión final e integración con hardware/dashboard: una vez validada, la clase se registra y visualiza en un dashboard web, quedando disponible como evidencia para las materias de Tecnologías de Plataforma y Manejo y Desarrollo de Proyectos del mismo proyecto integrador.
+[] Esta separación entre "modelo que predice" y "sistema experto que decide" es intencional: permite ajustar el umbral de aceptación sin reentrenar el modelo, y da trazabilidad explícita a los casos límite (confianza media/baja) en vez de forzar siempre una respuesta binaria.
+[Heading 1] 3. Modelo seleccionado y justificación
+[Heading 2] 3.1 Alternativas consideradas
+[Heading 2] 3.2 Justificación de MobileNetV2
+[List Paragraph] Recursos computacionales: la Raspberry Pi 5 no cuenta con GPU dedicada; MobileNetV2 usa convoluciones separables en profundidad (depthwise separable convolutions), lo que reduce drásticamente el número de parámetros (~3.4M) y operaciones frente a redes clásicas (VGG, ResNet), permitiendo inferencia en CPU en tiempos de cientos de milisegundos.
+[List Paragraph] Precisión esperada: para un problema binario con clases visualmente distinguibles (forma, color, transparencia), el transfer learning desde ImageNet ya provee filtros de bajo/medio nivel (bordes, texturas, transparencias) reutilizables, por lo que se espera una precisión de validación alta (>90%) incluso con un dataset de tamaño moderado.
+[List Paragraph] Tiempo de inferencia: al exportar el modelo entrenado a TensorFlow Lite (formato .tflite) se habilita cuantización (float16 / int8), reduciendo aún más el tamaño del modelo y el tiempo de inferencia en la Raspberry Pi, un requisito crítico para una clasificación en tiempo real.
+[List Paragraph] Factibilidad de implementación: MobileNetV2 tiene soporte de primera clase en TensorFlow/Keras y en TensorFlow Lite, con abundante documentación y ejemplos de despliegue en Raspberry Pi, lo que reduce el riesgo técnico de esta fase del proyecto.
+[Heading 1] 4. Flujo de entrenamiento
+[Heading 2] 4.1 División del dataset
+[] Se reutiliza la partición estratificada 70/15/15 (entrenamiento/validación/prueba) documentada y ya generada en el informe de análisis del dataset, con semilla fija (random_state=42) para garantizar reproducibilidad:
+[Heading 2] 4.2 Hiperparámetros e implementación
+[Heading 1] 5. Estrategia de validación del modelo
+[] Dado que el dataset presenta un desbalance leve entre clases (1438 vs. 1232), la exactitud (accuracy) por sí sola puede ocultar un desempeño pobre en la clase minoritaria. Por ello se define un conjunto de métricas complementarias, todas calculadas sobre el conjunto de prueba (15%, aislado durante todo el entrenamiento):
+[] Adicionalmente, se monitorearán las curvas de accuracy y loss (entrenamiento vs. validación) por época durante todo el entrenamiento, para detectar sobreajuste tempranamente (divergencia entre ambas curvas) y decidir si es necesario reforzar el data augmentation o reducir la complejidad del fine-tuning.
+[Heading 1] 6. Riesgos técnicos
+[Heading 1] 7. Estrategias de mejora
+[List Paragraph] Data augmentation: rotación, flip horizontal, variación de brillo/contraste y zoom aleatorio aplicados en tiempo de carga, para compensar la baja variabilidad de fondo/iluminación del dataset original.
+[List Paragraph] Transfer learning en dos fases: entrenamiento inicial con la base MobileNetV2 congelada seguido de fine-tuning de las últimas capas, para adaptar los filtros preentrenados al dominio específico de residuos de plástico y vidrio sin perder el conocimiento general de ImageNet.
+[List Paragraph] Ajuste de hiperparámetros: búsqueda acotada sobre learning rate, número de capas descongeladas y peso de clases, comparando resultados mediante F1-score en el conjunto de validación antes de fijar la configuración final.
+[List Paragraph] Captura de imágenes reales dentro de la universidad: complementar el dataset de Kaggle con fotografías tomadas con la misma cámara USB y Raspberry Pi 5 del proyecto, en el entorno real de despliegue, usadas como conjunto adicional de validación "del mundo real" antes de aceptar el modelo como definitivo.
+[Heading 1] Referencias
+[] Sandler, M., Howard, A., Zhu, M., Zhmoginov, A., & Chen, L.-C. (2018). MobileNetV2: Inverted Residuals and Linear Bottlenecks. CVPR 2018. https://arxiv.org/abs/1801.04381
+[] TensorFlow. (s.f.). TensorFlow Lite — Deploy ML models on mobile and edge devices. https://www.tensorflow.org/lite
+[] Informe interno: Análisis del Dataset de Proyectos Integradores — RePoints (PUCE Manabí, 2026), documento previo de este mismo proyecto integrado.
+--TABLE 0--
+Modelo | Ventaja principal | Motivo de descarte / uso
+CNN propia (desde cero) | Control total de la arquitectura | Requeriría mucho más datos y tiempo de entrenamiento para igualar la precisión de un modelo preentrenado; el dataset actual (2670 imágenes) es pequeño para entrenar desde cero de forma robusta.
+MobileNetV2 (transfer learning) | Muy liviana, diseñada para dispositivos embebidos; excelente relación precisión/costo computacional | Seleccionada — ver justificación en 3.2.
+MobileNetV3 | Ligeras mejoras de eficiencia sobre V2 | Alternativa válida de segunda opción; se prioriza V2 por mayor soporte y documentación estable en TensorFlow Lite.
+EfficientNet (B0) | Mejor precisión relativa a su tamaño en benchmarks generales | Mayor costo computacional y de memoria que MobileNetV2 para una ganancia marginal en un problema binario relativamente simple.
+YOLO | Excelente para detección con localización (bounding boxes) | Diseñado para detección de múltiples objetos en una escena; este proyecto es clasificación de un único objeto centrado, por lo que añadiría complejidad innecesaria.
+Edge Impulse (plataforma) | Entrenamiento y despliegue guiado sin código | Útil como alternativa de prototipado rápido, pero se prefiere control directo del pipeline (Python/TensorFlow) para ajustar hiperparámetros con precisión.
+--TABLE 1--
+Conjunto | Porcentaje | Plástico | Vidrio | Total
+Entrenamiento | 70% | 1006 | 862 | 1868
+Validación | 15% | 215 | 184 | 399
+Prueba | 15% | 217 | 186 | 403
+Total | 100% | 1438 | 1232 | 2670
+--TABLE 2--
+Parámetro | Valor definido | Justificación breve
+Épocas | 30 (con early stopping, paciencia=5 sobre val_loss) | Suficientes para converger con transfer learning; el early stopping evita sobreajuste.
+Batch size | 32 | Balance estándar entre estabilidad del gradiente y uso de memoria en entrenamiento (Google Colab / GPU compartida).
+Función de pérdida | Binary Crossentropy | Apropiada para clasificación binaria con salida sigmoide (plástico=1 / vidrio=0).
+Optimizador | Adam | Convergencia rápida y estable sin necesidad de ajuste manual extenso de la tasa de aprendizaje.
+Learning rate | 1e-4 inicial, con ReduceLROnPlateau (factor 0.5, paciencia=3) | Tasa conservadora adecuada para fine-tuning de un modelo preentrenado; se reduce automáticamente si la validación se estanca.
+Estrategia de transfer learning | Fase 1: base MobileNetV2 congelada, se entrena solo el clasificador superior. Fase 2: se descongelan las últimas ~30 capas para fine-tuning con learning rate reducido (1e-5) | Evita destruir los filtros preentrenados al inicio y permite especialización progresiva hacia el dominio del dataset.
+class_weight | Balanceado (clase vidrio con mayor peso) | Compensa el desbalance leve (1438 plástico vs. 1232 vidrio) detectado en el análisis del dataset.
+Data augmentation en entrenamiento | Rotación ±20°, flip horizontal, variación de brillo/contraste ±20%, zoom ligero | Simula variabilidad de fondo/iluminación ausente en el dataset original (ver sección 6).
+--TABLE 3--
+Métrica | Qué mide | Por qué es apropiada aquí
+Accuracy | Proporción total de predicciones correctas | Métrica general de referencia, fácil de comunicar en el informe final.
+Precision (por clase) | De lo que el modelo predijo como una clase, cuánto era correcto | Relevante porque una clase mal predicha (p. ej. vidrio marcado como plástico) puede contaminar el flujo de reciclaje.
+Recall (por clase) | De todos los casos reales de una clase, cuántos detectó el modelo | Importante para la clase minoritaria (vidrio), donde interesa no perder casos reales por el desbalance.
+F1-score | Media armónica de precision y recall | Resume el balance entre ambas en una sola cifra, útil para comparar variantes del modelo (con/sin fine-tuning, con/sin augmentation).
+Matriz de confusión | Distribución completa de aciertos/errores entre clases | Permite ver directamente si los errores se concentran en una dirección (p. ej. vidrio transparente confundido con plástico PET transparente), el riesgo identificado en el análisis del dataset.
+--TABLE 4--
+Riesgo | Impacto | Estrategia de mitigación
+Iluminación variable en el punto de uso real | El dataset de origen fue capturado con luz interior homogénea; luz natural/sombras pueden degradar la precisión | Data augmentation de brillo/contraste; capturas propias en la universidad bajo distintas condiciones de luz.
+Fondo y ángulo de captura muy repetitivos en el dataset (mantel / piso de madera, toma cenital) | Riesgo de que el modelo memorice el fondo en vez del objeto (shortcut learning) y falle ante fondos nuevos | Diversificar fondos en la captura propia; aplicar recorte/zoom aleatorio como augmentation adicional.
+Objetos parcialmente visibles o rotos | Menor información visual disponible para la clasificación | Incluir ejemplos de este tipo en el conjunto de entrenamiento; el sistema experto puede marcar baja confianza como "desconocido" en vez de forzar una clase.
+Similitud entre materiales transparentes (PET transparente vs. vidrio claro) | Es el caso límite más probable de confusión entre las dos clases | Priorizar estos ejemplos en la captura adicional; revisar específicamente estos casos en la matriz de confusión.
+Desbalance leve de clases (1438 vs. 1232) | Sesgo leve del modelo hacia la clase mayoritaria (plástico) | class_weight balanceado durante el entrenamiento; augmentation algo más intensivo sobre la clase vidrio.
+Sobreajuste (overfitting) por dominio limitado del dataset de origen | Buen desempeño en el test set derivado de Kaggle pero pobre en producción | Early stopping sobre val_loss; validar también sobre un pequeño conjunto de fotos reales tomadas en la universidad antes de dar por aceptado el modelo.
+
+=== Informe_Implementacion_Evaluacion_Modelo_RePoints.docx (75 paragraphs, 5 tables) ===
+[] PONTIFICIA UNIVERSIDAD CATÓLICA DEL ECUADOR
+[] SEDE MANABÍ
+[] Implementación y Evaluación del Modelo de IA — Proyecto Integrador
+[] RePoints
+[] Sistema Inteligente para la Identificación de Residuos de Plástico y Vidrio mediante Raspberry Pi e Inteligencia Artificial
+[] Materia: Sistemas Expertos — Examen Final
+[] Quinto Semestre — Ingeniería en Software
+[] Julio, 2026
+[Heading 1] 1. Introducción
+[Heading 2] 1.1 Objetivo de la implementación
+[] Este informe documenta la implementación, entrenamiento y evaluación del modelo de inteligencia artificial de RePoints, encargado de clasificar residuos de plástico y vidrio a partir de una imagen. El objetivo de esta fase es materializar y validar experimentalmente la solución descrita en el informe de diseño previo, midiendo su desempeño real sobre datos que el modelo no vio durante el entrenamiento.
+[Heading 2] 1.2 Relación con el diseño previamente aprobado
+[] La implementación sigue punto por punto el diseño planteado en el informe "Diseño de la Solución de IA": arquitectura MobileNetV2 preentrenada en ImageNet con transfer learning en dos fases (base congelada y luego fine-tuning), clasificación binaria plástico/vidrio, y la misma partición de datos 70/15/15 documentada en el análisis del dataset. No se realizaron cambios de arquitectura respecto a lo diseñado; esta fase se limita a implementar, entrenar y medir esa propuesta.
+[Heading 1] 2. Tecnologías empleadas
+[Heading 1] 3. Preparación de los datos
+[] Se reutilizó el dataset ya limpio y dividido, documentado en el informe de análisis del dataset (deduplicación de 70 imágenes redundantes en la clase plástico, conversión de 8 imágenes HEIC a JPG, sin imágenes corruptas remanentes).
+[List Paragraph] Redimensionamiento: todas las imágenes se llevan a 224×224 px, la resolución de entrada esperada por MobileNetV2.
+[List Paragraph] Normalización: se aplica preprocess_input de MobileNetV2 (reescala los píxeles al rango [-1, 1]).
+[List Paragraph] Data augmentation (solo en entrenamiento): flip horizontal, rotación aleatoria (±20°), zoom aleatorio (±15%) y variación de contraste (±20%), para compensar la baja variabilidad de fondo/ángulo detectada en el análisis exploratorio.
+[List Paragraph] División Train/Validation/Test: se conservó la partición estratificada 70/15/15 con semilla fija (random_state=42), sin volver a mezclar los conjuntos en esta fase.
+[Heading 1] 4. Implementación del modelo
+[] Arquitectura implementada: MobileNetV2 (ImageNet) + GlobalAveragePooling2D + Dropout(0.2) + Dense(1, sigmoid)
+[] Número de capas: Base MobileNetV2 (~154 capas) + 3 capas propias añadidas sobre la base
+[] Función de activación de salida: Sigmoide (clasificación binaria)
+[] Función de pérdida: Binary Crossentropy
+[] Optimizador: Adam
+[] Learning Rate: 1e-4 en fase 1 (base congelada); 1e-5 en fase 2 (fine-tuning), con ReduceLROnPlateau
+[] Batch Size: 32
+[] Número de épocas: 22 efectivas (fase 1: 12, fase 2: 10; con early stopping sobre val_loss)
+[Heading 2] 4.1 Transfer Learning
+[] Modelo base: MobileNetV2, preentrenado en ImageNet
+[] Capas congeladas: Fase 1: toda la base MobileNetV2. Fase 2: todas menos las últimas 30 capas.
+[] Capas entrenadas: Fase 1: solo el clasificador superior (GlobalAveragePooling + Dropout + Dense). Fase 2: las últimas 30 capas de la base + clasificador superior.
+[Heading 1] 5. Entrenamiento
+[] El entrenamiento se ejecutó en CPU (sin GPU dedicada), en dos fases, con una duración total de 854 s (~14.2 min): 455.9 s para la fase 1 (base congelada) y 398.1 s para la fase 2 (fine-tuning).
+[] Figura 1. Accuracy y Loss (entrenamiento vs. validación) por época. La línea punteada marca el inicio del fine-tuning (fase 2).
+[Heading 1] 6. Evaluación del modelo
+[] Métricas calculadas sobre el conjunto de prueba (403 imágenes), aislado durante todo el entrenamiento:
+[] Accuracy global (test): 0.9702
+[] Tiempo promedio de inferencia por imagen (CPU): 139.7 ms
+[] Figura 2. Matriz de confusión sobre el conjunto de prueba.
+[] Lectura de la matriz: de 217 imágenes reales de plástico, 217 se clasificaron correctamente y 0 se confundieron con vidrio; de 186 imágenes reales de vidrio, 174 se clasificaron correctamente y 12 se confundieron con plástico.
+[Heading 1] 7. Pruebas del modelo
+[] Se evaluaron 24 imágenes nuevas tomadas del conjunto de prueba (no vistas en entrenamiento ni validación), con 24 aciertos de 24 (100.0%). El listado completo también se adjunta como pruebas_modelo.csv.
+[] Figura 3. Muestra visual de casos de prueba (borde verde = acierto, borde rojo = error).
+[Heading 1] 8. Análisis de errores
+[Heading 2] ¿Dónde falla el modelo?
+[] De 217 imágenes reales de plástico en el conjunto de prueba, 0 se clasificaron incorrectamente; de 186 imágenes reales de vidrio, 12 se clasificaron incorrectamente. La figura 4 muestra los errores en los que el modelo tenía mayor confianza (los casos más "seguros" en los que se equivocó), que son los más informativos para entender la causa raíz.
+[] Figura 4. Errores de clasificación con mayor confianza del modelo (casos más ambiguos).
+[Heading 2] ¿Qué imágenes generan confusión?
+[] Principalmente imágenes con transparencia ambigua (plástico PET transparente vs. vidrio claro) y encuadres o fondos que se apartan del patrón dominante del dataset de origen (mantel a cuadros para plástico, piso de madera para vidrio).
+[Heading 2] ¿Por qué ocurre?
+[] Es consistente con los riesgos anticipados en el informe de diseño: el dataset de origen tiene fondo y ángulo de captura muy poco variados, por lo que el modelo pudo aprender asociaciones parciales entre fondo y clase (shortcut learning) en vez de basarse exclusivamente en las propiedades visuales del material; además, la ambigüedad óptica real entre plástico y vidrio transparentes es un límite físico del problema, no solo un defecto del modelo.
+[Heading 1] 9. Integración con el prototipo
+[] El modelo se exporta en dos formatos: un archivo .keras (para continuar el desarrollo/depuración en PC) y un archivo .tflite cuantizado, pensado para ejecutarse con el intérprete de TensorFlow Lite directamente en la Raspberry Pi 5. La integración a nivel de software sigue el contrato definido en la arquitectura del informe de diseño: el módulo de captura entrega una imagen 224×224 ya normalizada al intérprete TFLite, este devuelve la probabilidad de la clase "vidrio", y esa salida se entrega tal cual al módulo de sistema experto (reglas de confianza) para la decisión final y su registro en el dashboard. El ensamblaje físico de la cámara, la Raspberry Pi y el dashboard corresponde a las materias de Tecnologías de Plataforma y Manejo y Desarrollo de Proyectos dentro de este mismo proyecto integrado, por lo que aquí se documenta únicamente el contrato de integración del modelo, no el montaje del hardware.
+[Heading 1] 10. Conclusiones
+[Heading 2] ¿Cumple el modelo el objetivo?
+[] Sí, cumple ampliamente el objetivo planteado en el diseño (accuracy de prueba ≥90%).
+[Heading 2] ¿Qué precisión alcanzó?
+[] El modelo alcanzó un accuracy de 97.0% sobre el conjunto de prueba, con un F1-score ponderado de 0.9701 (plástico: 0.9731, vidrio: 0.9667), y un tiempo de inferencia promedio de 139.7 ms por imagen en CPU, compatible con clasificación en tiempo real en la Raspberry Pi 5.
+[Heading 2] ¿Qué mejoraría?
+[List Paragraph] Incorporar imágenes reales capturadas en la universidad con la misma cámara/Raspberry Pi del proyecto, para reducir el riesgo de domain shift identificado en el análisis de errores.
+[List Paragraph] Añadir ejemplos adicionales de materiales transparentes ambiguos (plástico PET transparente vs. vidrio claro), el caso de error más frecuente detectado.
+[List Paragraph] Probar un segundo ciclo de fine-tuning con más capas descongeladas o más épocas si el presupuesto de tiempo lo permite, monitoreando de cerca el sobreajuste.
+[List Paragraph] Validar el modelo .tflite exportado directamente sobre hardware Raspberry Pi real, para confirmar que el tiempo de inferencia medido en PC se mantiene dentro de un rango aceptable en el dispositivo final.
+[Heading 1] Entregables de esta actividad
+[List Paragraph] Informe (este documento): Informe_Implementacion_Evaluacion_Modelo_RePoints.docx / .pdf
+[List Paragraph] Código fuente y notebook ejecutado: Implementacion_Evaluacion_Modelo_RePoints.ipynb (carpeta analysis/)
+[List Paragraph] Modelo entrenado: analysis/model/ecosort_mobilenetv2.keras (20.88 MB) y ecosort_mobilenetv2.tflite (2.41 MB)
+[List Paragraph] Tabla completa de pruebas: analysis/pruebas_modelo.csv
+[List Paragraph] Video de 3-5 min mostrando la clasificación en funcionamiento: pendiente de grabación por el estudiante (no generado por este proceso).
+[Heading 1] Referencias
+[] Sandler, M., Howard, A., Zhu, M., Zhmoginov, A., & Chen, L.-C. (2018). MobileNetV2: Inverted Residuals and Linear Bottlenecks. CVPR 2018. https://arxiv.org/abs/1801.04381
+[] TensorFlow. (s.f.). TensorFlow Lite — Deploy ML models on mobile and edge devices. https://www.tensorflow.org/lite
+[] Informe interno: Diseño de la Solución de IA — RePoints (PUCE Manabí, 2026), documento previo de este mismo proyecto integrado.
+--TABLE 0--
+Herramienta | Uso en el proyecto
+Python 3.13 | Lenguaje principal de todo el pipeline de datos, entrenamiento y evaluación.
+TensorFlow / Keras | Definición, entrenamiento y exportación del modelo MobileNetV2.
+TensorFlow Lite | Conversión del modelo entrenado a formato .tflite, optimizado para inferencia en la Raspberry Pi 5.
+scikit-learn | Cálculo de métricas de evaluación: precision, recall, F1-score y matriz de confusión.
+Matplotlib / Pillow | Generación de las gráficas de entrenamiento, matriz de confusión y contactos de imágenes de prueba.
+Jupyter Notebook | Documentación reproducible y ejecutable de todo el proceso (Implementacion_Evaluacion_Modelo_RePoints.ipynb).
+Node.js + docx | Generación automatizada de este informe en formato Word/PDF, reutilizando las métricas calculadas en el notebook.
+--TABLE 1--
+Conjunto | Plástico | Vidrio | Total
+Entrenamiento | 1006 | 862 | 1868
+Validación | 215 | 184 | 399
+Prueba | 217 | 186 | 403
+--TABLE 2--
+Métrica | Entrenamiento | Validación
+Accuracy (última época) | 0.9764 | 0.9649
+Loss (última época) | 0.0795 | 0.1042
+--TABLE 3--
+Métrica | Plástico | Vidrio | Ponderado
+Precision | 0.9476 | 1 | 0.9718
+Recall | 1 | 0.9355 | 0.9702
+F1-score | 0.9731 | 0.9667 | 0.9701
+--TABLE 4--
+Archivo | Clase real | Predicción | Confianza | Correcta
+Glass915.JPG | vidrio | vidrio | 99.7% | Sí
+PET965.jpg | plastico | plastico | 99.4% | Sí
+Glass900.JPG | vidrio | vidrio | 99.6% | Sí
+Glass419.jpg | vidrio | vidrio | 97.5% | Sí
+Glass10.jpg | vidrio | vidrio | 99.7% | Sí
+PET757.jpg | plastico | plastico | 99.9% | Sí
+PET1,468.jpg | plastico | plastico | 97.9% | Sí
+Glass479.jpg | vidrio | vidrio | 95.3% | Sí
+Glass589.jpg | vidrio | vidrio | 99.8% | Sí
+Glass1,197.JPG | vidrio | vidrio | 92.3% | Sí
+PET1,217.jpg | plastico | plastico | 91.4% | Sí
+PET828.jpg | plastico | plastico | 100% | Sí
+PET1,198.jpg | plastico | plastico | 99.9% | Sí
+Glass309.jpg | vidrio | vidrio | 93.7% | Sí
+PET947.jpg | plastico | plastico | 98.2% | Sí
+Glass381.jpg | vidrio | vidrio | 99.5% | Sí
+PET766.jpg | plastico | plastico | 99.2% | Sí
+Glass810.JPG | vidrio | vidrio | 100% | Sí
+PET636.jpg | plastico | plastico | 99.9% | Sí
+PET970.jpg | plastico | plastico | 96.8% | Sí
+PET1,323.jpg | plastico | plastico | 96.5% | Sí
+PET1,493.jpg | plastico | plastico | 98.7% | Sí
+Glass258.jpg | vidrio | vidrio | 97.9% | Sí
+Glass620.jpg | vidrio | vidrio | 96.9% | Sí
+
+=== Guion_Extendido_RePoints.docx (24 paragraphs, 0 tables) ===
+[Normal] REPOINTS
+[Heading 1] PARTE 1: -INTEGRANTE 1 INTRODUCCIÓN, PROBLEMA Y ARQUITECTURA DE HARDWARE
+[Normal] "Para resolver esto, hemos desarrollado RePoints, que está diseñado bajo el concepto de una máquina expendedora inversa, o Reverse Vending Machine.
+[Normal] A nivel de arquitectura de hardware, el núcleo de procesamiento es una Raspberry Pi 5. El flujo físico y de información es el siguiente:
+[Normal] Primero, el usuario interactúa con el sistema donde una cámara se encarga de leer su código QR de identidad. Luego, una segunda cámara captura el objeto ingresado. Esta imagen se redimensiona a 224x224 píxeles y pasa a nuestro Modelo de Inteligencia Artificial, el cual predice una probabilidad de clasificación."
+[Normal] "Aquí es donde entra la innovación de nuestro diseño: la IA no toma la decisión final por sí sola. La probabilidad pasa a un Sistema Experto basado en reglas lógicas.
+[Normal] Si la confianza es mayor o igual al 85%, el material, ya sea plástico o vidrio, es aceptado y clasificado mecánicamente. Si está entre 60% y 84%, el sistema pide que se vuelva a acomodar el residuo para una recaptura... y si es menor a 60%, lo marca directamente como 'desconocido'.
+[Normal] Esto evita errores forzados en la clasificación física."
+[Heading 1] PARTE 2: -INTEGRANTE 2 ANÁLISIS, LIMPIEZA Y PREPARACIÓN DEL DATASET
+[Normal] Origen de los Datos: "Continuando con el flujo, un modelo robusto requiere datos de calidad. Utilizamos como base el dataset público 'Drinking Waste Classification' de Kaggle, que incluía aportes del reconocido dataset TrashNet. De las 14,500 imágenes originales y 4 clases disponibles, filtramos estrictamente las carpetas de vidrio (Glass) y botellas de plástico transparente (PET), ya que la distinción entre estos dos materiales transparentes es nuestro objetivo principal."
+[Normal] Limpieza y Preprocesamiento: "Durante el Análisis Exploratorio de Datos (EDA), detectamos problemas que debían corregirse antes del entrenamiento. Identificamos y eliminamos 70 imágenes duplicadas en la clase de plástico mediante el cálculo de hashes MD5 y hashes perceptuales (pHash). Además, convertimos 8 imágenes que venían en formato HEIC a JPG instalando soporte específico (pillowheif) para no perder datos."
+[Normal] Partición y Balance: "Nuestro dataset final quedó conformado por 2670 imágenes: 1438 de plástico y 1232 de vidrio. Al ser un desbalance leve (1.17:1), aplicamos 'class_weight' en el entrenamiento. Finalmente, dividimos el dataset de manera estratificada con una semilla fija (random_state 42) en 70% para entrenamiento (1868 fotos), 15% para validación (399 fotos) y 15% para pruebas aisladas (403 fotos)."
+[Heading 1] PARTE 3: INTEGRANTE 3 - DISEÑO DEL MODELO DE INTELIGENCIA ARTIFICIAL
+[Normal] Justificación de la Arquitectura: "Para el motor de clasificación visual, evaluamos varias opciones, incluyendo entrenar una CNN desde cero, YOLO o EfficientNet. Nos decantamos por MobileNetV2 por una razón fundamental: las restricciones de nuestro hardware. La Raspberry Pi 5 no cuenta con una GPU dedicada, y MobileNetV2 utiliza convoluciones separables en profundidad (depthwise separable convolutions), lo que reduce sus parámetros a solo 3.4 millones. Esto nos da un equilibrio perfecto entre bajo costo computacional y alta precisión."
+[Normal] Estrategia de Transfer Learning: "Dado que 2670 imágenes es un volumen pequeño para entrenar desde cero, aplicamos Transfer Learning. Importamos los pesos preentrenados del inmenso dataset ImageNet. Esta base ya sabe detectar bordes, texturas y brillos, características vitales para distinguir las propiedades ópticas del vidrio frente al plástico PET."
+[Normal] Riesgos Detectados: "En la fase de diseño prevemos dos grandes retos técnicos: el primero, la similitud visual entre plástico y vidrio transparente. El segundo, detectamos que el dataset tenía fotos tomadas siempre desde un ángulo cenital y con fondos muy repetitivos (un mantel a cuadros para el plástico y un piso de madera para el vidrio), lo que genera un riesgo de 'shortcut learning' o memorización del fondo. Por ello, planificamos estrategias estrictas de validación."
+[Heading 1] PARTE 4: INTEGRANTE 4 - FLUJO DE ENTRENAMIENTO Y EXPORTACIÓN
+[Normal] Configuración del Entrenamiento: "El entrenamiento lo ejecutamos en CPU durante 854 segundos, utilizando el optimizador Adam y Binary Crossentropy como función de pérdida, dado que es una clasificación binaria con activación Sigmoide. Aplicamos Data Augmentation en tiempo de carga (rotaciones de ±20°, zoom, flips horizontales y alteraciones de contraste) para mitigar el riesgo de memorización de fondos que mencionó mi compañero."
+[Normal] Las Dos Fases de Aprendizaje: "Implementamos el entrenamiento en dos fases muy controladas. En la Fase 1 (12 épocas con learning rate de 1e-4), congelamos toda la base de MobileNetV2 y entrenamos únicamente nuestra nueva capa clasificadora superior. En la Fase 2 (10 épocas con learning rate más bajo de 1e-5), descongelamos las últimas 30 capas de la red para hacer un 'fine-tuning' y especializar los filtros directamente en nuestros residuos, utilizando Early Stopping para evitar el sobreajuste."
+[Normal] Despliegue y Optimización: "El modelo resultante (.keras de ~20MB) era muy pesado. Para llevarlo a la Raspberry Pi, lo convertimos y cuantizamos al formato TensorFlow Lite (.tflite), reduciendo su tamaño a solo 2.41 MB, optimizando su consumo de memoria RAM sin sacrificar precisión."
+[Heading 1] PARTE 5: INTEGRANTE 5 - RESULTADOS, INTEGRACIÓN WEB Y CONCLUSIONES
+[Normal] Evaluación de Métricas: "Los resultados sobre nuestro conjunto de pruebas, el cual estuvo completamente aislado, fueron excelentes. Logramos un Accuracy (precisión global) del 97.02%, con un F1-Score ponderado de 0.9701. Al observar la matriz de confusión, el modelo acertó en las 217 imágenes de plástico y en 174 de vidrio; tuvimos solo 12 falsos positivos donde el vidrio fue clasificado como plástico, validando nuestra hipótesis de que la ambigüedad de los materiales transparentes es el mayor desafío límite."
+[Normal] Tiempos e Integración Tecnológica: "El tiempo de inferencia es de apenas 139.7 milisegundos por imagen, garantizando un funcionamiento en tiempo real. Y lo más importante es cómo todo esto se conecta: una vez que el sistema experto valida la predicción con éxito, la transacción física de reciclaje se procesa y estos datos se envían a nuestra plataforma web RePoints. Todo el backend y frontend de este dashboard está desarrollado utilizando tecnologías modernas como Node.js, React y Prisma ORM, lo que permite asignar y persistir los puntos de reciclaje en la cuenta del usuario de forma inmediata."
+[Normal] Conclusión Final: "El sistema cumple cabalmente sus objetivos técnicos. Como trabajo futuro, la siguiente fase será capturar imágenes directamente desde la cámara de la Reverse Vending Machine instalada en el campus de la universidad, para reentrenar el modelo con la iluminación real del entorno y eliminar el sesgo de dominio. Muchas gracias."
+
+=== Defensa_RePoints.docx (101 paragraphs, 3 tables) ===
+[] RePoints / RePoints
+[] Documento de Defensa Oral del Proyecto Integrador
+[] Preguntas y respuestas anticipadas, datos clave del dataset, del entrenamiento y de los resultados, y mapa de qué hace cada parte del código/notebook. Preparado a partir de los tres informes (Diseño, Análisis del Dataset, Implementación y Evaluación) y del guion de presentación.
+[Heading 1] 0. Resumen ejecutivo (lo primero que debe salir de memoria)
+[Heading 1] 1. Bloque: Arquitectura y hardware
+[] P: ¿Por qué se llama 'máquina expendedora inversa' (Reverse Vending Machine)?
+[] R: Porque en vez de entregar un producto a cambio de dinero, el usuario introduce un residuo (plástico o vidrio) y el sistema le entrega puntos de reciclaje a cambio, tras validar el material.
+[] P: Describan el flujo completo de principio a fin.
+[] R: 1) Una cámara lee el código QR del usuario para identificarlo. 2) Una segunda cámara captura la imagen del residuo. 3) La imagen se redimensiona a 224×224 px y se normaliza. 4) El modelo MobileNetV2 (TFLite) produce una probabilidad de clase (plástico/vidrio). 5) Esa probabilidad pasa al Sistema Experto, que aplica las reglas de confianza y emite la decisión final. 6) Si se acepta, la transacción se registra en el dashboard web (RePoints) y se asignan puntos al usuario.
+[] P: ¿Por qué la Raspberry Pi 5 y no otro hardware con GPU?
+[] R: Es una restricción de diseño del proyecto integrador (bajo costo, portabilidad, integración física en un prototipo de campus). Al no tener GPU dedicada, el modelo de IA tuvo que elegirse específicamente para ser eficiente en CPU: por eso MobileNetV2 y no una CNN pesada tipo VGG/ResNet.
+[] P: ¿Por qué la IA no decide sola?
+[] R: Porque ningún modelo es 100% confiable, y un error de clasificación físico (mandar vidrio a la tolva de plástico) es costoso de revertir. El Sistema Experto añade una capa de reglas explicables y ajustables sin reentrenar el modelo: solo se acepta la predicción si la confianza es alta; si es media se pide recaptura; si es baja se marca 'desconocido' en vez de forzar una clase.
+[Heading 1] 2. Bloque: Dataset — origen, limpieza y balance
+[] P: ¿De dónde salieron las imágenes?
+[] R: Del dataset público de Kaggle 'Drinking Waste Classification' (autor Arkadiy Serezhkin, licencia CC0), originado en un proyecto de fin de carrera en UCL. Tiene 4 clases (latas, vidrio, PET, HDPE) y 14,500 imágenes en total; nosotros solo usamos las carpetas Glass y PET porque el proyecto es binario (plástico vs. vidrio).
+[] P: ¿Por qué hay duplicados y de dónde vienen?
+[] R: El propio autor del dataset combinó su captura propia con imágenes reutilizadas de TrashNet (Thung & Yang, UCL/Stanford) específicamente en la clase PET, lo que generó 70 duplicados exactos dentro de esa clase. No hay duplicados que crucen entre clases.
+[] P: ¿Cómo detectaron y eliminaron los duplicados?
+[] R: Calculando hash MD5 exacto (para duplicados idénticos byte a byte) y hash perceptual pHash (para casi-idénticos) de cada imagen. Se encontraron 70 grupos de duplicados exactos (140 archivos, 70 redundantes) y se conservó 1 imagen por grupo, eliminando las 70 copias.
+[] P: ¿Qué pasó con las imágenes HEIC?
+[] R: 8 imágenes de la clase vidrio venían en formato HEIC (nativo de iPhone), no legible por Pillow estándar. En vez de descartarlas, se instaló soporte HEIF (pillow-heif) y se convirtieron a JPG, conservando el 100% de los datos.
+[] P: ¿Cuántas imágenes quedaron al final y cómo se dividieron?
+[] R: 2670 imágenes limpias: 1438 plástico y 1232 vidrio (antes de limpiar eran 1508 y 1232, razón 1.23:1; después de quitar los 70 duplicados de plástico, razón 1.17:1).
+[] R: División estratificada 70/15/15 con semilla fija random_state=42: Entrenamiento 1868 (1006 plástico / 862 vidrio), Validación 399 (215 / 184), Prueba 403 (217 / 186).
+[] P: ¿Por qué no balancearon las clases con SMOTE o undersampling?
+[] R: Porque la razón de desbalance final (1.17:1) está muy por debajo del umbral típico de preocupación (1.5:1–2:1), así que se consideró leve. En su lugar se usó 'class_weight' balanceado en el entrenamiento, una técnica más suave que no descarta ni genera datos sintéticos.
+[] P: ¿Qué limitaciones tiene el dataset y cómo las manejaron?
+[] R: El riesgo principal es 'shortcut learning': el plástico siempre se fotografió sobre el mismo mantel a cuadros y el vidrio siempre sobre el mismo piso de madera, casi todas las fotos son cenitales, y la iluminación es homogénea de interior. El modelo podría aprender el fondo en vez del objeto.
+[] R: Se mitigó con data augmentation agresivo (rotación ±20°, flip horizontal, zoom, variación de contraste/brillo) y quedó documentado como trabajo futuro capturar fotos reales en el campus con la misma cámara/Raspberry Pi para reentrenar y cerrar la brecha de dominio (domain shift).
+[Heading 1] 3. Bloque: Diseño del modelo
+[] P: ¿Por qué MobileNetV2 y no una CNN propia, YOLO o EfficientNet?
+[] R: CNN propia: requeriría muchos más datos y tiempo para igualar a un modelo preentrenado; 2670 imágenes es poco para entrenar desde cero.
+[] R: YOLO: está pensado para detección con múltiples objetos y bounding boxes; nuestro caso es clasificación de un solo objeto centrado, así que sería complejidad innecesaria.
+[] R: EfficientNet-B0: mejor precisión relativa en benchmarks generales, pero mayor costo computacional/memoria que MobileNetV2 para una ganancia marginal en un problema binario relativamente simple.
+[] R: MobileNetV2: usa convoluciones separables en profundidad (depthwise separable convolutions), reduce los parámetros a ~3.4 millones, corre bien en CPU sin GPU, y tiene soporte de primera clase en TensorFlow Lite para desplegar en la Raspberry Pi.
+[] P: ¿Qué es transfer learning y por qué lo usaron?
+[] R: Es reutilizar los pesos de una red ya entrenada en un dataset masivo (ImageNet, millones de imágenes) en vez de entrenar desde cero. Esa base ya sabe detectar bordes, texturas y brillos, características clave para distinguir las propiedades ópticas del vidrio frente al plástico PET. Con solo 2670 imágenes propias, entrenar desde cero no habría sido viable.
+[] P: ¿Cómo está compuesta exactamente la arquitectura final?
+[] R: Base MobileNetV2 preentrenada en ImageNet (~154 capas) + capas propias: GlobalAveragePooling2D + Dropout(0.2) + Dense(1, activación sigmoide). Es clasificación binaria (plástico=0 / vidrio=1), por eso una sola neurona de salida con sigmoide en vez de softmax con dos neuronas.
+[] P: ¿Qué riesgos identificaron antes de entrenar?
+[] R: 1) Similitud visual entre plástico y vidrio transparente (el reto central del proyecto). 2) El dataset tenía fondos y ángulos muy repetitivos (mantel a cuadros / piso de madera, toma cenital), lo que genera riesgo de que el modelo memorice el fondo en vez del material.
+[Heading 1] 4. Bloque: Entrenamiento — 'cuántas veces entrenó el modelo'
+[] P: ¿Cuántas veces se entrenó el modelo / cuántas épocas tuvo?
+[] R: El entrenamiento se hizo en 2 fases. Se planificaron hasta 30 épocas con early stopping (paciencia=5 sobre val_loss), pero en la práctica el modelo convergió y se detuvo en 22 épocas efectivas: 12 en la Fase 1 y 10 en la Fase 2.
+[] P: ¿Qué diferencia hay entre la Fase 1 y la Fase 2?
+[] R: Fase 1 (12 épocas, learning rate 1e-4): toda la base de MobileNetV2 queda congelada (no se actualizan sus pesos); solo se entrena el clasificador nuevo que se añadió encima (GlobalAveragePooling + Dropout + Dense).
+[] R: Fase 2 (10 épocas, learning rate más bajo 1e-5): se descongelan las últimas 30 capas de la base para hacer 'fine-tuning', es decir, especializar esos filtros al dominio específico de plástico/vidrio, con una tasa de aprendizaje baja para no destruir lo aprendido en ImageNet.
+[] P: ¿Por qué bajar el learning rate en la Fase 2?
+[] R: Porque al descongelar capas preentrenadas, un learning rate alto podría destruir de golpe los pesos ya aprendidos en ImageNet ('catastrophic forgetting'). Un LR bajo (1e-5) permite un ajuste fino y gradual. Además se usó ReduceLROnPlateau (factor 0.5, paciencia=3) para bajarlo automáticamente si la validación se estancaba.
+[] P: ¿Cuánto tardó en entrenar y en qué hardware?
+[] R: 854 segundos en total (~14.2 minutos), corriendo en CPU (sin GPU dedicada): 455.9 s la Fase 1 y 398.1 s la Fase 2.
+[] P: ¿Qué función de pérdida y optimizador usaron, y por qué?
+[] R: Binary Crossentropy, apropiada porque es clasificación binaria con salida sigmoide. Optimizador Adam, por su convergencia rápida y estable sin necesitar ajuste manual extenso de la tasa de aprendizaje. Batch size de 32, un balance estándar entre estabilidad del gradiente y uso de memoria.
+[] P: ¿Qué es el 'class_weight' y para qué se usó aquí?
+[] R: Es un peso que se le da a cada clase durante el entrenamiento para que los errores en la clase minoritaria (vidrio, 1232 imágenes frente a 1438 de plástico) penalicen más la función de pérdida, compensando el desbalance leve sin necesidad de eliminar o duplicar imágenes.
+[] P: ¿Qué transformaciones de data augmentation aplicaron y por qué?
+[] R: Rotación aleatoria (±20°), flip horizontal, zoom aleatorio (±15%) y variación de contraste/brillo (±20%), aplicadas solo al conjunto de entrenamiento y en tiempo de carga (no se guardan copias en disco). El objetivo es simular la variabilidad de fondo, ángulo e iluminación que el dataset original no tiene, para reducir el riesgo de 'shortcut learning'.
+[] P: ¿Qué normalización se aplicó a las imágenes?
+[] R: Redimensionamiento a 224×224 px (tamaño de entrada esperado por MobileNetV2) y la función preprocess_input propia de MobileNetV2, que reescala los valores de píxel al rango [-1, 1].
+[Heading 1] 5. Bloque: Resultados y evaluación — 'qué votó el modelo'
+[] P: ¿Qué accuracy y F1 obtuvieron y sobre qué conjunto?
+[] R: Sobre el conjunto de prueba (403 imágenes, completamente aislado durante todo el entrenamiento): Accuracy global 97.02%, F1-score ponderado 0.9701 (F1 plástico 0.9731, F1 vidrio 0.9667).
+[] R: Precision ponderada 0.9718 (plástico 0.9476, vidrio 1.0) y Recall ponderado 0.9702 (plástico 1.0, vidrio 0.9355).
+[] P: Expliquen la matriz de confusión: ¿qué votó el modelo en cada caso?
+[] R: De 217 imágenes reales de plástico, el modelo votó 'plástico' en las 217 (100% de acierto, 0 errores). De 186 imágenes reales de vidrio, el modelo votó 'vidrio' en 174 y 'plástico' en 12 (todos los errores del sistema están en esta dirección: vidrio confundido con plástico, nunca al revés).
+[] P: ¿Por qué el modelo nunca confunde plástico con vidrio, pero sí vidrio con plástico?
+[] R: Es una asimetría esperada dado el reto identificado desde el diseño: la ambigüedad óptica es mayor en un sentido porque el vidrio transparente/claro puede lucir muy similar al PET transparente bajo ciertas condiciones de brillo y encuadre, mientras que las botellas de plástico del dataset tienen rasgos más distintivos (tapa, forma, reflejos) que el modelo aprendió con más seguridad.
+[] P: ¿Qué imágenes generan más confusión y por qué?
+[] R: Principalmente imágenes con transparencia ambigua (PET transparente vs. vidrio claro) y encuadres o fondos que se apartan del patrón dominante del dataset (mantel a cuadros para plástico, piso de madera para vidrio). Es consistente con los dos riesgos anticipados desde la fase de diseño: la ambigüedad óptica es un límite físico del problema, y el fondo repetitivo puede haber generado asociaciones parciales entre fondo y clase.
+[] P: ¿Hicieron alguna prueba adicional aparte de la matriz de confusión?
+[] R: Sí, se evaluaron 24 imágenes nuevas del conjunto de prueba con 24 aciertos de 24 (100%), documentadas con su nivel de confianza individual en el archivo pruebas_modelo.csv (confianzas entre ~91% y 100%).
+[] P: ¿Cuánto tarda el modelo en clasificar una imagen?
+[] R: 139.7 milisegundos en promedio por imagen, medido en CPU, lo que es compatible con una clasificación en tiempo real dentro del flujo de la máquina expendedora inversa.
+[] P: ¿Cómo se exportó el modelo final para la Raspberry Pi?
+[] R: Primero se guardó en formato .keras (~20.88 MB) para seguir depurando en PC. Luego se convirtió y cuantizó a TensorFlow Lite (.tflite), reduciendo el tamaño a 2.41 MB, optimizando memoria RAM y velocidad de inferencia sin sacrificar precisión de forma relevante.
+[] P: ¿El modelo cumplió el objetivo planteado?
+[] R: Sí. El objetivo de diseño era una precisión de validación/prueba superior al 90%; el resultado real fue 97.02% de accuracy en el conjunto de prueba, superando ampliamente la meta.
+[Heading 1] 6. Bloque: Sistema experto y decisión final
+[] P: ¿Cómo funcionan exactamente las reglas del sistema experto?
+[] R: Si la probabilidad de confianza es ≥85%: se acepta la clase (plástico o vidrio) y se clasifica mecánicamente. Si está entre 60% y 84%: se pide al usuario volver a acomodar el residuo para una nueva captura. Si es <60%: se marca como 'desconocido' en vez de forzar una clasificación poco confiable.
+[] P: ¿Por qué separar el modelo de IA del sistema experto en vez de que la red decida directamente?
+[] R: Porque permite ajustar los umbrales de aceptación (por ejemplo subir el umbral de 85% a 90% si se detectan más errores en producción) sin tener que reentrenar el modelo, y da trazabilidad explícita a los casos límite de confianza media o baja en vez de forzar siempre una respuesta binaria.
+[] P: ¿Qué pasa con los datos después de que el sistema experto valida la predicción?
+[] R: La transacción se envía a la plataforma web RePoints (dashboard construido con Node.js, React y Prisma ORM), que registra el resultado, lo hace trazable, y asigna/persiste los puntos de reciclaje en la cuenta del usuario de forma inmediata.
+[Heading 1] 7. Preguntas 'trampa' y límites del proyecto
+[] P: ¿El modelo fue probado con fotos reales tomadas en la universidad, con la cámara y la Raspberry Pi definitivas?
+[] R: No todavía. Todo el entrenamiento y evaluación se hizo sobre el dataset de Kaggle (fotos domésticas, fondo controlado). Es una limitación reconocida explícitamente: el trabajo futuro es capturar imágenes reales en el campus con la Reverse Vending Machine instalada, para reentrenar y cerrar el 'domain shift' antes de producción definitiva.
+[] P: ¿Qué pasaría si en producción aparece un objeto que no es ni plástico ni vidrio (por ejemplo metal o papel)?
+[] R: Está fuera del alcance definido del proyecto: el sistema solo clasifica plástico vs. vidrio. Un objeto muy distinto probablemente caería en confianza baja (<60%) y el sistema experto lo marcaría como 'desconocido', pero no hay una clase dedicada para otros materiales en esta versión.
+[] P: ¿No es un poco pequeño el dataset de prueba (403 imágenes) para confiar en el 97% de accuracy?
+[] R: Es un tamaño razonable para un MVP académico con transfer learning, y el conjunto de prueba estuvo completamente aislado durante todo el entrenamiento (nunca se usó para ajustar hiperparámetros). Aun así, se reconoce como limitación que el test set comparte el mismo sesgo de fondo/ángulo que el resto del dataset, por lo que el número real en producción con fondos nuevos podría ser algo menor; de ahí la importancia de la validación futura con fotos del mundo real.
+[] P: ¿Por qué eligieron una arquitectura binaria (plástico/vidrio) y no multiclase con más materiales desde el inicio?
+[] R: Fue una decisión de alcance del proyecto integrador: el reto central es distinguir dos materiales visualmente similares (transparencia), no cubrir todo tipo de residuo. Ampliarlo a más clases queda como extensión futura.
+[] P: ¿Cómo garantizan que el split de datos es reproducible?
+[] R: Usando una semilla fija (random_state=42) en la división estratificada 70/15/15, de modo que cualquiera que corra el mismo notebook con el mismo dataset obtiene exactamente la misma partición de entrenamiento, validación y prueba.
+[Heading 1] 8. Mapa de código: qué parte hace qué
+[] Esta sección organiza el pipeline documentado en los tres informes en el orden en que debería aparecer en el/los notebook(s) del proyecto (por ejemplo Implementacion_Evaluacion_Modelo_RePoints.ipynb). Úsenla como guion para mostrar código en vivo: cada fila indica qué bloque de celdas buscar y qué debe mostrar en pantalla al abrirlo.
+[] Nota: si el proyecto usa más de un notebook o script (por ejemplo uno para limpieza de dataset y otro para entrenamiento), esta tabla se puede dividir siguiendo la misma numeración. Si quieren, puedo revisar el/los .ipynb reales y reemplazar esta tabla por los números de celda exactos — solo súbanlos.
+[Heading 1] 9. Quién puede responder qué (según el guion de presentación)
+[] Recomendación: aunque cada integrante tenga su bloque, todos deberían poder responder al menos el Resumen ejecutivo (sección 0) y el Bloque 7 (preguntas trampa), porque suelen ser las primeras que hace un tribunal para ver si el equipo domina el proyecto como un todo, no solo su parte.
+--TABLE 0--
+Dato | Valor
+Problema | Separación manual de plástico/vidrio en el campus; contaminación cruzada de reciclables.
+Hardware | Raspberry Pi 5 (sin GPU dedicada) + cámara USB + cámara lectora de QR de usuario.
+Modelo | MobileNetV2 (transfer learning desde ImageNet), 3.4M parámetros, exportado a TensorFlow Lite.
+Dataset final | 2670 imágenes limpias: 1438 plástico (PET) / 1232 vidrio (Glass).
+División | 70% train (1868) / 15% val (399) / 15% test (403), estratificada, random_state=42.
+Entrenamiento | 2 fases: Fase 1 = 12 épocas (base congelada); Fase 2 = 10 épocas fine-tuning (últimas 30 capas). 22 épocas efectivas de 30 posibles, con early stopping.
+Tiempo de entrenamiento | 854 s (~14.2 min) en CPU: 455.9 s fase 1 + 398.1 s fase 2.
+Resultado en test (403 img.) | Accuracy 97.02% · F1 ponderado 0.9701 · Precision ponderada 0.9718 · Recall ponderado 0.9702.
+Matriz de confusión | Plástico: 217/217 correctas. Vidrio: 174/186 correctas, 12 vidrios predichos como plástico (0 falsos positivos de vidrio→plástico en sentido inverso).
+Inferencia | 139.7 ms por imagen en CPU (Raspberry Pi 5).
+Prueba adicional | 24 imágenes nuevas, 24/24 correctas (100%), registradas en pruebas_modelo.csv.
+Modelo exportado | ecosort_mobilenetv2.keras (~20.88 MB) y ecosort_mobilenetv2.tflite cuantizado (2.41 MB).
+Decisión final | No la toma la IA sola: pasa por un Sistema Experto por reglas (≥85% acepta, 60-84% pide recaptura, <60% marca 'desconocido').
+--TABLE 1--
+Etapa del pipeline | Qué hace / qué mostrar en el código
+1. Imports y configuración | Carga de librerías (TensorFlow/Keras, scikit-learn, Pillow, matplotlib, hashlib/imagehash, pillow-heif). Fijar random_state=42 para reproducibilidad.
+2. Carga del dataset crudo | Lectura de las carpetas Glass y PET del dataset de Kaggle 'Drinking Waste Classification'; conteo inicial (1508 plástico / 1232 vidrio).
+3. Detección de duplicados | Cálculo de hash MD5 y pHash por imagen; agrupación de duplicados; listado de los 70 grupos encontrados en la clase plástico.
+4. Limpieza | Eliminación de las 70 imágenes redundantes; conversión de las 8 imágenes HEIC a JPG con pillow-heif; verificación de que no quedan archivos corruptos.
+5. EDA (análisis exploratorio) | Cálculo de nitidez (varianza del Laplaciano), brillo medio y % de sobreexposición por clase; generación de las figuras de distribución de clases y muestras representativas.
+6. División estratificada | train_test_split (o equivalente) en 70/15/15 con stratify por clase y random_state=42; verificación de conteos por conjunto (1868/399/403).
+7. Pipeline de datos (tf.data / ImageDataGenerator) | Redimensionamiento a 224×224, preprocess_input de MobileNetV2 ([-1,1]), y las capas de data augmentation (rotación, flip, zoom, contraste) aplicadas solo al set de entrenamiento.
+8. Definición del modelo | Carga de MobileNetV2(weights='imagenet', include_top=False); adición de GlobalAveragePooling2D + Dropout(0.2) + Dense(1, activation='sigmoid'); compile() con Adam, binary_crossentropy, class_weight.
+9. Entrenamiento Fase 1 | base_model.trainable = False; model.fit() por 12 épocas, lr=1e-4, callbacks de EarlyStopping y ReduceLROnPlateau.
+10. Entrenamiento Fase 2 (fine-tuning) | Descongelar las últimas 30 capas de la base; recompilar con lr=1e-5; model.fit() por 10 épocas más, mismos callbacks; aquí se acumula el tiempo total de 854 s.
+11. Curvas de entrenamiento | Gráficas de accuracy y loss (train vs. val) por época con matplotlib, marcando el punto donde empieza la Fase 2 (fine-tuning).
+12. Evaluación sobre test set | model.predict() sobre las 403 imágenes de prueba aisladas; cálculo de accuracy, precision, recall, F1 con classification_report de scikit-learn; construcción de la matriz de confusión con confusion_matrix().
+13. Análisis de errores | Filtrado de las predicciones incorrectas, ordenadas por confianza, para mostrar los 'errores con mayor confianza' (los casos más ambiguos, figura 4 del informe de implementación).
+14. Prueba manual con 24 imágenes | Selección de una muestra adicional de 24 imágenes del test set, predicción individual con su nivel de confianza, exportado a pruebas_modelo.csv.
+15. Medición de tiempo de inferencia | Cronometraje (time.time() o similar) del predict() sobre una imagen o lote, promediado para obtener los 139.7 ms por imagen.
+16. Exportación del modelo | model.save() a formato .keras; conversión con tf.lite.TFLiteConverter (incluyendo cuantización) para generar el .tflite de 2.41 MB.
+17. Contrato de integración | Sección final que documenta cómo el módulo de captura entrega la imagen 224×224 normalizada al intérprete TFLite, y cómo la probabilidad de salida se pasa tal cual al módulo del sistema experto.
+--TABLE 2--
+Integrante | Tema asignado | Preguntas que debería poder responder
+Integrante 1 | Introducción, problema y arquitectura de hardware | Bloques 1 y 6 (arquitectura, flujo físico, sistema experto).
+Integrante 2 | Análisis, limpieza y preparación del dataset | Bloque 2 completo (origen, duplicados, HEIC, balance, split).
+Integrante 3 | Diseño del modelo de IA | Bloque 3 (por qué MobileNetV2, transfer learning, riesgos de diseño).
+Integrante 4 | Flujo de entrenamiento y exportación | Bloque 4 completo (fases, épocas, hiperparámetros, exportación a TFLite).
+Integrante 5 | Resultados, integración web y conclusiones | Bloque 5 completo (métricas, matriz de confusión, dashboard RePoints, conclusiones).
+

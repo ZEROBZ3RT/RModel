@@ -1,0 +1,57 @@
+Traceback (most recent call last):
+  File "<string>", line 20, in <module>
+    print(f'[{style}] {text}')
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\luanb\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2264' in position 124: character maps to <undefined>
+=== Informe_Analisis_Dataset_RePoints.docx (91 paragraphs) ===
+[] PONTIFICIA UNIVERSIDAD CATÓLICA DEL ECUADOR
+[] SEDE MANABÍ
+[] Análisis del Dataset — Proyecto Integrador
+[] RePoints
+[] Sistema Inteligente para la Identificación de Residuos de Plástico y Vidrio mediante Raspberry Pi e Inteligencia Artificial
+[] Materias integradas: Sistemas Expertos · Tecnologías de Plataforma · Análisis y Circuitos · Manejo y Desarrollo de Proyectos
+[] Quinto Semestre — Ingeniería en Software
+[] Julio, 2026
+[Heading 1] 1. Descripción general del problema
+[] El proyecto RePoints busca automatizar la identificación de residuos de plástico y vidrio mediante una cámara USB conectada a una Raspberry Pi 5. Un modelo de inteligencia artificial procesa la imagen del residuo, predice su clase (plástico, vidrio o desconocido) y un módulo de sistema experto valida ese resultado aplicando reglas sobre el porcentaje de confianza antes de almacenarlo y mostrarlo en un dashboard web.
+[] Para poder entrenar el clasificador de imágenes se requiere un dataset etiquetado de residuos de plástico y vidrio. Este informe documenta el origen, la calidad, la limpieza y la preparación del dataset elegido, siguiendo la rúbrica de análisis de dataset del proyecto integrador.
+[] Un requisito particular del proyecto es que el modelo debe distinguir correctamente botellas de plástico transparente (PET) de botellas de vidrio, ya que ambos materiales pueden lucir visualmente similares (transparencia, brillo, forma cilíndrica) frente a una cámara. Por esto se buscó explícitamente un dataset que incluyera botellas plásticas transparentes junto a envases de vidrio.
+[Heading 1] 2. Origen del dataset
+[] Nombre: Drinking Waste Classification
+[] Fuente: Kaggle (kaggle.com/datasets/arkadiyhacks/drinking-waste-classification)
+[] Autor: Arkadiy Serezhkin
+[] Licencia: CC0: Public Domain (uso libre, incluido uso académico/comercial)
+[] Contexto de recolección: Proyecto de fin de carrera (Individual Project) en University College London (UCL). Las fotografías fueron tomadas manualmente con una cámara de teléfono de 12 MP como parte de un sistema de detección de residuos en tiempo real basado en YOLO.
+[] Procedencia mixta: El propio autor indica que la clase PET incorpora parte del dataset TrashNet (Gary Thung y Mindy Yang, UCL/Stanford), lo cual explica los duplicados detectados en la sección 5.
+[] El dataset original contiene 4 clases de residuos de bebidas: latas de aluminio (AluCan), botellas de vidrio (Glass), botellas PET de plástico transparente (PET) y botellas de leche HDPE (HDPEM), con un total de 14 500 archivos (1.63 GB), incluyendo además una copia anotada en formato YOLO no utilizada en este proyecto.
+[] Pertinencia: para RePoints solo interesa distinguir plástico vs. vidrio, por lo que se seleccionaron únicamente las carpetas Glass y PET, descartando AluCan (metal) y HDPEM (plástico opaco, fuera del alcance). La clase PET es además la más relevante para el caso de botellas transparentes que el sistema experto debe resolver con las reglas de confianza.
+[Heading 1] 3. Características del dataset
+[Heading 2] 3.1 Número total de registros
+[Heading 2] 3.2 Tipo de datos
+[List Paragraph] Datos no estructurados: imágenes en formato JPG (mayoría) y HEIC (8 archivos provenientes de iPhone).
+[List Paragraph] Cada imagen constituye un registro; la etiqueta de clase es implícita en la carpeta/prefijo del nombre de archivo (no existe un CSV de metadatos adicional).
+[List Paragraph] No hay anotaciones de bounding box en la versión "rawimgs" utilizada (sí existen en la carpeta YOLO_imgs del dataset original, descartada por no ser necesaria para clasificación simple).
+[Heading 2] 3.3 Variables disponibles
+[List Paragraph] Imagen RGB del objeto (variable de entrada principal).
+[List Paragraph] Clase (plástico / vidrio) — variable objetivo, derivada del nombre de carpeta.
+[List Paragraph] Metadatos técnicos derivados para este análisis: resolución (ancho x alto), tamaño de archivo en KB, formato.
+[] Resoluciones encontradas: predominan 512×683 px (1747 imágenes) y variantes 512×384 / 384×512; existe 1 imagen atípica a resolución nativa de cámara (4032×3024 px). El tamaño de archivo promedio es de 142.8 KB (mínimo 5.5 KB, máximo ~3.6 MB).
+[Heading 1] 4. Análisis exploratorio de datos (EDA)
+[Heading 2] 4.1 Distribución de clases
+[] Figura 1. Distribución de clases del subset original (antes de limpieza): 1508 plástico vs. 1232 vidrio.
+[] La proporción entre clases es 1508:1232, equivalente a una razón de desbalance de 1.23:1. Es un desbalance leve — no crítico — pero se cuantifica y se trata en la sección 6.
+[Heading 2] 4.2 Muestras representativas
+[] Figura 2. Muestras representativas de la clase plástico (PET).
+[] Figura 3. Muestras representativas de la clase vidrio (Glass).
+[] Se observa que ambas clases fueron fotografiadas en condiciones muy controladas y repetitivas: el plástico siempre sobre un mismo mantel a cuadros y el vidrio siempre sobre el mismo piso de madera, con toma cenital (cámara apuntando hacia abajo) en casi todos los casos. Esto se retoma como riesgo en la sección 8.
+[Heading 2] 4.3 Calidad visual
+[] Figura 4. Distribución de nitidez (varianza del Laplaciano) por clase. Valores bajos indican imágenes borrosas.
+[] La clase vidrio presenta una proporción notablemente mayor de imágenes borrosas (14.46% frente a 3.38% en plástico), principalmente por movimiento de cámara y tomas fuera de foco. La figura 5 muestra los casos más extremos detectados automáticamente por clase.
+[] Figura 5a. Las 6 imágenes más borrosas detectadas en la clase plástico (sombra de movimiento, encuadre muy cerrado).
+[] Figura 5b. Las 6 imágenes más borrosas detectadas en la clase vidrio (fuera de foco, primeros planos extremos, dominancia de color).
+[List Paragraph] Imágenes borrosas: confirmadas cuantitativamente (ver tabla e imágenes anteriores).
+[List Paragraph] Objetos parcialmente visibles: varias imágenes de "peor calidad" muestran solo la boca/tapa de la botella, sin el objeto completo.
+[List Paragraph] Fondos complejos: el mantel a cuadros (plástico) y el patrón de madera (vidrio) son texturizados y se repiten en todo el dataset — no complejos en el sentido de "ruido visual", pero sí muy poco variados.

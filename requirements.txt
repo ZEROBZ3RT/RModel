@@ -1,0 +1,15 @@
+# RePoints -- dependencias del pipeline de IA (modelo/ + sistema_experto/)
+# Probado con Python 3.13 (venv .venv313). Instalar con:
+#   python -m pip install -r requirements.txt
+
+tensorflow==2.21.0
+keras==3.15.0
+numpy==2.5.1
+pillow==12.3.0
+pillow-heif           # conversion de imagenes HEIC (iPhone) a JPG -- modelo/clean_and_split.py
+imagehash             # deteccion de duplicados casi-identicos (pHash) -- modelo/analyze.py
+opencv-python-headless==5.0.0.93   # nitidez/brillo (EDA) y filtro de calidad R0 del sistema experto
+scikit-learn==1.9.0
+pandas==3.0.5
+matplotlib==3.11.1
+openpyxl==3.1.5       # generacion del checklist de captura de fotos (dataset_real/)

@@ -3,17 +3,24 @@ Sistema Experto de RePoints: capa de reglas que valida la prediccion del
 modelo de IA antes de tomar una decision final.
 
 Estructura clasica de un sistema experto basado en reglas:
-    - Base de conocimiento (clase Clase + lista de Reglas)
-    - Motor de inferencia (SistemaExperto.evaluar)
+    - Base de conocimiento (clase Clase + lista de Reglas + umbrales de calidad)
+    - Motor de inferencia (SistemaExperto.evaluar / evaluar_captura)
     - Explicacion de la decision (ResultadoClasificacion.explicacion)
 
 El modelo (MobileNetV2/TFLite) predice unicamente P(vidrio) (ver notebook,
 class_names = ["plastico", "vidrio"], label 1 = vidrio). El sistema experto
 no reentrena ni toca el modelo: solo interpreta su salida.
+
+Ademas de la confianza del modelo, el sistema experto puede validar la
+CALIDAD de la captura de la camara (nitidez y brillo) antes de confiarle
+nada al modelo -- mismos umbrales y metricas (varianza del Laplaciano,
+brillo medio) que el Informe de Analisis del Dataset (seccion 4.3).
 """
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Callable, Optional
+from typing import Callable, Optional, Union
+
+import numpy as np
 
 
 class Clase(Enum):
@@ -32,13 +39,23 @@ class Decision(Enum):
 
 
 @dataclass
+class CalidadImagen:
+    """Resultado de validar la captura de la camara (independiente del modelo de IA)."""
+    nitidez: float          # varianza del Laplaciano (mayor = mas nitida)
+    brillo: float           # promedio de gris 0-255
+    es_valida: bool
+    motivo: Optional[str] = None  # por que se rechazo, si es_valida=False
+
+
+@dataclass
 class ResultadoClasificacion:
-    clase_predicha: Clase
-    confianza: float                  # 0.0 - 1.0, referida a clase_predicha
+    clase_predicha: Optional[Clase]     # None si la imagen se rechazo por calidad
+    confianza: Optional[float]          # 0.0 - 1.0, referida a clase_predicha (None si se rechazo por calidad)
     decision: Decision
     clase_final: Optional[Clase]      # None si no se acepta (recaptura/desconocido)
     regla_aplicada: str                # nombre de la regla de la base de conocimiento que disparo
     explicacion: str                   # justificacion legible de la decision
+    calidad: Optional[CalidadImagen] = None  # presente si se evaluo calidad de imagen
 
 
 @dataclass
@@ -61,16 +78,38 @@ class SistemaExperto:
         umbral_aceptar:   confianza minima para aceptar la clase directamente.
         umbral_recaptura: confianza minima para pedir una nueva captura en vez
                            de marcar "desconocido" directamente.
+
+    Parametros de calidad de la captura (vision/camara de la Raspberry Pi),
+    mismos umbrales usados en el EDA del Informe de Analisis del Dataset:
+
+        umbral_nitidez: varianza del Laplaciano minima para considerar la
+                        imagen nitida (no borrosa). Default 100.0.
+        brillo_min:     brillo medio minimo (evita imagenes muy oscuras).
+                        Default 60.0.
+        brillo_max:     brillo medio maximo (evita imagenes sobreexpuestas).
+                        Default 200.0.
     """
 
-    def __init__(self, umbral_aceptar: float = 0.85, umbral_recaptura: float = 0.60):
+    def __init__(
+        self,
+        umbral_aceptar: float = 0.85,
+        umbral_recaptura: float = 0.60,
+        umbral_nitidez: float = 100.0,
+        brillo_min: float = 60.0,
+        brillo_max: float = 200.0,
+    ):
         if not (0.0 <= umbral_recaptura <= umbral_aceptar <= 1.0):
             raise ValueError(
                 "Se requiere 0 <= umbral_recaptura <= umbral_aceptar <= 1, "
                 f"recibido umbral_recaptura={umbral_recaptura}, umbral_aceptar={umbral_aceptar}"
             )
+        if brillo_min >= brillo_max:
+            raise ValueError(f"brillo_min ({brillo_min}) debe ser < brillo_max ({brillo_max})")
         self.umbral_aceptar = umbral_aceptar
         self.umbral_recaptura = umbral_recaptura
+        self.umbral_nitidez = umbral_nitidez
+        self.brillo_min = brillo_min
+        self.brillo_max = brillo_max
         self.base_reglas = self._construir_base_reglas()
 
     def _construir_base_reglas(self) -> list[Regla]:
@@ -145,6 +184,74 @@ class SistemaExperto:
 
         raise RuntimeError("Ninguna regla de la base de conocimiento disparo (no deberia pasar, R3 es catch-all)")
 
+    def evaluar_calidad(self, imagen: Union[str, "np.ndarray"]) -> CalidadImagen:
+        """
+        R0 -- valida la captura cruda de la camara ANTES de confiarle nada al
+        modelo de IA: nitidez (varianza del Laplaciano) y brillo (promedio de
+        gris), con los mismos umbrales usados en el EDA del dataset.
+
+        Args:
+            imagen: ruta a un archivo de imagen, o array BGR/gris ya cargado
+                (por ejemplo con cv2.imread / la captura directa de la
+                camara de la Raspberry Pi).
+        """
+        import cv2  # import diferido: solo hace falta si se valida calidad
+
+        if isinstance(imagen, str):
+            img = cv2.imread(imagen)
+            if img is None:
+                raise ValueError(f"No se pudo leer la imagen: {imagen}")
+        else:
+            img = imagen
+
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) if img.ndim == 3 else img
+        nitidez = float(cv2.Laplacian(gray, cv2.CV_64F).var())
+        brillo = float(np.mean(gray))
+
+        if nitidez < self.umbral_nitidez:
+            return CalidadImagen(nitidez, brillo, es_valida=False,
+                                  motivo=f"imagen borrosa (nitidez {nitidez:.1f} < {self.umbral_nitidez:.0f})")
+        if brillo < self.brillo_min:
+            return CalidadImagen(nitidez, brillo, es_valida=False,
+                                  motivo=f"imagen muy oscura (brillo {brillo:.1f} < {self.brillo_min:.0f})")
+        if brillo > self.brillo_max:
+            return CalidadImagen(nitidez, brillo, es_valida=False,
+                                  motivo=f"imagen sobreexpuesta (brillo {brillo:.1f} > {self.brillo_max:.0f})")
+        return CalidadImagen(nitidez, brillo, es_valida=True)
+
+    def evaluar_captura(
+        self,
+        prob_vidrio: float,
+        imagen: Optional[Union[str, "np.ndarray"]] = None,
+    ) -> ResultadoClasificacion:
+        """
+        Flujo completo: si se pasa `imagen`, primero corre R0 (calidad de
+        camara). Si la imagen no pasa el filtro de calidad, se pide
+        recaptura sin siquiera mirar la salida del modelo. Si pasa (o no se
+        valida calidad porque no se paso `imagen`), se aplican las reglas de
+        confianza normales (R1/R2/R3).
+        """
+        calidad = None
+        if imagen is not None:
+            calidad = self.evaluar_calidad(imagen)
+            if not calidad.es_valida:
+                return ResultadoClasificacion(
+                    clase_predicha=None,
+                    confianza=None,
+                    decision=Decision.SOLICITAR_RECAPTURA,
+                    clase_final=None,
+                    regla_aplicada="R0_CALIDAD_CAMARA",
+                    explicacion=(
+                        f"Captura rechazada antes de clasificar: {calidad.motivo}. "
+                        "Se pide recaptura sin evaluar el modelo de IA."
+                    ),
+                    calidad=calidad,
+                )
+
+        resultado = self.evaluar(prob_vidrio)
+        resultado.calidad = calidad
+        return resultado
+
 
 # Instancia por defecto con los umbrales documentados en el Informe de Diseno
 # (>=85% acepta, 60-84% recaptura, <60% desconocido), para no romper codigo
@@ -182,3 +289,11 @@ if __name__ == "__main__":
     for prob in [0.87, 0.92]:
         r = se_estricto.evaluar(prob)
         print(f"P(vidrio)={prob:.2f} -> [{r.regla_aplicada}] {r.decision.value} -- {r.explicacion}")
+
+    print("\n=== R0: filtro de calidad de camara (nitidez/brillo, mismos umbrales del EDA) ===")
+    import glob
+    ejemplos = sorted(glob.glob(r"C:\Users\luanb\Desktop\RModel\dataset_real\plastico\*.jpeg"))[:3]
+    for ruta in ejemplos:
+        r = se.evaluar_captura(prob_vidrio=0.75, imagen=ruta)
+        print(f"{ruta.split(chr(92))[-1]}: nitidez={r.calidad.nitidez:.1f} brillo={r.calidad.brillo:.1f} "
+              f"valida={r.calidad.es_valida} -> [{r.regla_aplicada}] {r.decision.value}")
