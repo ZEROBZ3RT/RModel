@@ -1,0 +1,86 @@
+[
+  {
+    "tanda": "set1",
+    "archivo": "WhatsApp Image 2026-08-10 at 16.22.49.jpeg",
+    "prediccion": "vidrio",
+    "confianza_pct": 78.5
+  },
+  {
+    "tanda": "set1",
+    "archivo": "WhatsApp Image 2026-08-10 at 16.22.50 (1).jpeg",
+    "prediccion": "vidrio",
+    "confianza_pct": 78.6
+  },
+  {
+    "tanda": "set1",
+    "archivo": "WhatsApp Image 2026-08-10 at 16.22.50.jpeg",
+    "prediccion": "vidrio",
+    "confianza_pct": 78.5
+  },
+  {
+    "tanda": "set1",
+    "archivo": "WhatsApp Image 2026-08-10 at 16.22.51 (1).jpeg",
+    "prediccion": "vidrio",
+    "confianza_pct": 78.9
+  },
+  {
+    "tanda": "set1",
+    "archivo": "WhatsApp Image 2026-08-10 at 16.22.51.jpeg",
+    "prediccion": "vidrio",
+    "confianza_pct": 79.0
+  },
+  {
+    "tanda": "set1",
+    "archivo": "WhatsApp Image 2026-08-10 at 16.22.52 (1).jpeg",
+    "prediccion": "vidrio",
+    "confianza_pct": 79.6
+  },
+  {
+    "tanda": "set1",
+    "archivo": "WhatsApp Image 2026-08-10 at 16.22.52 (2).jpeg",
+    "prediccion": "vidrio",
+    "confianza_pct": 79.7
+  },
+  {
+    "tanda": "set1",
+    "archivo": "WhatsApp Image 2026-08-10 at 16.22.52.jpeg",
+    "prediccion": "vidrio",
+    "confianza_pct": 79.6
+  },
+  {
+    "tanda": "set2",
+    "archivo": "WhatsApp Image 2026-08-11 at 20.51.11 (1).jpeg",
+    "prediccion": "vidrio",
+    "confianza_pct": 74.9
+  },
+  {
+    "tanda": "set2",
+    "archivo": "WhatsApp Image 2026-08-11 at 20.51.11.jpeg",
+    "prediccion": "vidrio",
+    "confianza_pct": 75.8
+  },
+  {
+    "tanda": "set2",
+    "archivo": "WhatsApp Image 2026-08-11 at 20.51.12 (1).jpeg",
+    "prediccion": "vidrio",
+    "confianza_pct": 77.7
+  },
+  {
+    "tanda": "set2",
+    "archivo": "WhatsApp Image 2026-08-11 at 20.51.12 (2).jpeg",
+    "prediccion": "vidrio",
+    "confianza_pct": 77.9
+  },
+  {
+    "tanda": "set2",
+    "archivo": "WhatsApp Image 2026-08-11 at 20.51.12 (3).jpeg",
+    "prediccion": "vidrio",
+    "confianza_pct": 73.4
+  },
+  {
+    "tanda": "set2",
+    "archivo": "WhatsApp Image 2026-08-11 at 20.51.12.jpeg",
+    "prediccion": "vidrio",
+    "confianza_pct": 78.0
+  }
+]

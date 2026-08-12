@@ -1,0 +1,261 @@
+[
+  {
+    "archivo": "plastico_001.jpeg",
+    "grupo": "vista_en_entrenamiento_v3 (oversampleada)",
+    "prediccion": "vidrio",
+    "confianza_pct": 76.3,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_002.jpeg",
+    "grupo": "vista_en_entrenamiento_v3 (oversampleada)",
+    "prediccion": "vidrio",
+    "confianza_pct": 74.8,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_003.jpeg",
+    "grupo": "held_out_v3 (nunca vista en entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 75.9,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_004.jpeg",
+    "grupo": "vista_en_entrenamiento_v3 (oversampleada)",
+    "prediccion": "vidrio",
+    "confianza_pct": 70.0,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_005.jpeg",
+    "grupo": "vista_en_entrenamiento_v3 (oversampleada)",
+    "prediccion": "vidrio",
+    "confianza_pct": 74.6,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_006.jpeg",
+    "grupo": "vista_en_entrenamiento_v3 (oversampleada)",
+    "prediccion": "vidrio",
+    "confianza_pct": 76.4,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_007.jpeg",
+    "grupo": "vista_en_entrenamiento_v3 (oversampleada)",
+    "prediccion": "vidrio",
+    "confianza_pct": 73.9,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_008.jpeg",
+    "grupo": "held_out_v3 (nunca vista en entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 71.7,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_009.jpeg",
+    "grupo": "vista_en_entrenamiento_v3 (oversampleada)",
+    "prediccion": "vidrio",
+    "confianza_pct": 75.7,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_010.jpeg",
+    "grupo": "vista_en_entrenamiento_v3 (oversampleada)",
+    "prediccion": "vidrio",
+    "confianza_pct": 75.4,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_011.jpeg",
+    "grupo": "vista_en_entrenamiento_v3 (oversampleada)",
+    "prediccion": "vidrio",
+    "confianza_pct": 69.8,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_012.jpeg",
+    "grupo": "vista_en_entrenamiento_v3 (oversampleada)",
+    "prediccion": "vidrio",
+    "confianza_pct": 73.6,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_013.jpeg",
+    "grupo": "held_out_v3 (nunca vista en entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 76.6,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (1).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 74.4,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (10).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 77.8,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (11).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 76.8,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (12).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 77.7,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (13).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 79.3,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (14).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 78.0,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (15).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 78.4,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (16).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 77.4,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (17).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 78.3,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (18).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 78.1,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (19).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 78.4,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (2).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 76.2,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (20).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 78.8,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (21).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 78.9,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (22).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 77.9,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (23).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 77.8,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (24).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 78.5,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (3).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 74.8,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (4).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 76.4,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (5).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 77.8,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (6).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 77.9,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (7).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 77.4,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (8).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 77.0,
+    "correcto": false
+  },
+  {
+    "archivo": "plastico_014 (9).jpeg",
+    "grupo": "nueva (no usada en ningun entrenamiento)",
+    "prediccion": "vidrio",
+    "confianza_pct": 77.0,
+    "correcto": false
+  }
+]
