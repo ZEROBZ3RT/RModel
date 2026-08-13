@@ -1,0 +1,542 @@
+{
+  "cambios_v4": [
+    "Primera vez que se integran fotos reales de VIDRIO al entrenamiento",
+    "vidrio: 3 fotos reales usadas en train (oversampleadas x8 = 24 copias), 1 held-out",
+    "plastico: 60 fotos reales usadas en train (oversampleadas x8 = 480 copias), 15 held-out",
+    "Held-out honesto calculado con seed=42, ~20% por clase (minimo 1 foto)",
+    "Hiperparametros IDENTICOS al modelo original y a v3 (30 capas fine-tuning, sin color jitter extra)"
+  ],
+  "held_out_files": {
+    "plastico": [
+      "plastico_008.jpeg",
+      "plastico_009.jpeg",
+      "plastico_014 (11).jpeg",
+      "plastico_014 (14).jpeg",
+      "plastico_014 (3).jpeg",
+      "plastico_014 (9).jpeg",
+      "plastico_017.jpeg",
+      "plastico_021.jpeg",
+      "plastico_024.jpeg",
+      "plastico_033.jpeg",
+      "plastico_035.jpeg",
+      "plastico_037.jpeg",
+      "plastico_038.jpeg",
+      "plastico_043.jpeg",
+      "plastico_049.jpeg"
+    ],
+    "vidrio": [
+      "vidrio_003.jpeg"
+    ]
+  },
+  "entrenamiento": {
+    "epocas_fase1": 12,
+    "epocas_fase2": 10,
+    "tiempo_total_s": 919.2
+  },
+  "evaluacion_test_oficial_kaggle": {
+    "accuracy": 0.9702,
+    "precision_weighted": 0.9713,
+    "recall_weighted": 0.9702,
+    "f1_weighted": 0.9701,
+    "matriz_confusion": [
+      [
+        216,
+        1
+      ],
+      [
+        11,
+        175
+      ]
+    ]
+  },
+  "accuracy_held_out_por_clase": {
+    "plastico": 0.0,
+    "vidrio": 1.0
+  },
+  "fotos_reales_vistas_en_train": {
+    "plastico": [
+      {
+        "archivo": "plastico_001.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_002.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_003.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_004.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 85.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_005.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 86.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_006.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 86.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_007.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 87.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_010.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 87.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_011.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 85.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_012.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 86.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_013.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (1).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (10).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (12).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (13).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (15).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (16).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (17).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (18).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (19).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (2).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (20).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (21).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (22).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (23).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (24).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (4).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (5).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (6).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (7).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (8).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_015.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_016.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_018.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_019.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_020.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_022.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_023.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_025.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_026.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_027.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 86.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_028.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_029.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_030.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_031.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_032.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_034.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_036.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_039.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_040.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_041.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_042.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_044.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 87.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_045.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_046.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_047.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_048.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_050.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_051.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_052.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.4,
+        "correcto": false
+      }
+    ],
+    "vidrio": [
+      {
+        "archivo": "vidrio_001.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.8,
+        "correcto": true
+      },
+      {
+        "archivo": "vidrio_002.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.8,
+        "correcto": true
+      },
+      {
+        "archivo": "vidrio_004.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.3,
+        "correcto": true
+      }
+    ]
+  },
+  "fotos_reales_held_out": {
+    "plastico": [
+      {
+        "archivo": "plastico_008.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 87.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_009.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 86.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (11).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (14).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (3).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 87.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (9).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_017.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_021.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_024.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_033.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_035.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_037.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_038.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_043.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_049.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.6,
+        "correcto": false
+      }
+    ],
+    "vidrio": [
+      {
+        "archivo": "vidrio_003.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.2,
+        "correcto": true
+      }
+    ]
+  }
+}

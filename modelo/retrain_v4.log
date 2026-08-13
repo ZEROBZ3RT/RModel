@@ -1,0 +1,712 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1786585318.308031   30080 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1786585321.095953   30080 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+[plastico] total=75 train=60 held_out=15
+  held_out: ['plastico_008.jpeg', 'plastico_009.jpeg', 'plastico_014 (11).jpeg', 'plastico_014 (14).jpeg', 'plastico_014 (3).jpeg', 'plastico_014 (9).jpeg', 'plastico_017.jpeg', 'plastico_021.jpeg', 'plastico_024.jpeg', 'plastico_033.jpeg', 'plastico_035.jpeg', 'plastico_037.jpeg', 'plastico_038.jpeg', 'plastico_043.jpeg', 'plastico_049.jpeg']
+[vidrio] total=4 train=3 held_out=1
+  held_out: ['vidrio_003.jpeg']
+Copias reales agregadas a train/plastico: 480
+Copias reales agregadas a train/vidrio: 24
+Found 2372 files belonging to 2 classes.
+I0000 00:00:1786585325.628474   30080 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Found 399 files belonging to 2 classes.
+Found 403 files belonging to 2 classes.
+WARNING:tensorflow:TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+C:\Users\luanb\Desktop\RModel\.venv313\Lib\site-packages\keras\src\trainers\epoch_iterator.py:74: UserWarning: `shuffle=True` was passed, but will be ignored since the data `x` was provided as a tf.data.Dataset. The Dataset is expected to already be shuffled (via `.shuffle(buffer_size)`).
+  self.data_adapter = data_adapters.get_data_adapter(
+class_names: ['plastico', 'vidrio']
+{
+  "train": {
+    "plastico": 1486,
+    "vidrio": 886
+  },
+  "val": {
+    "plastico": 215,
+    "vidrio": 184
+  },
+  "test": {
+    "plastico": 217,
+    "vidrio": 186
+  }
+}
+class_weight: {0: 0.7981157469717362, 1: 1.3386004514672687}
+Epoch 1/12
+75/75 - 45s - 597ms/step - accuracy: 0.5763 - loss: 0.7003 - val_accuracy: 0.6190 - val_loss: 0.6529 - learning_rate: 1.0000e-04
+Epoch 2/12
+75/75 - 36s - 476ms/step - accuracy: 0.6640 - loss: 0.6166 - val_accuracy: 0.6917 - val_loss: 0.5728 - learning_rate: 1.0000e-04
+Epoch 3/12
+75/75 - 36s - 484ms/step - accuracy: 0.7281 - loss: 0.5420 - val_accuracy: 0.7494 - val_loss: 0.5180 - learning_rate: 1.0000e-04
+Epoch 4/12
+75/75 - 36s - 479ms/step - accuracy: 0.7664 - loss: 0.4957 - val_accuracy: 0.7870 - val_loss: 0.4733 - learning_rate: 1.0000e-04
+Epoch 5/12
+75/75 - 36s - 485ms/step - accuracy: 0.8048 - loss: 0.4471 - val_accuracy: 0.8070 - val_loss: 0.4388 - learning_rate: 1.0000e-04
+Epoch 6/12
+75/75 - 37s - 494ms/step - accuracy: 0.8137 - loss: 0.4316 - val_accuracy: 0.8221 - val_loss: 0.4120 - learning_rate: 1.0000e-04
+Epoch 7/12
+75/75 - 36s - 479ms/step - accuracy: 0.8272 - loss: 0.4063 - val_accuracy: 0.8346 - val_loss: 0.3897 - learning_rate: 1.0000e-04
+Epoch 8/12
+75/75 - 36s - 479ms/step - accuracy: 0.8390 - loss: 0.3876 - val_accuracy: 0.8546 - val_loss: 0.3706 - learning_rate: 1.0000e-04
+Epoch 9/12
+75/75 - 35s - 468ms/step - accuracy: 0.8427 - loss: 0.3723 - val_accuracy: 0.8571 - val_loss: 0.3545 - learning_rate: 1.0000e-04
+Epoch 10/12
+75/75 - 36s - 485ms/step - accuracy: 0.8520 - loss: 0.3586 - val_accuracy: 0.8596 - val_loss: 0.3408 - learning_rate: 1.0000e-04
+Epoch 11/12
+75/75 - 39s - 524ms/step - accuracy: 0.8571 - loss: 0.3399 - val_accuracy: 0.8622 - val_loss: 0.3287 - learning_rate: 1.0000e-04
+Epoch 12/12
+75/75 - 38s - 506ms/step - accuracy: 0.8668 - loss: 0.3290 - val_accuracy: 0.8722 - val_loss: 0.3174 - learning_rate: 1.0000e-04
+Tiempo fase 1: 446.8 s
+Epoch 1/10
+75/75 - 53s - 711ms/step - accuracy: 0.8520 - loss: 0.3539 - val_accuracy: 0.9123 - val_loss: 0.2522 - learning_rate: 1.0000e-05
+Epoch 2/10
+75/75 - 52s - 696ms/step - accuracy: 0.9018 - loss: 0.2645 - val_accuracy: 0.9223 - val_loss: 0.2117 - learning_rate: 1.0000e-05
+Epoch 3/10
+75/75 - 45s - 606ms/step - accuracy: 0.9288 - loss: 0.2053 - val_accuracy: 0.9348 - val_loss: 0.1860 - learning_rate: 1.0000e-05
+Epoch 4/10
+75/75 - 46s - 608ms/step - accuracy: 0.9444 - loss: 0.1678 - val_accuracy: 0.9449 - val_loss: 0.1658 - learning_rate: 1.0000e-05
+Epoch 5/10
+75/75 - 46s - 614ms/step - accuracy: 0.9532 - loss: 0.1485 - val_accuracy: 0.9549 - val_loss: 0.1502 - learning_rate: 1.0000e-05
+Epoch 6/10
+75/75 - 46s - 612ms/step - accuracy: 0.9659 - loss: 0.1172 - val_accuracy: 0.9624 - val_loss: 0.1326 - learning_rate: 1.0000e-05
+Epoch 7/10
+75/75 - 46s - 609ms/step - accuracy: 0.9646 - loss: 0.1127 - val_accuracy: 0.9699 - val_loss: 0.1229 - learning_rate: 1.0000e-05
+Epoch 8/10
+75/75 - 47s - 622ms/step - accuracy: 0.9760 - loss: 0.0919 - val_accuracy: 0.9699 - val_loss: 0.1159 - learning_rate: 1.0000e-05
+Epoch 9/10
+75/75 - 46s - 615ms/step - accuracy: 0.9751 - loss: 0.0880 - val_accuracy: 0.9724 - val_loss: 0.1026 - learning_rate: 1.0000e-05
+Epoch 10/10
+75/75 - 45s - 603ms/step - accuracy: 0.9785 - loss: 0.0765 - val_accuracy: 0.9724 - val_loss: 0.0960 - learning_rate: 1.0000e-05
+Tiempo fase 2: 472.4 s
+Tiempo total v4: 919.2 s (15.3 min)
+=== RESULTADOS V4 (test set oficial Kaggle, 403 img.) ===
+accuracy_test = 0.9702
+cm [[216, 1], [11, 175]]
+weighted 0.9712847724962262 0.9702233250620348 0.9701473679374233
+--- [plastico] VISTAS en entrenamiento (no es prueba justa) ---
+  plastico_001.jpeg: pred=vidrio conf=89.0% MAL
+  plastico_002.jpeg: pred=vidrio conf=88.1% MAL
+  plastico_003.jpeg: pred=vidrio conf=88.1% MAL
+  plastico_004.jpeg: pred=vidrio conf=85.2% MAL
+  plastico_005.jpeg: pred=vidrio conf=86.9% MAL
+  plastico_006.jpeg: pred=vidrio conf=86.8% MAL
+  plastico_007.jpeg: pred=vidrio conf=87.1% MAL
+  plastico_010.jpeg: pred=vidrio conf=87.3% MAL
+  plastico_011.jpeg: pred=vidrio conf=85.8% MAL
+  plastico_012.jpeg: pred=vidrio conf=86.8% MAL
+  plastico_013.jpeg: pred=vidrio conf=88.3% MAL
+  plastico_014 (1).jpeg: pred=vidrio conf=88.3% MAL
+  plastico_014 (10).jpeg: pred=vidrio conf=88.9% MAL
+  plastico_014 (12).jpeg: pred=vidrio conf=88.8% MAL
+  plastico_014 (13).jpeg: pred=vidrio conf=89.4% MAL
+  plastico_014 (15).jpeg: pred=vidrio conf=88.9% MAL
+  plastico_014 (16).jpeg: pred=vidrio conf=89.0% MAL
+  plastico_014 (17).jpeg: pred=vidrio conf=89.2% MAL
+  plastico_014 (18).jpeg: pred=vidrio conf=89.3% MAL
+  plastico_014 (19).jpeg: pred=vidrio conf=89.4% MAL
+  plastico_014 (2).jpeg: pred=vidrio conf=88.2% MAL
+  plastico_014 (20).jpeg: pred=vidrio conf=88.7% MAL
+  plastico_014 (21).jpeg: pred=vidrio conf=89.4% MAL
+  plastico_014 (22).jpeg: pred=vidrio conf=88.9% MAL
+  plastico_014 (23).jpeg: pred=vidrio conf=88.9% MAL
+  plastico_014 (24).jpeg: pred=vidrio conf=89.4% MAL
+  plastico_014 (4).jpeg: pred=vidrio conf=88.9% MAL
+  plastico_014 (5).jpeg: pred=vidrio conf=89.2% MAL
+  plastico_014 (6).jpeg: pred=vidrio conf=89.4% MAL
+  plastico_014 (7).jpeg: pred=vidrio conf=89.5% MAL
+  plastico_014 (8).jpeg: pred=vidrio conf=88.2% MAL
+  plastico_015.jpeg: pred=vidrio conf=89.2% MAL
+  plastico_016.jpeg: pred=vidrio conf=89.2% MAL
+  plastico_018.jpeg: pred=vidrio conf=89.1% MAL
+  plastico_019.jpeg: pred=vidrio conf=89.4% MAL
+  plastico_020.jpeg: pred=vidrio conf=89.6% MAL
+  plastico_022.jpeg: pred=vidrio conf=89.5% MAL
+  plastico_023.jpeg: pred=vidrio conf=89.3% MAL
+  plastico_025.jpeg: pred=vidrio conf=88.7% MAL
+  plastico_026.jpeg: pred=vidrio conf=89.1% MAL
+  plastico_027.jpeg: pred=vidrio conf=86.9% MAL
+  plastico_028.jpeg: pred=vidrio conf=89.1% MAL
+  plastico_029.jpeg: pred=vidrio conf=88.7% MAL
+  plastico_030.jpeg: pred=vidrio conf=89.2% MAL
+  plastico_031.jpeg: pred=vidrio conf=89.9% MAL
+  plastico_032.jpeg: pred=vidrio conf=88.3% MAL
+  plastico_034.jpeg: pred=vidrio conf=88.7% MAL
+  plastico_036.jpeg: pred=vidrio conf=88.9% MAL
+  plastico_039.jpeg: pred=vidrio conf=89.3% MAL
+  plastico_040.jpeg: pred=vidrio conf=89.7% MAL
+  plastico_041.jpeg: pred=vidrio conf=88.8% MAL
+  plastico_042.jpeg: pred=vidrio conf=88.9% MAL
+  plastico_044.jpeg: pred=vidrio conf=87.8% MAL
+  plastico_045.jpeg: pred=vidrio conf=88.7% MAL
+  plastico_046.jpeg: pred=vidrio conf=88.5% MAL
+  plastico_047.jpeg: pred=vidrio conf=89.5% MAL
+  plastico_048.jpeg: pred=vidrio conf=89.4% MAL
+  plastico_050.jpeg: pred=vidrio conf=88.6% MAL
+  plastico_051.jpeg: pred=vidrio conf=89.3% MAL
+  plastico_052.jpeg: pred=vidrio conf=88.4% MAL
+--- [plastico] HELD-OUT -- nunca vistas (chequeo honesto) ---
+  plastico_008.jpeg: pred=vidrio conf=87.5% MAL
+  plastico_009.jpeg: pred=vidrio conf=86.9% MAL
+  plastico_014 (11).jpeg: pred=vidrio conf=88.9% MAL
+  plastico_014 (14).jpeg: pred=vidrio conf=89.1% MAL
+  plastico_014 (3).jpeg: pred=vidrio conf=87.7% MAL
+  plastico_014 (9).jpeg: pred=vidrio conf=89.0% MAL
+  plastico_017.jpeg: pred=vidrio conf=89.2% MAL
+  plastico_021.jpeg: pred=vidrio conf=89.7% MAL
+  plastico_024.jpeg: pred=vidrio conf=89.2% MAL
+  plastico_033.jpeg: pred=vidrio conf=89.0% MAL
+  plastico_035.jpeg: pred=vidrio conf=89.2% MAL
+  plastico_037.jpeg: pred=vidrio conf=88.9% MAL
+  plastico_038.jpeg: pred=vidrio conf=89.8% MAL
+  plastico_043.jpeg: pred=vidrio conf=88.1% MAL
+  plastico_049.jpeg: pred=vidrio conf=89.6% MAL
+--- [vidrio] VISTAS en entrenamiento (no es prueba justa) ---
+  vidrio_001.jpeg: pred=vidrio conf=88.8% OK
+  vidrio_002.jpeg: pred=vidrio conf=88.8% OK
+  vidrio_004.jpeg: pred=vidrio conf=88.3% OK
+--- [vidrio] HELD-OUT -- nunca vistas (chequeo honesto) ---
+  vidrio_003.jpeg: pred=vidrio conf=88.2% OK
+accuracy held-out por clase: {'plastico': 0.0, 'vidrio': 1.0}
+{
+  "cambios_v4": [
+    "Primera vez que se integran fotos reales de VIDRIO al entrenamiento",
+    "vidrio: 3 fotos reales usadas en train (oversampleadas x8 = 24 copias), 1 held-out",
+    "plastico: 60 fotos reales usadas en train (oversampleadas x8 = 480 copias), 15 held-out",
+    "Held-out honesto calculado con seed=42, ~20% por clase (minimo 1 foto)",
+    "Hiperparametros IDENTICOS al modelo original y a v3 (30 capas fine-tuning, sin color jitter extra)"
+  ],
+  "held_out_files": {
+    "plastico": [
+      "plastico_008.jpeg",
+      "plastico_009.jpeg",
+      "plastico_014 (11).jpeg",
+      "plastico_014 (14).jpeg",
+      "plastico_014 (3).jpeg",
+      "plastico_014 (9).jpeg",
+      "plastico_017.jpeg",
+      "plastico_021.jpeg",
+      "plastico_024.jpeg",
+      "plastico_033.jpeg",
+      "plastico_035.jpeg",
+      "plastico_037.jpeg",
+      "plastico_038.jpeg",
+      "plastico_043.jpeg",
+      "plastico_049.jpeg"
+    ],
+    "vidrio": [
+      "vidrio_003.jpeg"
+    ]
+  },
+  "entrenamiento": {
+    "epocas_fase1": 12,
+    "epocas_fase2": 10,
+    "tiempo_total_s": 919.2
+  },
+  "evaluacion_test_oficial_kaggle": {
+    "accuracy": 0.9702,
+    "precision_weighted": 0.9713,
+    "recall_weighted": 0.9702,
+    "f1_weighted": 0.9701,
+    "matriz_confusion": [
+      [
+        216,
+        1
+      ],
+      [
+        11,
+        175
+      ]
+    ]
+  },
+  "accuracy_held_out_por_clase": {
+    "plastico": 0.0,
+    "vidrio": 1.0
+  },
+  "fotos_reales_vistas_en_train": {
+    "plastico": [
+      {
+        "archivo": "plastico_001.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_002.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_003.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_004.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 85.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_005.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 86.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_006.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 86.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_007.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 87.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_010.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 87.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_011.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 85.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_012.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 86.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_013.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (1).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (10).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (12).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (13).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (15).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (16).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (17).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (18).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (19).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (2).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (20).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (21).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (22).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (23).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (24).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (4).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (5).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (6).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (7).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (8).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_015.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_016.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_018.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_019.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_020.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_022.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_023.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_025.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_026.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_027.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 86.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_028.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_029.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_030.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_031.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_032.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_034.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_036.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_039.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_040.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_041.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_042.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_044.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 87.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_045.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_046.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_047.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_048.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_050.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_051.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_052.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.4,
+        "correcto": false
+      }
+    ],
+    "vidrio": [
+      {
+        "archivo": "vidrio_001.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.8,
+        "correcto": true
+      },
+      {
+        "archivo": "vidrio_002.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.8,
+        "correcto": true
+      },
+      {
+        "archivo": "vidrio_004.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.3,
+        "correcto": true
+      }
+    ]
+  },
+  "fotos_reales_held_out": {
+    "plastico": [
+      {
+        "archivo": "plastico_008.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 87.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_009.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 86.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (11).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (14).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (3).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 87.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (9).jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_017.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_021.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_024.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_033.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_035.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_037.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_038.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_043.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_049.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 89.6,
+        "correcto": false
+      }
+    ],
+    "vidrio": [
+      {
+        "archivo": "vidrio_003.jpeg",
+        "prediccion": "vidrio",
+        "confianza": 88.2,
+        "correcto": true
+      }
+    ]
+  }
+}
+OK - modelo v4 guardado en C:\Users\luanb\Desktop\RModel\modelo\model\ecosort_mobilenetv2_v4_vidrio.keras

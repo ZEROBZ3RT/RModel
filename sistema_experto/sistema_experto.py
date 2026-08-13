@@ -88,7 +88,27 @@ class SistemaExperto:
                         Default 60.0.
         brillo_max:     brillo medio maximo (evita imagenes sobreexpuestas).
                         Default 200.0.
+
+    Parametro de origen de la captura (anti-fraude, ver R0b abajo):
+
+        resoluciones_permitidas: lista blanca de resoluciones (ancho, alto)
+                        que producen las camaras/dispositivos usados para
+                        capturar (en cualquier orientacion). Si la imagen
+                        recibida no coincide con NINGUNA, se rechaza SIN
+                        mirar nitidez/brillo ni el modelo -- una imagen
+                        generada/descargada/reenviada casi nunca calza
+                        exactamente con esas resoluciones fijas. Pasar None
+                        explicitamente desactiva el chequeo. Si no se pasa
+                        el parametro, se usan las dos resoluciones realmente
+                        observadas en dataset_real -- (1600, 900) (sesion
+                        con la caja de luz, la mayoria de las fotos) y
+                        (1280, 960) (sesion previa, 14 fotos mas viejas de
+                        plastico). Si se agregan fotos reales con una camara
+                        nueva, sumar su resolucion aqui en vez de sacar el
+                        chequeo.
     """
+
+    _SIN_ESPECIFICAR = object()  # sentinel: distingue "no se paso el parametro" de "None explicito"
 
     def __init__(
         self,
@@ -97,6 +117,7 @@ class SistemaExperto:
         umbral_nitidez: float = 100.0,
         brillo_min: float = 60.0,
         brillo_max: float = 200.0,
+        resoluciones_permitidas=_SIN_ESPECIFICAR,
     ):
         if not (0.0 <= umbral_recaptura <= umbral_aceptar <= 1.0):
             raise ValueError(
@@ -110,6 +131,10 @@ class SistemaExperto:
         self.umbral_nitidez = umbral_nitidez
         self.brillo_min = brillo_min
         self.brillo_max = brillo_max
+        if resoluciones_permitidas is SistemaExperto._SIN_ESPECIFICAR:
+            self.resoluciones_permitidas = [(1600, 900), (1280, 960)]
+        else:
+            self.resoluciones_permitidas = resoluciones_permitidas
         self.base_reglas = self._construir_base_reglas()
 
     def _construir_base_reglas(self) -> list[Regla]:
@@ -187,8 +212,26 @@ class SistemaExperto:
     def evaluar_calidad(self, imagen: Union[str, "np.ndarray"]) -> CalidadImagen:
         """
         R0 -- valida la captura cruda de la camara ANTES de confiarle nada al
-        modelo de IA: nitidez (varianza del Laplaciano) y brillo (promedio de
-        gris), con los mismos umbrales usados en el EDA del dataset.
+        modelo de IA.
+
+        R0b (primero, mas barato): la resolucion tiene que coincidir con
+        alguna de las resoluciones conocidas de camara (self.resoluciones_
+        permitidas). Esto NO es una medida de calidad -- es un chequeo de
+        origen: fotos generadas por IA, capturas de pantalla o imagenes
+        descargadas casi nunca calzan exactamente con una resolucion fija de
+        camara real, y ademas suelen salir MAS nitidas que una foto real
+        (sin ruido/blur de camara), asi que el filtro de nitidez de abajo no
+        las detecta por si solo -- de hecho puede rechazar fotos reales
+        legitimas por "borrosas" mientras deja pasar renders sospechosamente
+        perfectos. Ver hallazgo documentado en el README (fotos de WhatsApp
+        2026-08-12 20:41). Limitacion conocida: un ataque que imite a
+        proposito una resolucion valida (ya se vio 1 caso asi) pasa este
+        chequeo igual -- no reemplaza una verificacion de contenido (OCR /
+        deteccion de texto ilegible) ni, idealmente, capturar directo desde
+        la camara del dispositivo en vez de aceptar archivos subidos.
+
+        R0 (nitidez/brillo): varianza del Laplaciano y brillo promedio, con
+        los mismos umbrales usados en el EDA del dataset.
 
         Args:
             imagen: ruta a un archivo de imagen, o array BGR/gris ya cargado
@@ -203,6 +246,25 @@ class SistemaExperto:
                 raise ValueError(f"No se pudo leer la imagen: {imagen}")
         else:
             img = imagen
+
+        if self.resoluciones_permitidas is not None:
+            alto, ancho = img.shape[:2]
+            actual = {ancho, alto}
+            coincide = any(actual == set(res) for res in self.resoluciones_permitidas)
+            if not coincide:
+                gray_tmp = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) if img.ndim == 3 else img
+                permitidas_str = ", ".join(f"{w}x{h}" for w, h in self.resoluciones_permitidas)
+                return CalidadImagen(
+                    nitidez=float(cv2.Laplacian(gray_tmp, cv2.CV_64F).var()),
+                    brillo=float(np.mean(gray_tmp)),
+                    es_valida=False,
+                    motivo=(
+                        f"resolucion {ancho}x{alto} no coincide con ninguna camara conocida "
+                        f"del dispositivo ({permitidas_str} esperadas, en cualquier orientacion) "
+                        "-- la imagen no parece ser una captura real del dispositivo (posible "
+                        "imagen generada, reenviada o descargada)"
+                    ),
+                )
 
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) if img.ndim == 3 else img
         nitidez = float(cv2.Laplacian(gray, cv2.CV_64F).var())
