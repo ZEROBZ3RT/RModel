@@ -1,0 +1,4819 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1786733582.819066   31404 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1786733589.782113   31404 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+[plastico] total=431 train=345 held_out=86
+[vidrio] total=171 train=137 held_out=34
+Copias reales agregadas a train/plastico: 4140
+Copias reales agregadas a train/vidrio: 1644
+Found 8347 files belonging to 3 classes.
+I0000 00:00:1786733604.389168   31404 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Found 548 files belonging to 3 classes.
+Found 553 files belonging to 3 classes.
+WARNING:tensorflow:TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+C:\Users\luanb\Desktop\RModel\.venv313\Lib\site-packages\keras\src\trainers\epoch_iterator.py:74: UserWarning: `shuffle=True` was passed, but will be ignored since the data `x` was provided as a tf.data.Dataset. The Dataset is expected to already be shuffled (via `.shuffle(buffer_size)`).
+  self.data_adapter = data_adapters.get_data_adapter(
+class_names: ['papel_carton', 'plastico', 'vidrio']
+{
+  "train": {
+    "papel_carton": 696,
+    "plastico": 5145,
+    "vidrio": 2506
+  },
+  "val": {
+    "papel_carton": 149,
+    "plastico": 215,
+    "vidrio": 184
+  },
+  "test": {
+    "papel_carton": 150,
+    "plastico": 217,
+    "vidrio": 186
+  }
+}
+class_weight: {0: 3.9976053639846745, 1: 0.5407839326206673, 2: 1.110268688480979}
+Epoch 1/20
+131/131 - 123s - 938ms/step - accuracy: 0.3980 - loss: 1.1547 - val_accuracy: 0.5529 - val_loss: 0.9129 - learning_rate: 1.0000e-04
+Epoch 2/20
+131/131 - 110s - 837ms/step - accuracy: 0.6862 - loss: 0.6583 - val_accuracy: 0.7299 - val_loss: 0.6596 - learning_rate: 1.0000e-04
+Epoch 3/20
+131/131 - 108s - 822ms/step - accuracy: 0.7823 - loss: 0.4837 - val_accuracy: 0.7847 - val_loss: 0.5298 - learning_rate: 1.0000e-04
+Epoch 4/20
+131/131 - 107s - 814ms/step - accuracy: 0.8183 - loss: 0.4028 - val_accuracy: 0.8139 - val_loss: 0.4588 - learning_rate: 1.0000e-04
+Epoch 5/20
+131/131 - 108s - 824ms/step - accuracy: 0.8408 - loss: 0.3512 - val_accuracy: 0.8321 - val_loss: 0.4118 - learning_rate: 1.0000e-04
+Epoch 6/20
+131/131 - 107s - 817ms/step - accuracy: 0.8623 - loss: 0.3136 - val_accuracy: 0.8358 - val_loss: 0.3786 - learning_rate: 1.0000e-04
+Epoch 7/20
+131/131 - 108s - 823ms/step - accuracy: 0.8717 - loss: 0.2913 - val_accuracy: 0.8504 - val_loss: 0.3513 - learning_rate: 1.0000e-04
+Epoch 8/20
+131/131 - 107s - 820ms/step - accuracy: 0.8833 - loss: 0.2613 - val_accuracy: 0.8631 - val_loss: 0.3356 - learning_rate: 1.0000e-04
+Epoch 9/20
+131/131 - 107s - 820ms/step - accuracy: 0.8951 - loss: 0.2392 - val_accuracy: 0.8650 - val_loss: 0.3196 - learning_rate: 1.0000e-04
+Epoch 10/20
+131/131 - 108s - 823ms/step - accuracy: 0.8971 - loss: 0.2316 - val_accuracy: 0.8796 - val_loss: 0.3055 - learning_rate: 1.0000e-04
+Epoch 11/20
+131/131 - 108s - 823ms/step - accuracy: 0.8976 - loss: 0.2249 - val_accuracy: 0.8850 - val_loss: 0.2918 - learning_rate: 1.0000e-04
+Epoch 12/20
+131/131 - 108s - 822ms/step - accuracy: 0.9028 - loss: 0.2182 - val_accuracy: 0.8905 - val_loss: 0.2827 - learning_rate: 1.0000e-04
+Epoch 13/20
+131/131 - 107s - 820ms/step - accuracy: 0.9068 - loss: 0.2048 - val_accuracy: 0.8923 - val_loss: 0.2753 - learning_rate: 1.0000e-04
+Epoch 14/20
+131/131 - 108s - 822ms/step - accuracy: 0.9091 - loss: 0.1984 - val_accuracy: 0.8923 - val_loss: 0.2610 - learning_rate: 1.0000e-04
+Epoch 15/20
+131/131 - 107s - 821ms/step - accuracy: 0.9145 - loss: 0.1856 - val_accuracy: 0.8960 - val_loss: 0.2547 - learning_rate: 1.0000e-04
+Epoch 16/20
+131/131 - 107s - 820ms/step - accuracy: 0.9202 - loss: 0.1806 - val_accuracy: 0.8960 - val_loss: 0.2496 - learning_rate: 1.0000e-04
+Epoch 17/20
+131/131 - 108s - 822ms/step - accuracy: 0.9161 - loss: 0.1781 - val_accuracy: 0.9033 - val_loss: 0.2432 - learning_rate: 1.0000e-04
+Epoch 18/20
+131/131 - 108s - 828ms/step - accuracy: 0.9228 - loss: 0.1773 - val_accuracy: 0.9033 - val_loss: 0.2345 - learning_rate: 1.0000e-04
+Epoch 19/20
+131/131 - 109s - 835ms/step - accuracy: 0.9225 - loss: 0.1717 - val_accuracy: 0.9069 - val_loss: 0.2307 - learning_rate: 1.0000e-04
+Epoch 20/20
+131/131 - 108s - 822ms/step - accuracy: 0.9299 - loss: 0.1623 - val_accuracy: 0.9033 - val_loss: 0.2282 - learning_rate: 1.0000e-04
+Tiempo fase 1: 2171.0 s
+Epoch 1/15
+131/131 - 137s - 1s/step - accuracy: 0.8507 - loss: 0.2746 - val_accuracy: 0.9142 - val_loss: 0.2185 - learning_rate: 1.0000e-05
+Epoch 2/15
+131/131 - 132s - 1s/step - accuracy: 0.9355 - loss: 0.1546 - val_accuracy: 0.9179 - val_loss: 0.1969 - learning_rate: 1.0000e-05
+Epoch 3/15
+131/131 - 132s - 1s/step - accuracy: 0.9527 - loss: 0.1152 - val_accuracy: 0.9325 - val_loss: 0.1767 - learning_rate: 1.0000e-05
+Epoch 4/15
+131/131 - 132s - 1s/step - accuracy: 0.9680 - loss: 0.0891 - val_accuracy: 0.9380 - val_loss: 0.1543 - learning_rate: 1.0000e-05
+Epoch 5/15
+131/131 - 133s - 1s/step - accuracy: 0.9726 - loss: 0.0709 - val_accuracy: 0.9453 - val_loss: 0.1402 - learning_rate: 1.0000e-05
+Epoch 6/15
+131/131 - 132s - 1s/step - accuracy: 0.9795 - loss: 0.0608 - val_accuracy: 0.9526 - val_loss: 0.1309 - learning_rate: 1.0000e-05
+Epoch 7/15
+131/131 - 132s - 1s/step - accuracy: 0.9812 - loss: 0.0498 - val_accuracy: 0.9580 - val_loss: 0.1201 - learning_rate: 1.0000e-05
+Epoch 8/15
+131/131 - 132s - 1s/step - accuracy: 0.9854 - loss: 0.0426 - val_accuracy: 0.9635 - val_loss: 0.1127 - learning_rate: 1.0000e-05
+Epoch 9/15
+131/131 - 133s - 1s/step - accuracy: 0.9875 - loss: 0.0353 - val_accuracy: 0.9653 - val_loss: 0.1080 - learning_rate: 1.0000e-05
+Epoch 10/15
+131/131 - 133s - 1s/step - accuracy: 0.9869 - loss: 0.0348 - val_accuracy: 0.9708 - val_loss: 0.1001 - learning_rate: 1.0000e-05
+Epoch 11/15
+131/131 - 132s - 1s/step - accuracy: 0.9890 - loss: 0.0306 - val_accuracy: 0.9708 - val_loss: 0.0971 - learning_rate: 1.0000e-05
+Epoch 12/15
+131/131 - 133s - 1s/step - accuracy: 0.9914 - loss: 0.0247 - val_accuracy: 0.9708 - val_loss: 0.0942 - learning_rate: 1.0000e-05
+Epoch 13/15
+131/131 - 134s - 1s/step - accuracy: 0.9919 - loss: 0.0225 - val_accuracy: 0.9726 - val_loss: 0.0927 - learning_rate: 1.0000e-05
+Epoch 14/15
+131/131 - 132s - 1s/step - accuracy: 0.9933 - loss: 0.0200 - val_accuracy: 0.9726 - val_loss: 0.0877 - learning_rate: 1.0000e-05
+Epoch 15/15
+131/131 - 131s - 1s/step - accuracy: 0.9934 - loss: 0.0186 - val_accuracy: 0.9726 - val_loss: 0.0824 - learning_rate: 1.0000e-05
+Tiempo fase 2: 1990.3 s
+Tiempo total v5: 4161.3 s (69.4 min)
+=== RESULTADOS V5 (test set, 3 clases) ===
+class_names (orden matriz): ['papel_carton', 'plastico', 'vidrio']
+accuracy_test = 0.9801
+cm [[147, 2, 1], [0, 215, 2], [1, 5, 180]]
+precision [0.9932432432432432, 0.9684684684684685, 0.9836065573770492] recall [0.98, 0.9907834101382489, 0.967741935483871] f1 [0.9865771812080537, 0.979498861047836, 0.975609756097561]
+weighted 0.980280223899232 0.9801084990958409 0.9801107498421968
+--- [plastico] VISTAS en entrenamiento (no es prueba justa) ---
+  plastico_001.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.001, 'vidrio': 0.039} MAL
+  plastico_002.jpeg: pred=papel_carton conf=98.2% probs={'papel_carton': 0.982, 'plastico': 0.001, 'vidrio': 0.017} MAL
+  plastico_004.jpeg: pred=papel_carton conf=98.4% probs={'papel_carton': 0.984, 'plastico': 0.001, 'vidrio': 0.015} MAL
+  plastico_006.jpeg: pred=papel_carton conf=98.8% probs={'papel_carton': 0.988, 'plastico': 0.0, 'vidrio': 0.012} MAL
+  plastico_007.jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.001, 'vidrio': 0.03} MAL
+  plastico_008.jpeg: pred=papel_carton conf=97.3% probs={'papel_carton': 0.973, 'plastico': 0.002, 'vidrio': 0.026} MAL
+  plastico_009.jpeg: pred=papel_carton conf=98.1% probs={'papel_carton': 0.981, 'plastico': 0.001, 'vidrio': 0.018} MAL
+  plastico_010.jpeg: pred=papel_carton conf=98.4% probs={'papel_carton': 0.984, 'plastico': 0.001, 'vidrio': 0.015} MAL
+  plastico_011.jpeg: pred=papel_carton conf=98.2% probs={'papel_carton': 0.982, 'plastico': 0.001, 'vidrio': 0.017} MAL
+  plastico_013.jpeg: pred=papel_carton conf=98.0% probs={'papel_carton': 0.98, 'plastico': 0.001, 'vidrio': 0.019} MAL
+  plastico_014 (1).jpeg: pred=papel_carton conf=97.3% probs={'papel_carton': 0.973, 'plastico': 0.001, 'vidrio': 0.026} MAL
+  plastico_014 (11).jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.001, 'vidrio': 0.034} MAL
+  plastico_014 (12).jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.001, 'vidrio': 0.04} MAL
+  plastico_014 (13).jpeg: pred=papel_carton conf=96.6% probs={'papel_carton': 0.966, 'plastico': 0.001, 'vidrio': 0.034} MAL
+  plastico_014 (14).jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.002, 'vidrio': 0.042} MAL
+  plastico_014 (15).jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.001, 'vidrio': 0.043} MAL
+  plastico_014 (16).jpeg: pred=papel_carton conf=94.7% probs={'papel_carton': 0.947, 'plastico': 0.002, 'vidrio': 0.051} MAL
+  plastico_014 (17).jpeg: pred=papel_carton conf=95.1% probs={'papel_carton': 0.951, 'plastico': 0.001, 'vidrio': 0.048} MAL
+  plastico_014 (18).jpeg: pred=papel_carton conf=94.4% probs={'papel_carton': 0.944, 'plastico': 0.002, 'vidrio': 0.054} MAL
+  plastico_014 (19).jpeg: pred=papel_carton conf=94.9% probs={'papel_carton': 0.949, 'plastico': 0.002, 'vidrio': 0.049} MAL
+  plastico_014 (2).jpeg: pred=papel_carton conf=97.4% probs={'papel_carton': 0.974, 'plastico': 0.001, 'vidrio': 0.026} MAL
+  plastico_014 (20).jpeg: pred=papel_carton conf=94.8% probs={'papel_carton': 0.948, 'plastico': 0.001, 'vidrio': 0.051} MAL
+  plastico_014 (22).jpeg: pred=papel_carton conf=95.2% probs={'papel_carton': 0.952, 'plastico': 0.001, 'vidrio': 0.047} MAL
+  plastico_014 (23).jpeg: pred=papel_carton conf=97.5% probs={'papel_carton': 0.975, 'plastico': 0.001, 'vidrio': 0.024} MAL
+  plastico_014 (24).jpeg: pred=papel_carton conf=97.5% probs={'papel_carton': 0.975, 'plastico': 0.001, 'vidrio': 0.024} MAL
+  plastico_014 (3).jpeg: pred=papel_carton conf=94.7% probs={'papel_carton': 0.947, 'plastico': 0.001, 'vidrio': 0.052} MAL
+  plastico_014 (4).jpeg: pred=papel_carton conf=98.1% probs={'papel_carton': 0.981, 'plastico': 0.001, 'vidrio': 0.018} MAL
+  plastico_014 (5).jpeg: pred=papel_carton conf=97.1% probs={'papel_carton': 0.971, 'plastico': 0.001, 'vidrio': 0.028} MAL
+  plastico_014 (6).jpeg: pred=papel_carton conf=97.8% probs={'papel_carton': 0.978, 'plastico': 0.001, 'vidrio': 0.022} MAL
+  plastico_014 (8).jpeg: pred=papel_carton conf=97.9% probs={'papel_carton': 0.979, 'plastico': 0.001, 'vidrio': 0.021} MAL
+  plastico_014 (9).jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.001, 'vidrio': 0.038} MAL
+  plastico_015.jpeg: pred=papel_carton conf=95.5% probs={'papel_carton': 0.955, 'plastico': 0.001, 'vidrio': 0.044} MAL
+  plastico_018.jpeg: pred=papel_carton conf=94.9% probs={'papel_carton': 0.949, 'plastico': 0.001, 'vidrio': 0.049} MAL
+  plastico_020.jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.001, 'vidrio': 0.043} MAL
+  plastico_022.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.001, 'vidrio': 0.042} MAL
+  plastico_024.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.002, 'vidrio': 0.032} MAL
+  plastico_025.jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.001, 'vidrio': 0.03} MAL
+  plastico_026.jpeg: pred=papel_carton conf=97.7% probs={'papel_carton': 0.977, 'plastico': 0.001, 'vidrio': 0.022} MAL
+  plastico_027.jpeg: pred=papel_carton conf=96.4% probs={'papel_carton': 0.964, 'plastico': 0.001, 'vidrio': 0.035} MAL
+  plastico_029.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.001, 'vidrio': 0.035} MAL
+  plastico_030.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  plastico_031.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.001, 'vidrio': 0.032} MAL
+  plastico_032.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.001, 'vidrio': 0.04} MAL
+  plastico_034.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.001, 'vidrio': 0.04} MAL
+  plastico_035.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.001, 'vidrio': 0.039} MAL
+  plastico_036.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.001, 'vidrio': 0.039} MAL
+  plastico_038.jpeg: pred=papel_carton conf=95.2% probs={'papel_carton': 0.952, 'plastico': 0.002, 'vidrio': 0.047} MAL
+  plastico_039.jpeg: pred=papel_carton conf=95.3% probs={'papel_carton': 0.953, 'plastico': 0.002, 'vidrio': 0.045} MAL
+  plastico_040.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.001, 'vidrio': 0.037} MAL
+  plastico_041.jpeg: pred=papel_carton conf=95.1% probs={'papel_carton': 0.951, 'plastico': 0.002, 'vidrio': 0.048} MAL
+  plastico_042.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.001, 'vidrio': 0.039} MAL
+  plastico_043.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.001, 'vidrio': 0.042} MAL
+  plastico_045.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.001, 'vidrio': 0.04} MAL
+  plastico_047.jpeg: pred=papel_carton conf=96.6% probs={'papel_carton': 0.966, 'plastico': 0.001, 'vidrio': 0.033} MAL
+  plastico_048.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.001, 'vidrio': 0.031} MAL
+  plastico_049.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.001, 'vidrio': 0.031} MAL
+  plastico_050.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.001, 'vidrio': 0.041} MAL
+  plastico_051.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.001, 'vidrio': 0.04} MAL
+  plastico_052.jpeg: pred=papel_carton conf=95.1% probs={'papel_carton': 0.951, 'plastico': 0.002, 'vidrio': 0.048} MAL
+  plastico_054.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.002, 'vidrio': 0.035} MAL
+  plastico_056.jpeg: pred=papel_carton conf=95.2% probs={'papel_carton': 0.952, 'plastico': 0.003, 'vidrio': 0.046} MAL
+  plastico_057.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.002, 'vidrio': 0.033} MAL
+  plastico_058.jpeg: pred=papel_carton conf=96.4% probs={'papel_carton': 0.964, 'plastico': 0.002, 'vidrio': 0.034} MAL
+  plastico_059.jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.002, 'vidrio': 0.042} MAL
+  plastico_060.jpeg: pred=papel_carton conf=95.5% probs={'papel_carton': 0.955, 'plastico': 0.002, 'vidrio': 0.043} MAL
+  plastico_061.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.001, 'vidrio': 0.036} MAL
+  plastico_062.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  plastico_065.jpeg: pred=papel_carton conf=95.2% probs={'papel_carton': 0.952, 'plastico': 0.002, 'vidrio': 0.047} MAL
+  plastico_066.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.001, 'vidrio': 0.04} MAL
+  plastico_069.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_070.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  plastico_073.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.001, 'vidrio': 0.041} MAL
+  plastico_074.jpeg: pred=papel_carton conf=95.0% probs={'papel_carton': 0.95, 'plastico': 0.002, 'vidrio': 0.049} MAL
+  plastico_075.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.001, 'vidrio': 0.038} MAL
+  plastico_076.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.002, 'vidrio': 0.041} MAL
+  plastico_077.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.001, 'vidrio': 0.031} MAL
+  plastico_079.jpeg: pred=papel_carton conf=95.5% probs={'papel_carton': 0.955, 'plastico': 0.002, 'vidrio': 0.043} MAL
+  plastico_081.jpeg: pred=papel_carton conf=95.1% probs={'papel_carton': 0.951, 'plastico': 0.003, 'vidrio': 0.046} MAL
+  plastico_082.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.002, 'vidrio': 0.035} MAL
+  plastico_083.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  plastico_084.jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.002, 'vidrio': 0.042} MAL
+  plastico_085.jpeg: pred=papel_carton conf=95.1% probs={'papel_carton': 0.951, 'plastico': 0.002, 'vidrio': 0.047} MAL
+  plastico_087.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.002, 'vidrio': 0.036} MAL
+  plastico_088.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.001, 'vidrio': 0.031} MAL
+  plastico_089.jpeg: pred=papel_carton conf=95.1% probs={'papel_carton': 0.951, 'plastico': 0.002, 'vidrio': 0.046} MAL
+  plastico_090.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_091.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.001, 'vidrio': 0.038} MAL
+  plastico_092.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.002, 'vidrio': 0.036} MAL
+  plastico_093.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.002, 'vidrio': 0.034} MAL
+  plastico_094.jpeg: pred=papel_carton conf=95.3% probs={'papel_carton': 0.953, 'plastico': 0.001, 'vidrio': 0.045} MAL
+  plastico_095.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_096.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.001, 'vidrio': 0.038} MAL
+  plastico_098.jpeg: pred=papel_carton conf=95.2% probs={'papel_carton': 0.952, 'plastico': 0.002, 'vidrio': 0.046} MAL
+  plastico_099.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  plastico_100.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_101.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.039} MAL
+  plastico_102.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.002, 'vidrio': 0.036} MAL
+  plastico_103.jpeg: pred=papel_carton conf=95.4% probs={'papel_carton': 0.954, 'plastico': 0.002, 'vidrio': 0.045} MAL
+  plastico_104.jpeg: pred=papel_carton conf=95.2% probs={'papel_carton': 0.952, 'plastico': 0.002, 'vidrio': 0.047} MAL
+  plastico_105.jpeg: pred=papel_carton conf=94.1% probs={'papel_carton': 0.941, 'plastico': 0.002, 'vidrio': 0.057} MAL
+  plastico_106.jpeg: pred=papel_carton conf=97.2% probs={'papel_carton': 0.972, 'plastico': 0.002, 'vidrio': 0.026} MAL
+  plastico_107.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.002, 'vidrio': 0.036} MAL
+  plastico_110.jpeg: pred=papel_carton conf=95.4% probs={'papel_carton': 0.954, 'plastico': 0.002, 'vidrio': 0.044} MAL
+  plastico_113.jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.002, 'vidrio': 0.043} MAL
+  plastico_114.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.002, 'vidrio': 0.035} MAL
+  plastico_117.jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.002, 'vidrio': 0.043} MAL
+  plastico_118.jpeg: pred=papel_carton conf=96.6% probs={'papel_carton': 0.966, 'plastico': 0.001, 'vidrio': 0.033} MAL
+  plastico_119.jpeg: pred=papel_carton conf=94.6% probs={'papel_carton': 0.946, 'plastico': 0.002, 'vidrio': 0.052} MAL
+  plastico_120.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.002, 'vidrio': 0.031} MAL
+  plastico_121.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.002, 'vidrio': 0.033} MAL
+  plastico_123.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_124.jpeg: pred=papel_carton conf=95.3% probs={'papel_carton': 0.953, 'plastico': 0.002, 'vidrio': 0.045} MAL
+  plastico_125.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_127.jpeg: pred=papel_carton conf=95.5% probs={'papel_carton': 0.955, 'plastico': 0.002, 'vidrio': 0.043} MAL
+  plastico_128.jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.003, 'vidrio': 0.042} MAL
+  plastico_129.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.001, 'vidrio': 0.036} MAL
+  plastico_130.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.001, 'vidrio': 0.037} MAL
+  plastico_131.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_132.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.003, 'vidrio': 0.036} MAL
+  plastico_133.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.001, 'vidrio': 0.036} MAL
+  plastico_134.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.002, 'vidrio': 0.041} MAL
+  plastico_135.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.002, 'vidrio': 0.033} MAL
+  plastico_136.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_139.jpeg: pred=papel_carton conf=94.9% probs={'papel_carton': 0.949, 'plastico': 0.002, 'vidrio': 0.05} MAL
+  plastico_140.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.002, 'vidrio': 0.041} MAL
+  plastico_141.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.001, 'vidrio': 0.032} MAL
+  plastico_143.jpeg: pred=papel_carton conf=95.0% probs={'papel_carton': 0.95, 'plastico': 0.002, 'vidrio': 0.048} MAL
+  plastico_145.jpeg: pred=papel_carton conf=95.5% probs={'papel_carton': 0.955, 'plastico': 0.002, 'vidrio': 0.043} MAL
+  plastico_146.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_147.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_148.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_149.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  plastico_150.jpeg: pred=papel_carton conf=95.0% probs={'papel_carton': 0.95, 'plastico': 0.002, 'vidrio': 0.048} MAL
+  plastico_151.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_152.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  plastico_153.jpeg: pred=papel_carton conf=96.6% probs={'papel_carton': 0.966, 'plastico': 0.001, 'vidrio': 0.032} MAL
+  plastico_156.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.039} MAL
+  plastico_157.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.002, 'vidrio': 0.034} MAL
+  plastico_158.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  plastico_159.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.041} MAL
+  plastico_161.jpeg: pred=papel_carton conf=95.4% probs={'papel_carton': 0.954, 'plastico': 0.002, 'vidrio': 0.044} MAL
+  plastico_162.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_163.jpeg: pred=papel_carton conf=94.9% probs={'papel_carton': 0.949, 'plastico': 0.002, 'vidrio': 0.05} MAL
+  plastico_164.jpeg: pred=papel_carton conf=95.1% probs={'papel_carton': 0.951, 'plastico': 0.002, 'vidrio': 0.047} MAL
+  plastico_165.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  plastico_166.jpeg: pred=papel_carton conf=97.1% probs={'papel_carton': 0.971, 'plastico': 0.001, 'vidrio': 0.028} MAL
+  plastico_167.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.039} MAL
+  plastico_168.jpeg: pred=papel_carton conf=96.6% probs={'papel_carton': 0.966, 'plastico': 0.002, 'vidrio': 0.032} MAL
+  plastico_170.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_171.jpeg: pred=papel_carton conf=96.6% probs={'papel_carton': 0.966, 'plastico': 0.001, 'vidrio': 0.033} MAL
+  plastico_172.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.039} MAL
+  plastico_173.jpeg: pred=papel_carton conf=94.8% probs={'papel_carton': 0.948, 'plastico': 0.002, 'vidrio': 0.05} MAL
+  plastico_174.jpeg: pred=papel_carton conf=95.0% probs={'papel_carton': 0.95, 'plastico': 0.002, 'vidrio': 0.048} MAL
+  plastico_175.jpeg: pred=papel_carton conf=95.5% probs={'papel_carton': 0.955, 'plastico': 0.002, 'vidrio': 0.043} MAL
+  plastico_176.jpeg: pred=papel_carton conf=95.3% probs={'papel_carton': 0.953, 'plastico': 0.002, 'vidrio': 0.045} MAL
+  plastico_177.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_178.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_179.jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.002, 'vidrio': 0.042} MAL
+  plastico_181.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.002, 'vidrio': 0.041} MAL
+  plastico_182.jpeg: pred=papel_carton conf=95.5% probs={'papel_carton': 0.955, 'plastico': 0.002, 'vidrio': 0.043} MAL
+  plastico_183.jpeg: pred=papel_carton conf=95.2% probs={'papel_carton': 0.952, 'plastico': 0.002, 'vidrio': 0.046} MAL
+  plastico_186.jpeg: pred=papel_carton conf=95.3% probs={'papel_carton': 0.953, 'plastico': 0.002, 'vidrio': 0.045} MAL
+  plastico_189.jpeg: pred=papel_carton conf=95.5% probs={'papel_carton': 0.955, 'plastico': 0.002, 'vidrio': 0.042} MAL
+  plastico_190.jpeg: pred=papel_carton conf=97.1% probs={'papel_carton': 0.971, 'plastico': 0.001, 'vidrio': 0.028} MAL
+  plastico_191.jpeg: pred=papel_carton conf=95.5% probs={'papel_carton': 0.955, 'plastico': 0.002, 'vidrio': 0.043} MAL
+  plastico_192.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_193.jpeg: pred=papel_carton conf=94.9% probs={'papel_carton': 0.949, 'plastico': 0.001, 'vidrio': 0.05} MAL
+  plastico_194.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.002, 'vidrio': 0.03} MAL
+  plastico_196.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.002, 'vidrio': 0.035} MAL
+  plastico_197.jpeg: pred=papel_carton conf=95.5% probs={'papel_carton': 0.955, 'plastico': 0.002, 'vidrio': 0.043} MAL
+  plastico_198.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.002, 'vidrio': 0.041} MAL
+  plastico_199.jpeg: pred=papel_carton conf=94.6% probs={'papel_carton': 0.946, 'plastico': 0.002, 'vidrio': 0.052} MAL
+  plastico_203.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.001, 'vidrio': 0.036} MAL
+  plastico_204.jpeg: pred=papel_carton conf=96.4% probs={'papel_carton': 0.964, 'plastico': 0.001, 'vidrio': 0.035} MAL
+  plastico_205.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.002, 'vidrio': 0.034} MAL
+  plastico_209.jpeg: pred=papel_carton conf=95.5% probs={'papel_carton': 0.955, 'plastico': 0.001, 'vidrio': 0.044} MAL
+  plastico_210.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_211.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.001, 'vidrio': 0.039} MAL
+  plastico_212.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.003, 'vidrio': 0.038} MAL
+  plastico_213.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  plastico_214.jpeg: pred=papel_carton conf=95.5% probs={'papel_carton': 0.955, 'plastico': 0.003, 'vidrio': 0.043} MAL
+  plastico_215.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  plastico_216.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.001, 'vidrio': 0.037} MAL
+  plastico_218.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_219.jpeg: pred=papel_carton conf=95.2% probs={'papel_carton': 0.952, 'plastico': 0.002, 'vidrio': 0.046} MAL
+  plastico_220.jpeg: pred=papel_carton conf=95.2% probs={'papel_carton': 0.952, 'plastico': 0.002, 'vidrio': 0.046} MAL
+  plastico_221.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.001, 'vidrio': 0.036} MAL
+  plastico_222.jpeg: pred=papel_carton conf=95.3% probs={'papel_carton': 0.953, 'plastico': 0.002, 'vidrio': 0.045} MAL
+  plastico_223.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.001, 'vidrio': 0.041} MAL
+  plastico_224.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.001, 'vidrio': 0.039} MAL
+  plastico_225.jpeg: pred=papel_carton conf=95.2% probs={'papel_carton': 0.952, 'plastico': 0.001, 'vidrio': 0.046} MAL
+  plastico_226.jpeg: pred=papel_carton conf=95.4% probs={'papel_carton': 0.954, 'plastico': 0.002, 'vidrio': 0.045} MAL
+  plastico_227.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_228.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.002, 'vidrio': 0.036} MAL
+  plastico_229.jpeg: pred=papel_carton conf=95.5% probs={'papel_carton': 0.955, 'plastico': 0.002, 'vidrio': 0.043} MAL
+  plastico_232.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_233.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_234.jpeg: pred=papel_carton conf=95.1% probs={'papel_carton': 0.951, 'plastico': 0.002, 'vidrio': 0.047} MAL
+  plastico_235.jpeg: pred=papel_carton conf=96.6% probs={'papel_carton': 0.966, 'plastico': 0.002, 'vidrio': 0.033} MAL
+  plastico_236.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_240.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_243.jpeg: pred=papel_carton conf=95.1% probs={'papel_carton': 0.951, 'plastico': 0.002, 'vidrio': 0.047} MAL
+  plastico_244.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_246.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.001, 'vidrio': 0.034} MAL
+  plastico_248.jpeg: pred=papel_carton conf=96.4% probs={'papel_carton': 0.964, 'plastico': 0.001, 'vidrio': 0.034} MAL
+  plastico_249.jpeg: pred=papel_carton conf=96.6% probs={'papel_carton': 0.966, 'plastico': 0.002, 'vidrio': 0.032} MAL
+  plastico_250.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.039} MAL
+  plastico_252.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.002, 'vidrio': 0.041} MAL
+  plastico_253.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.039} MAL
+  plastico_255.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_256.jpeg: pred=papel_carton conf=97.6% probs={'papel_carton': 0.976, 'plastico': 0.001, 'vidrio': 0.023} MAL
+  plastico_257.jpeg: pred=papel_carton conf=97.3% probs={'papel_carton': 0.973, 'plastico': 0.0, 'vidrio': 0.026} MAL
+  plastico_259.jpeg: pred=papel_carton conf=96.6% probs={'papel_carton': 0.966, 'plastico': 0.002, 'vidrio': 0.032} MAL
+  plastico_268.jpeg: pred=papel_carton conf=97.1% probs={'papel_carton': 0.971, 'plastico': 0.001, 'vidrio': 0.027} MAL
+  plastico_271.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.001, 'vidrio': 0.035} MAL
+  plastico_272.jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.001, 'vidrio': 0.03} MAL
+  plastico_275.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.001, 'vidrio': 0.031} MAL
+  plastico_276.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.001, 'vidrio': 0.037} MAL
+  plastico_277.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.001, 'vidrio': 0.039} MAL
+  plastico_280.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.002, 'vidrio': 0.035} MAL
+  plastico_281.jpeg: pred=papel_carton conf=96.4% probs={'papel_carton': 0.964, 'plastico': 0.002, 'vidrio': 0.034} MAL
+  plastico_282.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.001, 'vidrio': 0.03} MAL
+  plastico_284.jpeg: pred=papel_carton conf=97.1% probs={'papel_carton': 0.971, 'plastico': 0.001, 'vidrio': 0.028} MAL
+  plastico_285.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.001, 'vidrio': 0.03} MAL
+  plastico_286.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_287.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_289.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.001, 'vidrio': 0.036} MAL
+  plastico_290.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.001, 'vidrio': 0.038} MAL
+  plastico_291.jpeg: pred=papel_carton conf=95.3% probs={'papel_carton': 0.953, 'plastico': 0.002, 'vidrio': 0.045} MAL
+  plastico_292.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.001, 'vidrio': 0.039} MAL
+  plastico_293.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.001, 'vidrio': 0.037} MAL
+  plastico_294.jpeg: pred=papel_carton conf=96.4% probs={'papel_carton': 0.964, 'plastico': 0.001, 'vidrio': 0.035} MAL
+  plastico_295.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.001, 'vidrio': 0.037} MAL
+  plastico_297.jpeg: pred=papel_carton conf=95.5% probs={'papel_carton': 0.955, 'plastico': 0.002, 'vidrio': 0.043} MAL
+  plastico_298.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.001, 'vidrio': 0.034} MAL
+  plastico_299.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.002, 'vidrio': 0.041} MAL
+  plastico_300.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  plastico_301.jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.002, 'vidrio': 0.042} MAL
+  plastico_304.jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.002, 'vidrio': 0.042} MAL
+  plastico_305.jpeg: pred=papel_carton conf=96.6% probs={'papel_carton': 0.966, 'plastico': 0.002, 'vidrio': 0.031} MAL
+  plastico_306.jpeg: pred=papel_carton conf=94.5% probs={'papel_carton': 0.945, 'plastico': 0.003, 'vidrio': 0.052} MAL
+  plastico_308.jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.002, 'vidrio': 0.043} MAL
+  plastico_309.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.001, 'vidrio': 0.038} MAL
+  plastico_311.jpeg: pred=papel_carton conf=95.5% probs={'papel_carton': 0.955, 'plastico': 0.002, 'vidrio': 0.043} MAL
+  plastico_312.jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.002, 'vidrio': 0.042} MAL
+  plastico_315.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.001, 'vidrio': 0.032} MAL
+  plastico_316.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_318.jpeg: pred=papel_carton conf=95.5% probs={'papel_carton': 0.955, 'plastico': 0.002, 'vidrio': 0.043} MAL
+  plastico_319.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_322.jpeg: pred=papel_carton conf=95.4% probs={'papel_carton': 0.954, 'plastico': 0.002, 'vidrio': 0.044} MAL
+  plastico_324.jpeg: pred=papel_carton conf=95.1% probs={'papel_carton': 0.951, 'plastico': 0.002, 'vidrio': 0.047} MAL
+  plastico_325.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.039} MAL
+  plastico_328.jpeg: pred=papel_carton conf=95.0% probs={'papel_carton': 0.95, 'plastico': 0.001, 'vidrio': 0.048} MAL
+  plastico_329.jpeg: pred=papel_carton conf=95.4% probs={'papel_carton': 0.954, 'plastico': 0.002, 'vidrio': 0.044} MAL
+  plastico_330.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_333.jpeg: pred=papel_carton conf=95.3% probs={'papel_carton': 0.953, 'plastico': 0.002, 'vidrio': 0.046} MAL
+  plastico_334.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.001, 'vidrio': 0.039} MAL
+  plastico_335.jpeg: pred=papel_carton conf=95.0% probs={'papel_carton': 0.95, 'plastico': 0.002, 'vidrio': 0.047} MAL
+  plastico_337.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.001, 'vidrio': 0.036} MAL
+  plastico_338.jpeg: pred=papel_carton conf=95.0% probs={'papel_carton': 0.95, 'plastico': 0.002, 'vidrio': 0.047} MAL
+  plastico_339.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.001, 'vidrio': 0.038} MAL
+  plastico_341.jpeg: pred=papel_carton conf=95.1% probs={'papel_carton': 0.951, 'plastico': 0.002, 'vidrio': 0.047} MAL
+  plastico_342.jpeg: pred=papel_carton conf=97.4% probs={'papel_carton': 0.974, 'plastico': 0.001, 'vidrio': 0.024} MAL
+  plastico_343.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_344.jpeg: pred=papel_carton conf=95.2% probs={'papel_carton': 0.952, 'plastico': 0.002, 'vidrio': 0.046} MAL
+  plastico_347.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.002, 'vidrio': 0.031} MAL
+  plastico_349.jpeg: pred=papel_carton conf=95.1% probs={'papel_carton': 0.951, 'plastico': 0.002, 'vidrio': 0.047} MAL
+  plastico_352.jpeg: pred=papel_carton conf=94.9% probs={'papel_carton': 0.949, 'plastico': 0.002, 'vidrio': 0.049} MAL
+  plastico_353.jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.002, 'vidrio': 0.043} MAL
+  plastico_354.jpeg: pred=papel_carton conf=95.4% probs={'papel_carton': 0.954, 'plastico': 0.002, 'vidrio': 0.044} MAL
+  plastico_355.jpeg: pred=papel_carton conf=97.1% probs={'papel_carton': 0.971, 'plastico': 0.001, 'vidrio': 0.028} MAL
+  plastico_356.jpeg: pred=papel_carton conf=95.2% probs={'papel_carton': 0.952, 'plastico': 0.002, 'vidrio': 0.046} MAL
+  plastico_357.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_358.jpeg: pred=papel_carton conf=93.8% probs={'papel_carton': 0.938, 'plastico': 0.002, 'vidrio': 0.06} MAL
+  plastico_359.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.039} MAL
+  plastico_360.jpeg: pred=papel_carton conf=96.6% probs={'papel_carton': 0.966, 'plastico': 0.002, 'vidrio': 0.032} MAL
+  plastico_361.jpeg: pred=papel_carton conf=94.8% probs={'papel_carton': 0.948, 'plastico': 0.002, 'vidrio': 0.05} MAL
+  plastico_362.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.001, 'vidrio': 0.035} MAL
+  plastico_363.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.039} MAL
+  plastico_364.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  plastico_365.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.002, 'vidrio': 0.036} MAL
+  plastico_366.jpeg: pred=papel_carton conf=95.2% probs={'papel_carton': 0.952, 'plastico': 0.002, 'vidrio': 0.046} MAL
+  plastico_368.jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.002, 'vidrio': 0.042} MAL
+  plastico_369.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.002, 'vidrio': 0.041} MAL
+  plastico_370.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.039} MAL
+  plastico_371.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.002, 'vidrio': 0.031} MAL
+  plastico_372.jpeg: pred=papel_carton conf=96.6% probs={'papel_carton': 0.966, 'plastico': 0.001, 'vidrio': 0.033} MAL
+  plastico_374.jpeg: pred=papel_carton conf=96.4% probs={'papel_carton': 0.964, 'plastico': 0.001, 'vidrio': 0.035} MAL
+  plastico_375.jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.002, 'vidrio': 0.042} MAL
+  plastico_376.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.002, 'vidrio': 0.036} MAL
+  plastico_377.jpeg: pred=papel_carton conf=95.0% probs={'papel_carton': 0.95, 'plastico': 0.002, 'vidrio': 0.048} MAL
+  plastico_378.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  plastico_379.jpeg: pred=papel_carton conf=94.5% probs={'papel_carton': 0.945, 'plastico': 0.002, 'vidrio': 0.053} MAL
+  plastico_380.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.039} MAL
+  plastico_381.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_382.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.002, 'vidrio': 0.041} MAL
+  plastico_383.jpeg: pred=papel_carton conf=94.9% probs={'papel_carton': 0.949, 'plastico': 0.002, 'vidrio': 0.05} MAL
+  plastico_384.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.003, 'vidrio': 0.04} MAL
+  plastico_385.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_386.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.002, 'vidrio': 0.03} MAL
+  plastico_387.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.001, 'vidrio': 0.039} MAL
+  plastico_388.jpeg: pred=papel_carton conf=97.2% probs={'papel_carton': 0.972, 'plastico': 0.001, 'vidrio': 0.027} MAL
+  plastico_389.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_390.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  plastico_391.jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.002, 'vidrio': 0.03} MAL
+  plastico_392.jpeg: pred=papel_carton conf=95.2% probs={'papel_carton': 0.952, 'plastico': 0.002, 'vidrio': 0.046} MAL
+  plastico_395.jpeg: pred=papel_carton conf=95.2% probs={'papel_carton': 0.952, 'plastico': 0.002, 'vidrio': 0.046} MAL
+  plastico_396.jpeg: pred=papel_carton conf=95.4% probs={'papel_carton': 0.954, 'plastico': 0.002, 'vidrio': 0.045} MAL
+  plastico_397.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.002, 'vidrio': 0.035} MAL
+  plastico_398.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.001, 'vidrio': 0.031} MAL
+  plastico_399.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_400.jpeg: pred=papel_carton conf=95.5% probs={'papel_carton': 0.955, 'plastico': 0.001, 'vidrio': 0.043} MAL
+  plastico_401.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_402.jpeg: pred=papel_carton conf=97.1% probs={'papel_carton': 0.971, 'plastico': 0.001, 'vidrio': 0.028} MAL
+  plastico_403.jpeg: pred=papel_carton conf=95.5% probs={'papel_carton': 0.955, 'plastico': 0.002, 'vidrio': 0.043} MAL
+  plastico_404.jpeg: pred=papel_carton conf=95.2% probs={'papel_carton': 0.952, 'plastico': 0.002, 'vidrio': 0.046} MAL
+  plastico_406.jpeg: pred=papel_carton conf=95.4% probs={'papel_carton': 0.954, 'plastico': 0.002, 'vidrio': 0.044} MAL
+  plastico_408.jpeg: pred=papel_carton conf=95.1% probs={'papel_carton': 0.951, 'plastico': 0.002, 'vidrio': 0.048} MAL
+  plastico_410.jpeg: pred=papel_carton conf=95.4% probs={'papel_carton': 0.954, 'plastico': 0.002, 'vidrio': 0.044} MAL
+  plastico_411.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.003, 'vidrio': 0.038} MAL
+  plastico_412.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_415.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.001, 'vidrio': 0.041} MAL
+  plastico_417.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.002, 'vidrio': 0.032} MAL
+  plastico_418.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.002, 'vidrio': 0.033} MAL
+  plastico_420.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.039} MAL
+  plastico_422.jpeg: pred=papel_carton conf=95.1% probs={'papel_carton': 0.951, 'plastico': 0.002, 'vidrio': 0.047} MAL
+  plastico_423.jpeg: pred=papel_carton conf=95.5% probs={'papel_carton': 0.955, 'plastico': 0.002, 'vidrio': 0.043} MAL
+  plastico_424.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_425.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_427.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.001, 'vidrio': 0.039} MAL
+  plastico_428.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.039} MAL
+  plastico_429.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.001, 'vidrio': 0.035} MAL
+  plastico_430.jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.001, 'vidrio': 0.03} MAL
+  plastico_431.jpeg: pred=papel_carton conf=95.0% probs={'papel_carton': 0.95, 'plastico': 0.002, 'vidrio': 0.048} MAL
+  plastico_433.jpeg: pred=papel_carton conf=96.4% probs={'papel_carton': 0.964, 'plastico': 0.002, 'vidrio': 0.035} MAL
+  plastico_435.jpeg: pred=papel_carton conf=95.1% probs={'papel_carton': 0.951, 'plastico': 0.002, 'vidrio': 0.047} MAL
+  plastico_437.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  plastico_440.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  plastico_441.jpeg: pred=papel_carton conf=95.3% probs={'papel_carton': 0.953, 'plastico': 0.002, 'vidrio': 0.045} MAL
+  plastico_442.jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.002, 'vidrio': 0.042} MAL
+  plastico_443.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  plastico_445.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.039} MAL
+  plastico_446.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_447.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  plastico_448.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.037} MAL
+--- [plastico] HELD-OUT -- nunca vistas (chequeo honesto) ---
+  plastico_003.jpeg: pred=papel_carton conf=97.7% probs={'papel_carton': 0.977, 'plastico': 0.002, 'vidrio': 0.022} MAL
+  plastico_005.jpeg: pred=papel_carton conf=98.7% probs={'papel_carton': 0.987, 'plastico': 0.001, 'vidrio': 0.012} MAL
+  plastico_012.jpeg: pred=papel_carton conf=97.7% probs={'papel_carton': 0.977, 'plastico': 0.001, 'vidrio': 0.021} MAL
+  plastico_014 (10).jpeg: pred=papel_carton conf=94.7% probs={'papel_carton': 0.947, 'plastico': 0.002, 'vidrio': 0.051} MAL
+  plastico_014 (21).jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.001, 'vidrio': 0.03} MAL
+  plastico_014 (7).jpeg: pred=papel_carton conf=97.5% probs={'papel_carton': 0.975, 'plastico': 0.001, 'vidrio': 0.024} MAL
+  plastico_016.jpeg: pred=papel_carton conf=95.4% probs={'papel_carton': 0.954, 'plastico': 0.001, 'vidrio': 0.044} MAL
+  plastico_017.jpeg: pred=papel_carton conf=95.4% probs={'papel_carton': 0.954, 'plastico': 0.001, 'vidrio': 0.045} MAL
+  plastico_019.jpeg: pred=papel_carton conf=95.4% probs={'papel_carton': 0.954, 'plastico': 0.001, 'vidrio': 0.045} MAL
+  plastico_021.jpeg: pred=papel_carton conf=95.4% probs={'papel_carton': 0.954, 'plastico': 0.001, 'vidrio': 0.045} MAL
+  plastico_023.jpeg: pred=papel_carton conf=97.7% probs={'papel_carton': 0.977, 'plastico': 0.001, 'vidrio': 0.022} MAL
+  plastico_028.jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.001, 'vidrio': 0.03} MAL
+  plastico_033.jpeg: pred=papel_carton conf=95.4% probs={'papel_carton': 0.954, 'plastico': 0.002, 'vidrio': 0.044} MAL
+  plastico_037.jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.001, 'vidrio': 0.043} MAL
+  plastico_044.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.001, 'vidrio': 0.037} MAL
+  plastico_046.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.001, 'vidrio': 0.042} MAL
+  plastico_053.jpeg: pred=papel_carton conf=94.3% probs={'papel_carton': 0.943, 'plastico': 0.001, 'vidrio': 0.056} MAL
+  plastico_055.jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.002, 'vidrio': 0.043} MAL
+  plastico_064.jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.001, 'vidrio': 0.029} MAL
+  plastico_067.jpeg: pred=papel_carton conf=94.7% probs={'papel_carton': 0.947, 'plastico': 0.002, 'vidrio': 0.051} MAL
+  plastico_068.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.036} MAL
+  plastico_071.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.039} MAL
+  plastico_072.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_080.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.002, 'vidrio': 0.041} MAL
+  plastico_086.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.003, 'vidrio': 0.037} MAL
+  plastico_109.jpeg: pred=papel_carton conf=95.2% probs={'papel_carton': 0.952, 'plastico': 0.001, 'vidrio': 0.046} MAL
+  plastico_111.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_112.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.001, 'vidrio': 0.034} MAL
+  plastico_115.jpeg: pred=papel_carton conf=96.6% probs={'papel_carton': 0.966, 'plastico': 0.001, 'vidrio': 0.033} MAL
+  plastico_122.jpeg: pred=papel_carton conf=95.3% probs={'papel_carton': 0.953, 'plastico': 0.002, 'vidrio': 0.045} MAL
+  plastico_126.jpeg: pred=papel_carton conf=95.0% probs={'papel_carton': 0.95, 'plastico': 0.002, 'vidrio': 0.048} MAL
+  plastico_138.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_142.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_144.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.002, 'vidrio': 0.036} MAL
+  plastico_154.jpeg: pred=papel_carton conf=93.4% probs={'papel_carton': 0.934, 'plastico': 0.002, 'vidrio': 0.064} MAL
+  plastico_160.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_169.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  plastico_184.jpeg: pred=papel_carton conf=95.0% probs={'papel_carton': 0.95, 'plastico': 0.003, 'vidrio': 0.047} MAL
+  plastico_185.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.002, 'vidrio': 0.033} MAL
+  plastico_188.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.001, 'vidrio': 0.039} MAL
+  plastico_200.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.039} MAL
+  plastico_201.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.001, 'vidrio': 0.037} MAL
+  plastico_206.jpeg: pred=papel_carton conf=95.0% probs={'papel_carton': 0.95, 'plastico': 0.001, 'vidrio': 0.049} MAL
+  plastico_208.jpeg: pred=papel_carton conf=95.5% probs={'papel_carton': 0.955, 'plastico': 0.003, 'vidrio': 0.042} MAL
+  plastico_217.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.001, 'vidrio': 0.037} MAL
+  plastico_231.jpeg: pred=papel_carton conf=96.6% probs={'papel_carton': 0.966, 'plastico': 0.001, 'vidrio': 0.032} MAL
+  plastico_239.jpeg: pred=papel_carton conf=96.6% probs={'papel_carton': 0.966, 'plastico': 0.002, 'vidrio': 0.032} MAL
+  plastico_241.jpeg: pred=papel_carton conf=94.8% probs={'papel_carton': 0.948, 'plastico': 0.002, 'vidrio': 0.049} MAL
+  plastico_242.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.002, 'vidrio': 0.036} MAL
+  plastico_247.jpeg: pred=papel_carton conf=96.4% probs={'papel_carton': 0.964, 'plastico': 0.002, 'vidrio': 0.034} MAL
+  plastico_251.jpeg: pred=papel_carton conf=95.2% probs={'papel_carton': 0.952, 'plastico': 0.002, 'vidrio': 0.046} MAL
+  plastico_263.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.001, 'vidrio': 0.031} MAL
+  plastico_265.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.002, 'vidrio': 0.036} MAL
+  plastico_266.jpeg: pred=papel_carton conf=97.0% probs={'papel_carton': 0.97, 'plastico': 0.002, 'vidrio': 0.028} MAL
+  plastico_267.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.002, 'vidrio': 0.041} MAL
+  plastico_270.jpeg: pred=papel_carton conf=97.0% probs={'papel_carton': 0.97, 'plastico': 0.001, 'vidrio': 0.029} MAL
+  plastico_274.jpeg: pred=papel_carton conf=97.8% probs={'papel_carton': 0.978, 'plastico': 0.001, 'vidrio': 0.021} MAL
+  plastico_278.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.001, 'vidrio': 0.036} MAL
+  plastico_279.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.001, 'vidrio': 0.037} MAL
+  plastico_283.jpeg: pred=papel_carton conf=94.3% probs={'papel_carton': 0.943, 'plastico': 0.002, 'vidrio': 0.055} MAL
+  plastico_288.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.001, 'vidrio': 0.036} MAL
+  plastico_296.jpeg: pred=papel_carton conf=96.4% probs={'papel_carton': 0.964, 'plastico': 0.002, 'vidrio': 0.035} MAL
+  plastico_302.jpeg: pred=papel_carton conf=95.0% probs={'papel_carton': 0.95, 'plastico': 0.002, 'vidrio': 0.047} MAL
+  plastico_307.jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.002, 'vidrio': 0.042} MAL
+  plastico_310.jpeg: pred=papel_carton conf=94.9% probs={'papel_carton': 0.949, 'plastico': 0.003, 'vidrio': 0.048} MAL
+  plastico_314.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.002, 'vidrio': 0.041} MAL
+  plastico_320.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.041} MAL
+  plastico_323.jpeg: pred=papel_carton conf=95.4% probs={'papel_carton': 0.954, 'plastico': 0.002, 'vidrio': 0.044} MAL
+  plastico_326.jpeg: pred=papel_carton conf=96.4% probs={'papel_carton': 0.964, 'plastico': 0.001, 'vidrio': 0.035} MAL
+  plastico_331.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_336.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.039} MAL
+  plastico_345.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.002, 'vidrio': 0.041} MAL
+  plastico_346.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.002, 'vidrio': 0.036} MAL
+  plastico_348.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.001, 'vidrio': 0.04} MAL
+  plastico_350.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_351.jpeg: pred=papel_carton conf=95.1% probs={'papel_carton': 0.951, 'plastico': 0.002, 'vidrio': 0.047} MAL
+  plastico_367.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.001, 'vidrio': 0.042} MAL
+  plastico_373.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.001, 'vidrio': 0.034} MAL
+  plastico_393.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.001, 'vidrio': 0.033} MAL
+  plastico_394.jpeg: pred=papel_carton conf=95.3% probs={'papel_carton': 0.953, 'plastico': 0.002, 'vidrio': 0.046} MAL
+  plastico_407.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.003, 'vidrio': 0.037} MAL
+  plastico_416.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.001, 'vidrio': 0.04} MAL
+  plastico_426.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.036} MAL
+  plastico_432.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  plastico_436.jpeg: pred=papel_carton conf=95.0% probs={'papel_carton': 0.95, 'plastico': 0.002, 'vidrio': 0.048} MAL
+  plastico_438.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.039} MAL
+--- [vidrio] VISTAS en entrenamiento (no es prueba justa) ---
+  vidrio_002.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.001, 'vidrio': 0.032} MAL
+  vidrio_004.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.001, 'vidrio': 0.04} MAL
+  vidrio_005.jpeg: pred=papel_carton conf=96.4% probs={'papel_carton': 0.964, 'plastico': 0.002, 'vidrio': 0.034} MAL
+  vidrio_006.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  vidrio_007.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.001, 'vidrio': 0.031} MAL
+  vidrio_008.jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.001, 'vidrio': 0.03} MAL
+  vidrio_009.jpeg: pred=papel_carton conf=94.7% probs={'papel_carton': 0.947, 'plastico': 0.002, 'vidrio': 0.051} MAL
+  vidrio_010.jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.001, 'vidrio': 0.029} MAL
+  vidrio_011.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.001, 'vidrio': 0.031} MAL
+  vidrio_012.jpeg: pred=papel_carton conf=97.1% probs={'papel_carton': 0.971, 'plastico': 0.001, 'vidrio': 0.028} MAL
+  vidrio_013.jpeg: pred=papel_carton conf=97.8% probs={'papel_carton': 0.978, 'plastico': 0.001, 'vidrio': 0.021} MAL
+  vidrio_015.jpeg: pred=papel_carton conf=97.6% probs={'papel_carton': 0.976, 'plastico': 0.001, 'vidrio': 0.023} MAL
+  vidrio_016.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.002, 'vidrio': 0.036} MAL
+  vidrio_017.jpeg: pred=papel_carton conf=97.0% probs={'papel_carton': 0.97, 'plastico': 0.002, 'vidrio': 0.029} MAL
+  vidrio_021.jpeg: pred=papel_carton conf=97.4% probs={'papel_carton': 0.974, 'plastico': 0.001, 'vidrio': 0.024} MAL
+  vidrio_022.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.002, 'vidrio': 0.033} MAL
+  vidrio_023.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.001, 'vidrio': 0.031} MAL
+  vidrio_024.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  vidrio_025.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.001, 'vidrio': 0.036} MAL
+  vidrio_026.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.002, 'vidrio': 0.036} MAL
+  vidrio_027.jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.001, 'vidrio': 0.029} MAL
+  vidrio_029.jpeg: pred=papel_carton conf=97.0% probs={'papel_carton': 0.97, 'plastico': 0.001, 'vidrio': 0.029} MAL
+  vidrio_030.jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.001, 'vidrio': 0.03} MAL
+  vidrio_031.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.001, 'vidrio': 0.032} MAL
+  vidrio_033.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.001, 'vidrio': 0.036} MAL
+  vidrio_034.jpeg: pred=papel_carton conf=97.1% probs={'papel_carton': 0.971, 'plastico': 0.001, 'vidrio': 0.028} MAL
+  vidrio_036.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.001, 'vidrio': 0.034} MAL
+  vidrio_037.jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.001, 'vidrio': 0.03} MAL
+  vidrio_038.jpeg: pred=papel_carton conf=94.0% probs={'papel_carton': 0.94, 'plastico': 0.001, 'vidrio': 0.059} MAL
+  vidrio_039.jpeg: pred=papel_carton conf=94.9% probs={'papel_carton': 0.949, 'plastico': 0.003, 'vidrio': 0.048} MAL
+  vidrio_041.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.001, 'vidrio': 0.036} MAL
+  vidrio_042.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.001, 'vidrio': 0.038} MAL
+  vidrio_043.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  vidrio_047.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.001, 'vidrio': 0.034} MAL
+  vidrio_048.jpeg: pred=papel_carton conf=97.5% probs={'papel_carton': 0.975, 'plastico': 0.001, 'vidrio': 0.025} MAL
+  vidrio_049.jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.001, 'vidrio': 0.03} MAL
+  vidrio_050.jpeg: pred=papel_carton conf=97.0% probs={'papel_carton': 0.97, 'plastico': 0.001, 'vidrio': 0.029} MAL
+  vidrio_052.jpeg: pred=papel_carton conf=97.2% probs={'papel_carton': 0.972, 'plastico': 0.001, 'vidrio': 0.027} MAL
+  vidrio_053.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.001, 'vidrio': 0.032} MAL
+  vidrio_054.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.001, 'vidrio': 0.031} MAL
+  vidrio_055.jpeg: pred=papel_carton conf=95.1% probs={'papel_carton': 0.951, 'plastico': 0.002, 'vidrio': 0.047} MAL
+  vidrio_057.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.001, 'vidrio': 0.031} MAL
+  vidrio_058.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.002, 'vidrio': 0.041} MAL
+  vidrio_059.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  vidrio_060.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.001, 'vidrio': 0.03} MAL
+  vidrio_061.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.001, 'vidrio': 0.034} MAL
+  vidrio_062.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.001, 'vidrio': 0.032} MAL
+  vidrio_063.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.001, 'vidrio': 0.041} MAL
+  vidrio_064.jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.003, 'vidrio': 0.042} MAL
+  vidrio_065.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.001, 'vidrio': 0.032} MAL
+  vidrio_067.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.001, 'vidrio': 0.036} MAL
+  vidrio_068.jpeg: pred=papel_carton conf=94.2% probs={'papel_carton': 0.942, 'plastico': 0.002, 'vidrio': 0.056} MAL
+  vidrio_069.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.002, 'vidrio': 0.041} MAL
+  vidrio_070.jpeg: pred=papel_carton conf=95.4% probs={'papel_carton': 0.954, 'plastico': 0.002, 'vidrio': 0.044} MAL
+  vidrio_071.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.002, 'vidrio': 0.035} MAL
+  vidrio_072.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.001, 'vidrio': 0.036} MAL
+  vidrio_073.jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.001, 'vidrio': 0.03} MAL
+  vidrio_074.jpeg: pred=papel_carton conf=93.5% probs={'papel_carton': 0.935, 'plastico': 0.002, 'vidrio': 0.063} MAL
+  vidrio_075.jpeg: pred=papel_carton conf=96.6% probs={'papel_carton': 0.966, 'plastico': 0.002, 'vidrio': 0.032} MAL
+  vidrio_076.jpeg: pred=papel_carton conf=95.4% probs={'papel_carton': 0.954, 'plastico': 0.002, 'vidrio': 0.044} MAL
+  vidrio_077.jpeg: pred=papel_carton conf=97.1% probs={'papel_carton': 0.971, 'plastico': 0.001, 'vidrio': 0.028} MAL
+  vidrio_080.jpeg: pred=papel_carton conf=94.2% probs={'papel_carton': 0.942, 'plastico': 0.002, 'vidrio': 0.056} MAL
+  vidrio_082.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.001, 'vidrio': 0.034} MAL
+  vidrio_083.jpeg: pred=papel_carton conf=96.6% probs={'papel_carton': 0.966, 'plastico': 0.001, 'vidrio': 0.033} MAL
+  vidrio_084.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.001, 'vidrio': 0.031} MAL
+  vidrio_085.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.001, 'vidrio': 0.032} MAL
+  vidrio_086.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  vidrio_087.jpeg: pred=papel_carton conf=98.3% probs={'papel_carton': 0.983, 'plastico': 0.001, 'vidrio': 0.016} MAL
+  vidrio_088.jpeg: pred=papel_carton conf=97.0% probs={'papel_carton': 0.97, 'plastico': 0.001, 'vidrio': 0.029} MAL
+  vidrio_089.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.001, 'vidrio': 0.041} MAL
+  vidrio_090.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.001, 'vidrio': 0.038} MAL
+  vidrio_092.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.001, 'vidrio': 0.038} MAL
+  vidrio_093.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.037} MAL
+  vidrio_095.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.001, 'vidrio': 0.031} MAL
+  vidrio_097.jpeg: pred=papel_carton conf=94.5% probs={'papel_carton': 0.945, 'plastico': 0.003, 'vidrio': 0.052} MAL
+  vidrio_099.jpeg: pred=papel_carton conf=96.6% probs={'papel_carton': 0.966, 'plastico': 0.001, 'vidrio': 0.033} MAL
+  vidrio_104.jpeg: pred=papel_carton conf=94.9% probs={'papel_carton': 0.949, 'plastico': 0.001, 'vidrio': 0.05} MAL
+  vidrio_105.jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.001, 'vidrio': 0.03} MAL
+  vidrio_106.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.039} MAL
+  vidrio_107.jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.001, 'vidrio': 0.03} MAL
+  vidrio_108.jpeg: pred=papel_carton conf=93.7% probs={'papel_carton': 0.937, 'plastico': 0.002, 'vidrio': 0.061} MAL
+  vidrio_109.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.001, 'vidrio': 0.031} MAL
+  vidrio_110.jpeg: pred=papel_carton conf=94.8% probs={'papel_carton': 0.948, 'plastico': 0.002, 'vidrio': 0.05} MAL
+  vidrio_112.jpeg: pred=papel_carton conf=96.6% probs={'papel_carton': 0.966, 'plastico': 0.001, 'vidrio': 0.033} MAL
+  vidrio_113.jpeg: pred=papel_carton conf=95.6% probs={'papel_carton': 0.956, 'plastico': 0.002, 'vidrio': 0.042} MAL
+  vidrio_114.jpeg: pred=papel_carton conf=95.1% probs={'papel_carton': 0.951, 'plastico': 0.002, 'vidrio': 0.047} MAL
+  vidrio_115.jpeg: pred=papel_carton conf=97.7% probs={'papel_carton': 0.977, 'plastico': 0.001, 'vidrio': 0.022} MAL
+  vidrio_116.jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.002, 'vidrio': 0.029} MAL
+  vidrio_117.jpeg: pred=papel_carton conf=94.8% probs={'papel_carton': 0.948, 'plastico': 0.002, 'vidrio': 0.05} MAL
+  vidrio_118.jpeg: pred=papel_carton conf=97.2% probs={'papel_carton': 0.972, 'plastico': 0.001, 'vidrio': 0.027} MAL
+  vidrio_119.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.002, 'vidrio': 0.033} MAL
+  vidrio_121.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.001, 'vidrio': 0.04} MAL
+  vidrio_122.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.001, 'vidrio': 0.036} MAL
+  vidrio_123.jpeg: pred=papel_carton conf=95.8% probs={'papel_carton': 0.958, 'plastico': 0.002, 'vidrio': 0.04} MAL
+  vidrio_124.jpeg: pred=papel_carton conf=97.1% probs={'papel_carton': 0.971, 'plastico': 0.001, 'vidrio': 0.028} MAL
+  vidrio_125.jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.001, 'vidrio': 0.03} MAL
+  vidrio_126.jpeg: pred=papel_carton conf=95.2% probs={'papel_carton': 0.952, 'plastico': 0.002, 'vidrio': 0.046} MAL
+  vidrio_128.jpeg: pred=papel_carton conf=97.2% probs={'papel_carton': 0.972, 'plastico': 0.001, 'vidrio': 0.027} MAL
+  vidrio_129.jpeg: pred=papel_carton conf=95.4% probs={'papel_carton': 0.954, 'plastico': 0.002, 'vidrio': 0.044} MAL
+  vidrio_130.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.001, 'vidrio': 0.032} MAL
+  vidrio_131.jpeg: pred=papel_carton conf=95.3% probs={'papel_carton': 0.953, 'plastico': 0.002, 'vidrio': 0.045} MAL
+  vidrio_133.jpeg: pred=papel_carton conf=97.3% probs={'papel_carton': 0.973, 'plastico': 0.001, 'vidrio': 0.026} MAL
+  vidrio_134.jpeg: pred=papel_carton conf=97.5% probs={'papel_carton': 0.975, 'plastico': 0.001, 'vidrio': 0.024} MAL
+  vidrio_135.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.001, 'vidrio': 0.031} MAL
+  vidrio_136.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.001, 'vidrio': 0.036} MAL
+  vidrio_137.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.001, 'vidrio': 0.039} MAL
+  vidrio_138.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.001, 'vidrio': 0.038} MAL
+  vidrio_139.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.001, 'vidrio': 0.034} MAL
+  vidrio_140.jpeg: pred=papel_carton conf=97.2% probs={'papel_carton': 0.972, 'plastico': 0.001, 'vidrio': 0.027} MAL
+  vidrio_143.jpeg: pred=papel_carton conf=98.0% probs={'papel_carton': 0.98, 'plastico': 0.001, 'vidrio': 0.019} MAL
+  vidrio_145.jpeg: pred=papel_carton conf=96.4% probs={'papel_carton': 0.964, 'plastico': 0.001, 'vidrio': 0.034} MAL
+  vidrio_147.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.002, 'vidrio': 0.041} MAL
+  vidrio_148.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.001, 'vidrio': 0.04} MAL
+  vidrio_151.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.002, 'vidrio': 0.036} MAL
+  vidrio_152.jpeg: pred=papel_carton conf=95.5% probs={'papel_carton': 0.955, 'plastico': 0.002, 'vidrio': 0.043} MAL
+  vidrio_153.jpeg: pred=papel_carton conf=94.1% probs={'papel_carton': 0.941, 'plastico': 0.002, 'vidrio': 0.057} MAL
+  vidrio_154.jpeg: pred=papel_carton conf=96.4% probs={'papel_carton': 0.964, 'plastico': 0.002, 'vidrio': 0.034} MAL
+  vidrio_155.jpeg: pred=papel_carton conf=96.4% probs={'papel_carton': 0.964, 'plastico': 0.001, 'vidrio': 0.035} MAL
+  vidrio_157.jpeg: pred=papel_carton conf=96.6% probs={'papel_carton': 0.966, 'plastico': 0.002, 'vidrio': 0.032} MAL
+  vidrio_158.jpeg: pred=papel_carton conf=96.6% probs={'papel_carton': 0.966, 'plastico': 0.002, 'vidrio': 0.033} MAL
+  vidrio_163.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.001, 'vidrio': 0.031} MAL
+  vidrio_165.jpeg: pred=papel_carton conf=96.4% probs={'papel_carton': 0.964, 'plastico': 0.002, 'vidrio': 0.034} MAL
+  vidrio_168.jpeg: pred=papel_carton conf=95.4% probs={'papel_carton': 0.954, 'plastico': 0.002, 'vidrio': 0.044} MAL
+  vidrio_169.jpeg: pred=papel_carton conf=95.4% probs={'papel_carton': 0.954, 'plastico': 0.001, 'vidrio': 0.045} MAL
+  vidrio_171.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  vidrio_172.jpeg: pred=papel_carton conf=97.2% probs={'papel_carton': 0.972, 'plastico': 0.001, 'vidrio': 0.027} MAL
+  vidrio_173.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.001, 'vidrio': 0.038} MAL
+  vidrio_174.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.001, 'vidrio': 0.031} MAL
+  vidrio_175.jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.001, 'vidrio': 0.03} MAL
+  vidrio_178.jpeg: pred=papel_carton conf=97.4% probs={'papel_carton': 0.974, 'plastico': 0.001, 'vidrio': 0.025} MAL
+  vidrio_179.jpeg: pred=papel_carton conf=95.0% probs={'papel_carton': 0.95, 'plastico': 0.001, 'vidrio': 0.048} MAL
+  vidrio_181.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.001, 'vidrio': 0.032} MAL
+  vidrio_183.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.001, 'vidrio': 0.036} MAL
+  vidrio_184.jpeg: pred=papel_carton conf=93.8% probs={'papel_carton': 0.938, 'plastico': 0.002, 'vidrio': 0.06} MAL
+  vidrio_185.jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.001, 'vidrio': 0.03} MAL
+  vidrio_186.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.001, 'vidrio': 0.032} MAL
+  vidrio_187.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.038} MAL
+--- [vidrio] HELD-OUT -- nunca vistas (chequeo honesto) ---
+  vidrio_001.jpeg: pred=papel_carton conf=96.4% probs={'papel_carton': 0.964, 'plastico': 0.001, 'vidrio': 0.035} MAL
+  vidrio_003.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.001, 'vidrio': 0.039} MAL
+  vidrio_014.jpeg: pred=papel_carton conf=97.0% probs={'papel_carton': 0.97, 'plastico': 0.001, 'vidrio': 0.029} MAL
+  vidrio_018.jpeg: pred=papel_carton conf=96.3% probs={'papel_carton': 0.963, 'plastico': 0.001, 'vidrio': 0.036} MAL
+  vidrio_019.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.001, 'vidrio': 0.039} MAL
+  vidrio_020.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  vidrio_032.jpeg: pred=papel_carton conf=97.2% probs={'papel_carton': 0.972, 'plastico': 0.001, 'vidrio': 0.027} MAL
+  vidrio_035.jpeg: pred=papel_carton conf=94.9% probs={'papel_carton': 0.949, 'plastico': 0.002, 'vidrio': 0.05} MAL
+  vidrio_040.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.001, 'vidrio': 0.031} MAL
+  vidrio_044.jpeg: pred=papel_carton conf=97.3% probs={'papel_carton': 0.973, 'plastico': 0.001, 'vidrio': 0.026} MAL
+  vidrio_045.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  vidrio_046.jpeg: pred=papel_carton conf=96.4% probs={'papel_carton': 0.964, 'plastico': 0.001, 'vidrio': 0.035} MAL
+  vidrio_051.jpeg: pred=papel_carton conf=96.9% probs={'papel_carton': 0.969, 'plastico': 0.002, 'vidrio': 0.03} MAL
+  vidrio_056.jpeg: pred=papel_carton conf=94.8% probs={'papel_carton': 0.948, 'plastico': 0.002, 'vidrio': 0.049} MAL
+  vidrio_066.jpeg: pred=papel_carton conf=97.2% probs={'papel_carton': 0.972, 'plastico': 0.001, 'vidrio': 0.027} MAL
+  vidrio_079.jpeg: pred=papel_carton conf=95.7% probs={'papel_carton': 0.957, 'plastico': 0.001, 'vidrio': 0.042} MAL
+  vidrio_081.jpeg: pred=papel_carton conf=96.1% probs={'papel_carton': 0.961, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  vidrio_100.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.001, 'vidrio': 0.032} MAL
+  vidrio_101.jpeg: pred=papel_carton conf=97.1% probs={'papel_carton': 0.971, 'plastico': 0.001, 'vidrio': 0.028} MAL
+  vidrio_102.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.001, 'vidrio': 0.034} MAL
+  vidrio_111.jpeg: pred=papel_carton conf=97.0% probs={'papel_carton': 0.97, 'plastico': 0.001, 'vidrio': 0.029} MAL
+  vidrio_120.jpeg: pred=papel_carton conf=94.8% probs={'papel_carton': 0.948, 'plastico': 0.002, 'vidrio': 0.051} MAL
+  vidrio_127.jpeg: pred=papel_carton conf=94.2% probs={'papel_carton': 0.942, 'plastico': 0.002, 'vidrio': 0.056} MAL
+  vidrio_141.jpeg: pred=papel_carton conf=96.7% probs={'papel_carton': 0.967, 'plastico': 0.001, 'vidrio': 0.032} MAL
+  vidrio_149.jpeg: pred=papel_carton conf=96.8% probs={'papel_carton': 0.968, 'plastico': 0.001, 'vidrio': 0.031} MAL
+  vidrio_150.jpeg: pred=papel_carton conf=97.3% probs={'papel_carton': 0.973, 'plastico': 0.001, 'vidrio': 0.026} MAL
+  vidrio_156.jpeg: pred=papel_carton conf=96.5% probs={'papel_carton': 0.965, 'plastico': 0.002, 'vidrio': 0.033} MAL
+  vidrio_160.jpeg: pred=papel_carton conf=96.0% probs={'papel_carton': 0.96, 'plastico': 0.002, 'vidrio': 0.038} MAL
+  vidrio_161.jpeg: pred=papel_carton conf=95.3% probs={'papel_carton': 0.953, 'plastico': 0.002, 'vidrio': 0.045} MAL
+  vidrio_162.jpeg: pred=papel_carton conf=96.4% probs={'papel_carton': 0.964, 'plastico': 0.001, 'vidrio': 0.035} MAL
+  vidrio_166.jpeg: pred=papel_carton conf=96.4% probs={'papel_carton': 0.964, 'plastico': 0.001, 'vidrio': 0.035} MAL
+  vidrio_167.jpeg: pred=papel_carton conf=95.9% probs={'papel_carton': 0.959, 'plastico': 0.002, 'vidrio': 0.039} MAL
+  vidrio_177.jpeg: pred=papel_carton conf=94.6% probs={'papel_carton': 0.946, 'plastico': 0.002, 'vidrio': 0.052} MAL
+  vidrio_182.jpeg: pred=papel_carton conf=96.2% probs={'papel_carton': 0.962, 'plastico': 0.001, 'vidrio': 0.037} MAL
+accuracy held-out por clase: {'plastico': 0.0, 'vidrio': 0.0}
+Saved artifact at 'C:\Users\luanb\AppData\Local\Temp\tmpkcpz120p'. The following endpoints are available:
+
+* Endpoint 'serve'
+  args_0 (POSITIONAL_ONLY): TensorSpec(shape=(None, 224, 224, 3), dtype=tf.float32, name='keras_tensor_154')
+Output Type:
+  TensorSpec(shape=(None, 3), dtype=tf.float32, name=None)
+Captures:
+  1755251317392: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251318160: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251317968: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251318352: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251317200: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251317584: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251319120: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251318928: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251319312: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251316624: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251318544: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251320080: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251319888: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251320272: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251317776: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251320464: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251321040: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251320848: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251318736: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251321232: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251322000: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251322768: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251322576: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251322960: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251321808: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251323920: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251325072: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251325264: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251324496: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251324112: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251325648: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251326416: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251326224: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251326608: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251324304: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251325840: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269906704: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269906896: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251325456: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755251326800: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269907280: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269907856: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269907664: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269907088: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269908048: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269908432: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269909200: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269909008: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269909392: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269906512: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269908624: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269910160: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269909968: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269910352: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269907472: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269909584: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269911120: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269910928: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269911312: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269908816: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269910544: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269912080: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269911888: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269912272: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269909776: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269911504: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269913040: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269912848: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269913232: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269910736: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269912464: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269914000: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269913808: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269914192: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269911696: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269914384: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269915152: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269914960: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269915344: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269913424: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269915536: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269916304: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269916112: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269916496: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269914576: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269915728: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269917264: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269917072: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269917456: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269912656: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269916688: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269918224: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269918032: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269918416: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269915920: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269917648: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269919184: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269918992: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269919376: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269916880: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269918608: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269920144: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269919952: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269920336: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269917840: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269919568: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269921104: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269920912: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269921296: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269918800: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269920528: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269922064: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269921872: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269922256: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269919760: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269921488: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269922448: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269920720: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269921680: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755269922640: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274248656: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274249424: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274249232: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274249616: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274248464: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274248848: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274250384: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274250192: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274250576: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274248272: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274249808: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274251344: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274251152: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274251536: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274249040: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274250768: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274252304: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274252112: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274252496: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274250000: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274251728: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274253264: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274253072: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274253456: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274250960: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274252688: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274254224: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274254032: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274254416: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274251920: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274253648: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274255184: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274254992: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274255376: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274252880: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274254608: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274256144: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274255952: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274256336: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274253840: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274255568: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274257104: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274256912: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274257296: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274254800: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274256528: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274258064: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274257872: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274258256: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274255760: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274257488: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274259024: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274258832: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274259216: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274256720: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274258448: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274259984: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274259792: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274260176: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274257680: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274259408: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274260944: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274260752: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274261136: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274258640: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274260368: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274261904: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274261712: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274262096: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274259600: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274261328: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274262864: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274262672: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274263056: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274260560: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274262288: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274263824: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274263632: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274264016: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274261520: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274263248: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274264208: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274262480: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274263440: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755274264400: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275231696: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275232464: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275232272: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275232656: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275231504: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275231888: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275233424: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275233232: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275233616: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275231312: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275232848: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275234384: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275234192: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275234576: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275232080: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275233808: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275235344: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275235152: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275235536: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275233040: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275234768: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275236304: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275236112: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275236496: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275234000: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275235728: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275237264: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275237072: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275237456: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275234960: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275236688: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275238224: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275238032: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275238416: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275235920: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275237648: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275239184: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275238992: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275239376: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275236880: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275238608: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275240144: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275239952: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275240336: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275237840: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275239568: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275241104: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275240912: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275241296: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275238800: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275240528: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275242064: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275241872: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275242256: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275239760: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275243024: TensorSpec(shape=(), dtype=tf.resource, name=None)
+  1755275243984: TensorSpec(shape=(), dtype=tf.resource, name=None)
+W0000 00:00:1786737839.785972   31404 tf_tfl_flatbuffer_helpers.cc:364] Ignored output_format.
+W0000 00:00:1786737839.786265   31404 tf_tfl_flatbuffer_helpers.cc:367] Ignored drop_control_dependency.
+I0000 00:00:1786737839.787268   31404 reader.cc:83] Reading SavedModel from: C:\Users\luanb\AppData\Local\Temp\tmpkcpz120p
+I0000 00:00:1786737839.798242   31404 reader.cc:52] Reading meta graph with tags { serve }
+I0000 00:00:1786737839.798292   31404 reader.cc:147] Reading SavedModel debug info (if present) from: C:\Users\luanb\AppData\Local\Temp\tmpkcpz120p
+I0000 00:00:1786737839.940024   31404 mlir_graph_optimization_pass.cc:437] MLIR V1 optimization pass is not enabled
+I0000 00:00:1786737839.964337   31404 loader.cc:236] Restoring SavedModel bundle.
+I0000 00:00:1786737840.990651   31404 loader.cc:220] Running initialization op on SavedModel bundle at path: C:\Users\luanb\AppData\Local\Temp\tmpkcpz120p
+I0000 00:00:1786737841.232276   31404 loader.cc:471] SavedModel load for tags { serve }; Status: success: OK. Took 1445233 microseconds.
+I0000 00:00:1786737841.506621   31404 dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+{
+  "cambios_v5": [
+    "Cambio de arquitectura: clasificador plano de 3 clases (papel_carton, plastico, vidrio) en vez de binario plastico/vidrio -- salida Dense(3, softmax) + sparse_categorical_crossentropy",
+    "papel_carton: clase distractora nueva, 997 imagenes de TrashNet (github.com/garythung/trashnet), sin fotos reales propias todavia",
+    "vidrio: dataset_real paso de 4 a 171 fotos reales (camara final del proyecto, confirmado por el usuario 2026-08-14)",
+    "plastico: dataset_real paso de 75 a 431 fotos reales",
+    "Held-out honesto calculado con seed=42, ~20% por clase (minimo 1 foto), solo para plastico/vidrio",
+    "Hiperparametros identicos a v2/v3/v4 (30 capas fine-tuning, sin color jitter extra)",
+    "class_names orden alfabetico: ['papel_carton', 'plastico', 'vidrio']"
+  ],
+  "class_names": [
+    "papel_carton",
+    "plastico",
+    "vidrio"
+  ],
+  "held_out_files": {
+    "plastico": [
+      "plastico_003.jpeg",
+      "plastico_005.jpeg",
+      "plastico_012.jpeg",
+      "plastico_014 (10).jpeg",
+      "plastico_014 (21).jpeg",
+      "plastico_014 (7).jpeg",
+      "plastico_016.jpeg",
+      "plastico_017.jpeg",
+      "plastico_019.jpeg",
+      "plastico_021.jpeg",
+      "plastico_023.jpeg",
+      "plastico_028.jpeg",
+      "plastico_033.jpeg",
+      "plastico_037.jpeg",
+      "plastico_044.jpeg",
+      "plastico_046.jpeg",
+      "plastico_053.jpeg",
+      "plastico_055.jpeg",
+      "plastico_064.jpeg",
+      "plastico_067.jpeg",
+      "plastico_068.jpeg",
+      "plastico_071.jpeg",
+      "plastico_072.jpeg",
+      "plastico_080.jpeg",
+      "plastico_086.jpeg",
+      "plastico_109.jpeg",
+      "plastico_111.jpeg",
+      "plastico_112.jpeg",
+      "plastico_115.jpeg",
+      "plastico_122.jpeg",
+      "plastico_126.jpeg",
+      "plastico_138.jpeg",
+      "plastico_142.jpeg",
+      "plastico_144.jpeg",
+      "plastico_154.jpeg",
+      "plastico_160.jpeg",
+      "plastico_169.jpeg",
+      "plastico_184.jpeg",
+      "plastico_185.jpeg",
+      "plastico_188.jpeg",
+      "plastico_200.jpeg",
+      "plastico_201.jpeg",
+      "plastico_206.jpeg",
+      "plastico_208.jpeg",
+      "plastico_217.jpeg",
+      "plastico_231.jpeg",
+      "plastico_239.jpeg",
+      "plastico_241.jpeg",
+      "plastico_242.jpeg",
+      "plastico_247.jpeg",
+      "plastico_251.jpeg",
+      "plastico_263.jpeg",
+      "plastico_265.jpeg",
+      "plastico_266.jpeg",
+      "plastico_267.jpeg",
+      "plastico_270.jpeg",
+      "plastico_274.jpeg",
+      "plastico_278.jpeg",
+      "plastico_279.jpeg",
+      "plastico_283.jpeg",
+      "plastico_288.jpeg",
+      "plastico_296.jpeg",
+      "plastico_302.jpeg",
+      "plastico_307.jpeg",
+      "plastico_310.jpeg",
+      "plastico_314.jpeg",
+      "plastico_320.jpeg",
+      "plastico_323.jpeg",
+      "plastico_326.jpeg",
+      "plastico_331.jpeg",
+      "plastico_336.jpeg",
+      "plastico_345.jpeg",
+      "plastico_346.jpeg",
+      "plastico_348.jpeg",
+      "plastico_350.jpeg",
+      "plastico_351.jpeg",
+      "plastico_367.jpeg",
+      "plastico_373.jpeg",
+      "plastico_393.jpeg",
+      "plastico_394.jpeg",
+      "plastico_407.jpeg",
+      "plastico_416.jpeg",
+      "plastico_426.jpeg",
+      "plastico_432.jpeg",
+      "plastico_436.jpeg",
+      "plastico_438.jpeg"
+    ],
+    "vidrio": [
+      "vidrio_001.jpeg",
+      "vidrio_003.jpeg",
+      "vidrio_014.jpeg",
+      "vidrio_018.jpeg",
+      "vidrio_019.jpeg",
+      "vidrio_020.jpeg",
+      "vidrio_032.jpeg",
+      "vidrio_035.jpeg",
+      "vidrio_040.jpeg",
+      "vidrio_044.jpeg",
+      "vidrio_045.jpeg",
+      "vidrio_046.jpeg",
+      "vidrio_051.jpeg",
+      "vidrio_056.jpeg",
+      "vidrio_066.jpeg",
+      "vidrio_079.jpeg",
+      "vidrio_081.jpeg",
+      "vidrio_100.jpeg",
+      "vidrio_101.jpeg",
+      "vidrio_102.jpeg",
+      "vidrio_111.jpeg",
+      "vidrio_120.jpeg",
+      "vidrio_127.jpeg",
+      "vidrio_141.jpeg",
+      "vidrio_149.jpeg",
+      "vidrio_150.jpeg",
+      "vidrio_156.jpeg",
+      "vidrio_160.jpeg",
+      "vidrio_161.jpeg",
+      "vidrio_162.jpeg",
+      "vidrio_166.jpeg",
+      "vidrio_167.jpeg",
+      "vidrio_177.jpeg",
+      "vidrio_182.jpeg"
+    ]
+  },
+  "entrenamiento": {
+    "epocas_fase1": 20,
+    "epocas_fase2": 15,
+    "tiempo_total_s": 4161.3
+  },
+  "evaluacion_test_oficial": {
+    "accuracy": 0.9801,
+    "precision_weighted": 0.9803,
+    "recall_weighted": 0.9801,
+    "f1_weighted": 0.9801,
+    "precision_por_clase": {
+      "papel_carton": 0.9932,
+      "plastico": 0.9685,
+      "vidrio": 0.9836
+    },
+    "recall_por_clase": {
+      "papel_carton": 0.98,
+      "plastico": 0.9908,
+      "vidrio": 0.9677
+    },
+    "f1_por_clase": {
+      "papel_carton": 0.9866,
+      "plastico": 0.9795,
+      "vidrio": 0.9756
+    },
+    "matriz_confusion": [
+      [
+        147,
+        2,
+        1
+      ],
+      [
+        0,
+        215,
+        2
+      ],
+      [
+        1,
+        5,
+        180
+      ]
+    ],
+    "matriz_confusion_orden": [
+      "papel_carton",
+      "plastico",
+      "vidrio"
+    ]
+  },
+  "accuracy_held_out_por_clase": {
+    "plastico": 0.0,
+    "vidrio": 0.0
+  },
+  "fotos_reales_vistas_en_train": {
+    "plastico": [
+      {
+        "archivo": "plastico_001.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_002.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 98.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_004.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 98.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_006.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 98.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_007.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_008.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_009.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 98.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_010.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 98.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_011.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 98.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_013.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 98.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (1).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (11).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (12).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (13).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (14).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (15).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (16).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (17).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (18).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (19).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (2).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (20).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (22).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (23).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (24).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (3).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (4).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 98.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (5).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (6).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (8).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (9).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_015.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_018.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_020.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_022.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_024.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_025.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_026.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_027.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_029.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_030.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_031.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_032.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_034.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_035.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_036.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_038.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_039.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_040.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_041.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_042.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_043.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_045.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_047.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_048.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_049.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_050.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_051.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_052.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_054.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_056.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_057.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_058.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_059.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_060.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_061.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_062.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_065.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_066.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_069.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_070.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_073.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_074.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_075.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_076.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_077.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_079.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_081.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_082.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_083.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_084.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_085.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_087.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_088.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_089.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_090.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_091.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_092.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_093.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_094.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_095.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_096.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_098.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_099.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_100.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_101.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_102.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_103.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_104.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_105.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_106.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_107.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_110.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_113.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_114.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_117.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_118.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_119.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_120.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_121.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_123.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_124.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_125.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_127.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_128.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_129.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_130.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_131.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_132.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_133.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_134.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_135.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_136.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_139.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_140.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_141.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_143.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_145.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_146.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_147.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_148.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_149.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_150.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_151.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_152.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_153.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_156.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_157.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_158.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_159.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_161.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_162.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_163.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_164.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_165.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_166.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_167.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_168.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_170.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_171.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_172.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_173.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_174.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_175.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_176.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_177.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_178.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_179.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_181.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_182.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_183.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_186.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_189.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_190.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_191.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_192.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_193.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_194.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_196.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_197.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_198.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_199.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_203.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_204.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_205.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_209.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_210.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_211.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_212.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_213.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_214.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_215.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_216.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_218.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_219.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_220.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_221.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_222.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_223.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_224.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_225.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_226.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_227.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_228.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_229.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_232.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_233.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_234.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_235.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_236.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_240.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_243.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_244.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_246.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_248.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_249.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_250.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_252.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_253.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_255.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_256.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_257.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_259.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_268.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_271.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_272.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_275.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_276.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_277.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_280.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_281.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_282.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_284.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_285.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_286.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_287.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_289.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_290.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_291.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_292.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_293.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_294.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_295.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_297.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_298.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_299.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_300.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_301.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_304.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_305.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_306.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_308.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_309.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_311.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_312.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_315.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_316.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_318.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_319.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_322.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_324.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_325.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_328.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_329.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_330.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_333.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_334.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_335.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_337.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_338.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_339.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_341.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_342.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_343.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_344.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_347.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_349.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_352.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_353.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_354.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_355.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_356.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_357.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_358.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 93.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_359.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_360.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_361.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_362.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_363.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_364.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_365.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_366.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_368.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_369.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_370.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_371.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_372.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_374.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_375.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_376.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_377.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_378.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_379.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_380.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_381.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_382.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_383.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_384.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_385.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_386.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_387.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_388.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_389.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_390.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_391.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_392.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_395.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_396.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_397.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_398.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_399.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_400.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_401.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_402.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_403.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_404.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_406.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_408.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_410.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_411.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_412.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_415.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_417.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_418.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_420.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_422.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_423.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_424.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_425.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_427.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_428.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_429.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_430.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_431.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_433.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_435.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_437.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_440.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_441.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_442.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_443.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_445.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_446.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_447.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_448.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      }
+    ],
+    "vidrio": [
+      {
+        "archivo": "vidrio_002.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_004.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_005.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.4,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_006.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_007.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_008.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_009.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.7,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_010.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_011.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_012.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.1,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_013.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_015.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.6,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_016.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_017.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.0,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_021.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.4,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_022.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_023.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_024.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_025.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_026.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_027.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_029.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.0,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_030.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_031.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_033.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_034.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.1,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_036.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_037.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_038.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.0,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_039.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_041.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_042.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_043.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_047.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_048.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.5,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_049.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_050.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.0,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_052.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.2,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_053.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_054.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_055.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.1,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_057.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_058.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_059.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_060.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_061.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_062.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_063.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_064.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_065.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_067.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_068.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.2,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_069.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_070.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.4,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_071.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_072.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_073.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_074.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 93.5,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_075.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.6,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_076.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.4,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_077.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.1,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_080.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.2,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_082.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_083.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.6,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_084.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_085.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_086.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_087.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 98.3,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_088.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.0,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_089.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_090.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_092.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_093.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_095.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_097.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.5,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_099.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.6,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_104.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_105.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_106.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_107.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_108.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 93.7,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_109.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_110.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_112.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.6,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_113.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_114.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.1,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_115.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.7,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_116.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_117.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_118.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.2,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_119.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_121.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_122.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_123.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_124.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.1,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_125.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_126.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.2,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_128.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.2,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_129.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.4,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_130.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_131.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.3,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_133.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.3,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_134.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.5,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_135.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_136.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_137.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_138.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_139.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_140.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.2,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_143.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 98.0,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_145.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.4,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_147.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_148.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_151.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_152.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.5,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_153.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.1,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_154.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.4,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_155.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.4,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_157.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.6,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_158.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.6,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_163.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_165.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.4,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_168.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.4,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_169.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.4,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_171.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_172.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.2,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_173.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_174.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_175.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_178.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.4,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_179.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.0,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_181.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_183.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_184.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 93.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_185.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_186.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_187.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      }
+    ]
+  },
+  "fotos_reales_held_out": {
+    "plastico": [
+      {
+        "archivo": "plastico_003.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_005.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 98.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_012.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (10).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (21).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_014 (7).jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_016.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_017.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_019.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_021.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_023.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_028.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_033.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_037.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_044.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_046.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_053.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_055.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_064.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_067.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_068.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_071.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_072.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_080.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_086.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_109.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_111.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_112.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_115.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_122.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_126.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_138.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_142.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_144.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_154.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 93.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_160.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_169.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_184.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_185.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_188.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_200.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_201.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_206.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_208.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_217.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_231.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_239.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_241.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_242.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_247.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_251.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_263.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_265.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_266.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_267.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_270.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_274.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_278.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_279.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_283.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_288.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_296.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_302.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_307.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.6,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_310.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_314.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_320.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_323.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_326.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.4,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_331.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_336.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_345.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_346.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_348.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_350.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.8,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_351.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_367.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_373.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_393.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_394.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.3,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_407.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_416.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_426.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_432.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_436.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.0,
+        "correcto": false
+      },
+      {
+        "archivo": "plastico_438.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      }
+    ],
+    "vidrio": [
+      {
+        "archivo": "vidrio_001.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.4,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_003.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_014.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.0,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_018.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.3,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_019.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_020.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_032.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.2,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_035.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_040.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_044.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.3,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_045.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_046.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.4,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_051.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_056.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_066.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.2,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_079.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.7,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_081.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.1,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_100.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_101.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.1,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_102.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_111.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.0,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_120.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_127.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.2,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_141.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.7,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_149.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.8,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_150.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 97.3,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_156.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.5,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_160.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.0,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_161.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.3,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_162.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.4,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_166.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.4,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_167.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 95.9,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_177.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 94.6,
+        "correcto": false
+      },
+      {
+        "archivo": "vidrio_182.jpeg",
+        "prediccion": "papel_carton",
+        "confianza": 96.2,
+        "correcto": false
+      }
+    ]
+  }
+}
+OK - modelo v5 guardado en C:\Users\luanb\Desktop\RModel\modelo\model\ecosort_mobilenetv2_v5_3clases.keras

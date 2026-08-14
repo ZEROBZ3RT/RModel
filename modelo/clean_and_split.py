@@ -11,7 +11,7 @@ random.seed(42)
 ROOT = Path(__file__).resolve().parent.parent
 DATASET = ROOT / "dataset"
 SPLIT = ROOT / "dataset_split"
-CLASSES = ["plastico", "vidrio"]
+CLASSES = ["plastico", "vidrio", "papel_carton"]
 
 log = {"heic_converted": [], "duplicates_removed": [], "final_counts": {}, "split_counts": {}}
 

@@ -1,20 +1,26 @@
 """
 Sistema Experto de RePoints: capa de reglas que valida la prediccion del
-modelo de IA antes de tomar una decision final.
+modelo de IA antes de tomar una decision final y calcula los puntos que
+gana el usuario.
 
 Estructura clasica de un sistema experto basado en reglas:
     - Base de conocimiento (clase Clase + lista de Reglas + umbrales de calidad)
     - Motor de inferencia (SistemaExperto.evaluar / evaluar_captura)
     - Explicacion de la decision (ResultadoClasificacion.explicacion)
 
-El modelo (MobileNetV2/TFLite) predice unicamente P(vidrio) (ver notebook,
-class_names = ["plastico", "vidrio"], label 1 = vidrio). El sistema experto
-no reentrena ni toca el modelo: solo interpreta su salida.
+Desde v5 el modelo (MobileNetV2/TFLite) predice una distribucion de
+probabilidad sobre 3 clases -- class_names = ["papel_carton", "plastico",
+"vidrio"] (orden alfabetico, ver modelo/retrain_v5_3clases.py) -- en vez de
+un unico P(vidrio) binario. El sistema experto no reentrena ni toca el
+modelo: solo interpreta su salida (argmax + confianza) y decide.
 
-Ademas de la confianza del modelo, el sistema experto puede validar la
-CALIDAD de la captura de la camara (nitidez y brillo) antes de confiarle
-nada al modelo -- mismos umbrales y metricas (varianza del Laplaciano,
-brillo medio) que el Informe de Analisis del Dataset (seccion 4.3).
+Puntaje (ver README / Informe de Diseno):
+    plastico     -> 5 puntos
+    vidrio       -> 10 puntos
+    papel_carton -> 0 puntos (clase distractora, se reconoce pero no puntua)
+    Si el objeto es una botella (chica o grande), el puntaje de plastico/
+    vidrio se DUPLICA (ver MULTIPLICADOR_BOTELLA). No aplica a papel_carton
+    (0 * cualquier cosa sigue siendo 0).
 """
 from dataclasses import dataclass, field
 from enum import Enum
@@ -27,6 +33,17 @@ class Clase(Enum):
     """Clases de material que el sistema puede reconocer."""
     PLASTICO = "plastico"
     VIDRIO = "vidrio"
+    PAPEL_CARTON = "papel_carton"
+
+    def __str__(self) -> str:
+        return self.value
+
+
+class TamanoObjeto(Enum):
+    """Tamano/forma del objeto detectado, para el bono de puntos de botella."""
+    NO_ESPECIFICADO = "no_especificado"
+    BOTELLA_PEQUENA = "botella_pequena"
+    BOTELLA_GRANDE = "botella_grande"
 
     def __str__(self) -> str:
         return self.value
@@ -50,11 +67,13 @@ class CalidadImagen:
 @dataclass
 class ResultadoClasificacion:
     clase_predicha: Optional[Clase]     # None si la imagen se rechazo por calidad
-    confianza: Optional[float]          # 0.0 - 1.0, referida a clase_predicha (None si se rechazo por calidad)
+    confianza: Optional[float]          # 0.0 - 1.0, confianza de clase_predicha (None si se rechazo por calidad)
     decision: Decision
-    clase_final: Optional[Clase]      # None si no se acepta (recaptura/desconocido)
-    regla_aplicada: str                # nombre de la regla de la base de conocimiento que disparo
-    explicacion: str                   # justificacion legible de la decision
+    clase_final: Optional[Clase]        # None si no se acepta (recaptura/desconocido)
+    puntos: float                       # 0.0 si clase_final es None o es PAPEL_CARTON
+    regla_aplicada: str                 # nombre de la regla de la base de conocimiento que disparo
+    explicacion: str                    # justificacion legible de la decision
+    probabilidades: Optional[dict] = None  # {Clase: prob}, distribucion completa del modelo
     calidad: Optional[CalidadImagen] = None  # presente si se evaluo calidad de imagen
 
 
@@ -99,13 +118,25 @@ class SistemaExperto:
                         generada/descargada/reenviada casi nunca calza
                         exactamente con esas resoluciones fijas. Pasar None
                         explicitamente desactiva el chequeo. Si no se pasa
-                        el parametro, se usan las dos resoluciones realmente
-                        observadas en dataset_real -- (1600, 900) (sesion
-                        con la caja de luz, la mayoria de las fotos) y
-                        (1280, 960) (sesion previa, 14 fotos mas viejas de
-                        plastico). Si se agregan fotos reales con una camara
-                        nueva, sumar su resolucion aqui en vez de sacar el
-                        chequeo.
+                        el parametro, se usan las resoluciones realmente
+                        observadas en dataset_real -- (1600, 900) y
+                        (1280, 960) (sesiones con la caja de luz) y
+                        (1448, 1086) (camara final del proyecto usada para
+                        el lote grande de materiales.rar, confirmado por el
+                        usuario 2026-08-14 -- antes esta resolucion estaba
+                        marcada como sospechosa por coincidir con el lote
+                        fraudulento de WhatsApp del 2026-08-12; ver README).
+                        Si se agrega una camara nueva, sumar su resolucion
+                        aqui en vez de sacar el chequeo.
+
+    Parametros de puntaje:
+
+        puntos_base:    dict {Clase: puntos}. Default: plastico=5, vidrio=10,
+                        papel_carton=0.
+        multiplicador_botella: factor que se aplica a los puntos si el
+                        objeto es una botella (chica o grande). Default 2.0
+                        (duplica). Papel/carton nunca puntua, sea botella o
+                        no (0 * multiplicador = 0).
     """
 
     _SIN_ESPECIFICAR = object()  # sentinel: distingue "no se paso el parametro" de "None explicito"
@@ -118,6 +149,8 @@ class SistemaExperto:
         brillo_min: float = 60.0,
         brillo_max: float = 200.0,
         resoluciones_permitidas=_SIN_ESPECIFICAR,
+        puntos_base: Optional[dict] = None,
+        multiplicador_botella: float = 2.0,
     ):
         if not (0.0 <= umbral_recaptura <= umbral_aceptar <= 1.0):
             raise ValueError(
@@ -132,9 +165,16 @@ class SistemaExperto:
         self.brillo_min = brillo_min
         self.brillo_max = brillo_max
         if resoluciones_permitidas is SistemaExperto._SIN_ESPECIFICAR:
-            self.resoluciones_permitidas = [(1600, 900), (1280, 960)]
+            self.resoluciones_permitidas = [(1600, 900), (1280, 960), (1448, 1086)]
         else:
             self.resoluciones_permitidas = resoluciones_permitidas
+        self.puntos_base = puntos_base if puntos_base is not None else {
+            Clase.PLASTICO: 5.0,
+            Clase.VIDRIO: 10.0,
+            Clase.PAPEL_CARTON: 0.0,
+        }
+        self.multiplicador_botella = multiplicador_botella
+        self.clases = [Clase.PAPEL_CARTON, Clase.PLASTICO, Clase.VIDRIO]  # orden alfabetico, igual al modelo
         self.base_reglas = self._construir_base_reglas()
 
     def _construir_base_reglas(self) -> list[Regla]:
@@ -174,37 +214,72 @@ class SistemaExperto:
             ),
         ]
 
-    def evaluar(self, prob_vidrio: float) -> ResultadoClasificacion:
-        """
-        Motor de inferencia: recibe P(vidrio) del modelo y aplica la base de
-        reglas en orden hasta encontrar la primera que dispare.
-        """
-        if not 0.0 <= prob_vidrio <= 1.0:
-            raise ValueError(f"prob_vidrio debe estar en [0,1], recibido {prob_vidrio}")
+    def calcular_puntos(self, clase: Optional[Clase], tamano: TamanoObjeto = TamanoObjeto.NO_ESPECIFICADO) -> float:
+        """Puntos ganados por clase_final, con bono de x{multiplicador_botella} si es botella."""
+        if clase is None:
+            return 0.0
+        base = self.puntos_base.get(clase, 0.0)
+        if tamano in (TamanoObjeto.BOTELLA_PEQUENA, TamanoObjeto.BOTELLA_GRANDE):
+            return base * self.multiplicador_botella
+        return base
 
-        if prob_vidrio >= 0.5:
-            clase_predicha = Clase.VIDRIO
-            confianza = prob_vidrio
+    def evaluar(
+        self,
+        probabilidades: Union[dict, list, np.ndarray],
+        tamano: TamanoObjeto = TamanoObjeto.NO_ESPECIFICADO,
+    ) -> ResultadoClasificacion:
+        """
+        Motor de inferencia: recibe la distribucion de probabilidad del
+        modelo (softmax de 3 clases) y aplica la base de reglas en orden
+        hasta encontrar la primera que dispare.
+
+        Args:
+            probabilidades: dict {Clase: prob} o secuencia alineada con
+                self.clases (orden alfabetico: papel_carton, plastico,
+                vidrio). Debe sumar ~1.0.
+            tamano: TamanoObjeto, para el bono de puntos de botella.
+        """
+        if isinstance(probabilidades, dict):
+            probs = {c: float(probabilidades[c]) for c in self.clases}
         else:
-            clase_predicha = Clase.PLASTICO
-            confianza = 1.0 - prob_vidrio
+            probabilidades = list(probabilidades)
+            if len(probabilidades) != len(self.clases):
+                raise ValueError(
+                    f"Se esperaban {len(self.clases)} probabilidades ({[str(c) for c in self.clases]}), "
+                    f"recibido {len(probabilidades)}"
+                )
+            probs = {c: float(p) for c, p in zip(self.clases, probabilidades)}
+
+        total = sum(probs.values())
+        if not np.isclose(total, 1.0, atol=1e-3):
+            raise ValueError(f"Las probabilidades deben sumar ~1.0, recibido suma={total}")
+        if any(p < 0.0 or p > 1.0 for p in probs.values()):
+            raise ValueError(f"Cada probabilidad debe estar en [0,1], recibido {probs}")
+
+        clase_predicha = max(probs, key=probs.get)
+        confianza = probs[clase_predicha]
 
         for regla in self.base_reglas:
             if regla.condicion(confianza):
                 clase_final = clase_predicha if regla.acepta_clase else None
+                puntos = self.calcular_puntos(clase_final, tamano)
                 explicacion = regla.plantilla_explicacion.format(
                     conf=confianza * 100,
                     umbral_aceptar=self.umbral_aceptar * 100,
                     umbral_recaptura=self.umbral_recaptura * 100,
                     clase=clase_predicha,
                 )
+                if clase_final is not None:
+                    explicacion += f" Puntos otorgados: {puntos:g} (tamano={tamano})."
                 return ResultadoClasificacion(
                     clase_predicha=clase_predicha,
                     confianza=confianza,
                     decision=regla.decision,
                     clase_final=clase_final,
+                    puntos=puntos,
                     regla_aplicada=regla.nombre,
                     explicacion=explicacion,
+                    probabilidades=probs,
                 )
 
         raise RuntimeError("Ninguna regla de la base de conocimiento disparo (no deberia pasar, R3 es catch-all)")
@@ -283,15 +358,16 @@ class SistemaExperto:
 
     def evaluar_captura(
         self,
-        prob_vidrio: float,
+        probabilidades: Union[dict, list, np.ndarray],
         imagen: Optional[Union[str, "np.ndarray"]] = None,
+        tamano: TamanoObjeto = TamanoObjeto.NO_ESPECIFICADO,
     ) -> ResultadoClasificacion:
         """
         Flujo completo: si se pasa `imagen`, primero corre R0 (calidad de
         camara). Si la imagen no pasa el filtro de calidad, se pide
         recaptura sin siquiera mirar la salida del modelo. Si pasa (o no se
         valida calidad porque no se paso `imagen`), se aplican las reglas de
-        confianza normales (R1/R2/R3).
+        confianza normales (R1/R2/R3) sobre `probabilidades`.
         """
         calidad = None
         if imagen is not None:
@@ -302,6 +378,7 @@ class SistemaExperto:
                     confianza=None,
                     decision=Decision.SOLICITAR_RECAPTURA,
                     clase_final=None,
+                    puntos=0.0,
                     regla_aplicada="R0_CALIDAD_CAMARA",
                     explicacion=(
                         f"Captura rechazada antes de clasificar: {calidad.motivo}. "
@@ -310,7 +387,7 @@ class SistemaExperto:
                     calidad=calidad,
                 )
 
-        resultado = self.evaluar(prob_vidrio)
+        resultado = self.evaluar(probabilidades, tamano=tamano)
         resultado.calidad = calidad
         return resultado
 
@@ -321,41 +398,54 @@ class SistemaExperto:
 _sistema_por_defecto = SistemaExperto()
 
 
-def clasificar_con_reglas(prob_vidrio: float) -> ResultadoClasificacion:
+def clasificar_con_reglas(probabilidades: Union[dict, list, np.ndarray]) -> ResultadoClasificacion:
     """Atajo funcional sobre SistemaExperto() con los umbrales por defecto."""
-    return _sistema_por_defecto.evaluar(prob_vidrio)
+    return _sistema_por_defecto.evaluar(probabilidades)
 
 
 if __name__ == "__main__":
-    print("=== Sistema experto por defecto (85% / 60%) ===")
+    print("=== Sistema experto por defecto (85% / 60%), modelo v5 de 3 clases ===")
     casos = [
-        (0.01, "plastico muy seguro"),
-        (0.10, "plastico confianza 90%"),
-        (0.30, "plastico confianza 70%"),
-        (0.45, "plastico confianza 55%"),
-        (0.55, "vidrio confianza 55%"),
-        (0.70, "vidrio confianza 70%"),
-        (0.90, "vidrio confianza 90%"),
-        (0.99, "vidrio muy seguro"),
+        ({Clase.PAPEL_CARTON: 0.02, Clase.PLASTICO: 0.97, Clase.VIDRIO: 0.01}, "plastico muy seguro"),
+        ({Clase.PAPEL_CARTON: 0.05, Clase.PLASTICO: 0.90, Clase.VIDRIO: 0.05}, "plastico confianza 90%"),
+        ({Clase.PAPEL_CARTON: 0.15, Clase.PLASTICO: 0.70, Clase.VIDRIO: 0.15}, "plastico confianza 70%"),
+        ({Clase.PAPEL_CARTON: 0.25, Clase.PLASTICO: 0.55, Clase.VIDRIO: 0.20}, "plastico confianza 55%"),
+        ({Clase.PAPEL_CARTON: 0.20, Clase.PLASTICO: 0.25, Clase.VIDRIO: 0.55}, "vidrio confianza 55%"),
+        ({Clase.PAPEL_CARTON: 0.10, Clase.PLASTICO: 0.20, Clase.VIDRIO: 0.70}, "vidrio confianza 70%"),
+        ({Clase.PAPEL_CARTON: 0.02, Clase.PLASTICO: 0.08, Clase.VIDRIO: 0.90}, "vidrio confianza 90%"),
+        ({Clase.PAPEL_CARTON: 0.01, Clase.PLASTICO: 0.01, Clase.VIDRIO: 0.98}, "vidrio muy seguro"),
+        ({Clase.PAPEL_CARTON: 0.95, Clase.PLASTICO: 0.03, Clase.VIDRIO: 0.02}, "papel/carton muy seguro (0 puntos)"),
     ]
     se = SistemaExperto()
-    for prob, desc in casos:
-        r = se.evaluar(prob)
-        print(f"P(vidrio)={prob:.2f} | {desc:22s} -> [{r.regla_aplicada}] {r.decision.value:22s} "
+    for probs, desc in casos:
+        r = se.evaluar(probs)
+        print(f"{desc:32s} -> [{r.regla_aplicada}] {r.decision.value:22s} "
               f"clase_predicha={r.clase_predicha} conf={r.confianza*100:.1f}% "
-              f"clase_final={r.clase_final}")
+              f"clase_final={r.clase_final} puntos={r.puntos:g}")
         print(f"    explicacion: {r.explicacion}")
+
+    print("\n=== Bono de botella (duplica puntos plastico/vidrio, no afecta papel_carton) ===")
+    for probs, tam, desc in [
+        ({Clase.PAPEL_CARTON: 0.02, Clase.PLASTICO: 0.97, Clase.VIDRIO: 0.01}, TamanoObjeto.BOTELLA_GRANDE, "plastico, botella grande"),
+        ({Clase.PAPEL_CARTON: 0.01, Clase.PLASTICO: 0.01, Clase.VIDRIO: 0.98}, TamanoObjeto.BOTELLA_PEQUENA, "vidrio, botella chica"),
+        ({Clase.PAPEL_CARTON: 0.95, Clase.PLASTICO: 0.03, Clase.VIDRIO: 0.02}, TamanoObjeto.BOTELLA_GRANDE, "papel/carton, 'botella' grande (sigue en 0)"),
+    ]:
+        r = se.evaluar(probs, tamano=tam)
+        print(f"{desc:38s} -> clase_final={r.clase_final} puntos={r.puntos:g}")
 
     print("\n=== Sistema experto con umbrales mas estrictos (90% / 70%), configurable sin reentrenar ===")
     se_estricto = SistemaExperto(umbral_aceptar=0.90, umbral_recaptura=0.70)
-    for prob in [0.87, 0.92]:
-        r = se_estricto.evaluar(prob)
-        print(f"P(vidrio)={prob:.2f} -> [{r.regla_aplicada}] {r.decision.value} -- {r.explicacion}")
+    for probs in [
+        {Clase.PAPEL_CARTON: 0.05, Clase.PLASTICO: 0.08, Clase.VIDRIO: 0.87},
+        {Clase.PAPEL_CARTON: 0.02, Clase.PLASTICO: 0.06, Clase.VIDRIO: 0.92},
+    ]:
+        r = se_estricto.evaluar(probs)
+        print(f"conf={r.confianza*100:.1f}% -> [{r.regla_aplicada}] {r.decision.value} -- {r.explicacion}")
 
     print("\n=== R0: filtro de calidad de camara (nitidez/brillo, mismos umbrales del EDA) ===")
     import glob
     ejemplos = sorted(glob.glob(r"C:\Users\luanb\Desktop\RModel\dataset_real\plastico\*.jpeg"))[:3]
     for ruta in ejemplos:
-        r = se.evaluar_captura(prob_vidrio=0.75, imagen=ruta)
+        r = se.evaluar_captura(probabilidades={Clase.PAPEL_CARTON: 0.05, Clase.PLASTICO: 0.90, Clase.VIDRIO: 0.05}, imagen=ruta)
         print(f"{ruta.split(chr(92))[-1]}: nitidez={r.calidad.nitidez:.1f} brillo={r.calidad.brillo:.1f} "
               f"valida={r.calidad.es_valida} -> [{r.regla_aplicada}] {r.decision.value}")

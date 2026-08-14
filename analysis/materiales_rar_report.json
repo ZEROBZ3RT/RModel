@@ -1,0 +1,32 @@
+{
+  "origen": "materiales.rar (subido por el usuario 2026-08-14, ~96MB), confirmado por el usuario como fotos tomadas con la camara final del proyecto dentro de la caja de luz",
+  "contenido_original": {
+    "plastic": 398,
+    "glass": 186,
+    "no_imagen": ["plastic/apktool.bat -- script oficial de Apktool (herramienta open-source de Android), sin codigo sospechoso, no se ejecuto, se excluyo del dataset"],
+    "total_imagenes": 583
+  },
+  "chequeo_R0b_R0_previo_a_la_decision_del_usuario": {
+    "nota": "Este chequeo se corrio con el filtro anti-fraude existente (mismo usado en el incidente WhatsApp del README) ANTES de que el usuario confirmara el origen. Se encontro que 36% de las imagenes estaban en 1448x1086 (resolucion antes marcada como sospechosa) y que casi ninguna foto con nombre estilo WhatsApp 'PHOTO-2026-08-12-...' pasaba el filtro de calidad. El usuario confirmo que esta era la camara final del proyecto, asi que se decidio usar TODAS las fotos para entrenar (R0b/R0 son un filtro de captura en tiempo real, no un filtro obligatorio para datos de entrenamiento).",
+    "plastic": {"total": 397, "pasa_R0b_resolucion": 239, "falla_R0b_resolucion": 158, "de_los_que_pasan_R0b_pasa_todo_R0": 27, "falla_nitidez_o_brillo": 212},
+    "glass": {"total": 186, "pasa_R0b_resolucion": 136, "falla_R0b_resolucion": 50, "de_los_que_pasan_R0b_pasa_todo_R0": 26, "falla_nitidez_o_brillo": 110}
+  },
+  "paso_1_merge_a_dataset_real_dedup_exacto_MD5": {
+    "metodo": "hash MD5 exacto, contra lo ya existente en dataset_real y dentro del propio lote nuevo",
+    "plastico": {"nuevas_en_el_rar": 397, "duplicados_exactos_omitidos": 1, "agregadas": 396, "total_dataset_real_despues": 471},
+    "vidrio": {"nuevas_en_el_rar": 186, "duplicados_exactos_omitidos": 2, "agregadas": 184, "total_dataset_real_despues": 188}
+  },
+  "paso_2_limpieza_casi_duplicados_pHash": {
+    "metodo": "perceptual hash (imagehash.phash) -- agrupa imagenes visualmente identicas aunque no sean bit-a-bit iguales (recortes, recompresion, mismo objeto repetido); se conserva 1 por grupo",
+    "dataset_real/plastico": {"antes": 471, "grupos_casi_duplicados": 40, "eliminadas": 40, "despues": 431},
+    "dataset_real/vidrio": {"antes": 188, "grupos_casi_duplicados": 17, "eliminadas": 17, "despues": 171},
+    "dataset/papel_carton_TrashNet": {"antes": 997, "grupos_casi_duplicados": 2, "eliminadas": 2, "despues": 995},
+    "dataset/plastico_Kaggle_base": {"antes": 1438, "grupos_casi_duplicados": 1, "eliminadas": 1, "despues": 1437},
+    "dataset/vidrio_Kaggle_base": {"antes": 1232, "grupos_casi_duplicados": 0, "eliminadas": 0, "despues": 1232}
+  },
+  "resultado_final_dataset_real": {
+    "plastico": 431,
+    "vidrio": 171,
+    "total_fotos_reales_incorporadas_del_rar": "396 + 184 - 40 - 17 = 523 fotos nuevas y unicas incorporadas (sobre las 79 que ya existian)"
+  }
+}

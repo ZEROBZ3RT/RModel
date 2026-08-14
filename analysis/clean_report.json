@@ -1,0 +1,26 @@
+{
+  "heic_converted": [],
+  "duplicates_removed": [],
+  "final_counts": {
+    "plastico": 1437,
+    "vidrio": 1232,
+    "papel_carton": 995
+  },
+  "split_counts": {
+    "plastico": {
+      "train": 1005,
+      "val": 215,
+      "test": 217
+    },
+    "vidrio": {
+      "train": 862,
+      "val": 184,
+      "test": 186
+    },
+    "papel_carton": {
+      "train": 696,
+      "val": 149,
+      "test": 150
+    }
+  }
+}
